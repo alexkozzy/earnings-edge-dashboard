@@ -1,5 +1,6 @@
 import type { Signal } from "@/lib/types";
 import { SignalRow } from "./SignalRow";
+import { SignalCard } from "./SignalCard";
 
 export function SignalGrid({ signals }: { signals: Signal[] }) {
   if (signals.length === 0) {
@@ -11,7 +12,7 @@ export function SignalGrid({ signals }: { signals: Signal[] }) {
     );
   }
 
-  // Sort by edge_magnitude_pp descending, then tier (A before B before C).
+  // Sort by tier (A before B before C), then by edge_magnitude_pp descending.
   const tierOrder: Record<Signal["tier"], number> = { A: 0, B: 1, C: 2 };
   const sorted = [...signals].sort((a, b) => {
     const tierDiff = tierOrder[a.tier] - tierOrder[b.tier];
@@ -20,27 +21,37 @@ export function SignalGrid({ signals }: { signals: Signal[] }) {
   });
 
   return (
-    <div className="overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--panel)]">
-      <table className="w-full">
-        <thead>
-          <tr className="border-b border-[var(--border)] bg-black/20 text-left text-xs uppercase tracking-wider text-[var(--muted)]">
-            <th className="px-4 py-2 font-medium">Tier</th>
-            <th className="px-4 py-2 font-medium">Ticker</th>
-            <th className="px-4 py-2 font-medium">Market question</th>
-            <th className="px-4 py-2 text-right font-medium">Mkt prob</th>
-            <th className="px-4 py-2 text-right font-medium">Base rate</th>
-            <th className="px-4 py-2 text-right font-medium">Edge</th>
-            <th className="px-4 py-2 text-right font-medium">Side</th>
-            <th className="px-4 py-2 text-right font-medium">Earnings</th>
-            <th className="px-4 py-2 text-right font-medium">Flags</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sorted.map((s) => (
-            <SignalRow key={s.id} signal={s} />
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <>
+      {/* Desktop / tablet: table */}
+      <div className="hidden overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--panel)] sm:block">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-[var(--border)] bg-black/20 text-left text-xs uppercase tracking-wider text-[var(--muted)]">
+              <th className="px-4 py-2 font-medium">Tier</th>
+              <th className="px-4 py-2 font-medium">Ticker</th>
+              <th className="px-4 py-2 font-medium">Market question</th>
+              <th className="px-4 py-2 text-right font-medium">Mkt prob</th>
+              <th className="px-4 py-2 text-right font-medium">Base rate</th>
+              <th className="px-4 py-2 text-right font-medium">Edge</th>
+              <th className="px-4 py-2 text-right font-medium">Side</th>
+              <th className="px-4 py-2 text-right font-medium">Earnings</th>
+              <th className="px-4 py-2 text-right font-medium">Flags</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((s) => (
+              <SignalRow key={s.id} signal={s} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile: card stack (one card per signal, stacked vertically) */}
+      <div className="flex flex-col gap-3 sm:hidden">
+        {sorted.map((s) => (
+          <SignalCard key={s.id} signal={s} />
+        ))}
+      </div>
+    </>
   );
 }
