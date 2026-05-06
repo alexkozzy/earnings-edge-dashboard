@@ -35,12 +35,14 @@ function daysBetween(isoFuture: string, now: Date): number {
 
 async function fetchFinnhubSpot(ticker: string, baseUrl: string): Promise<number | null> {
   // Use our own proxy so the Finnhub key stays server-side.
+  // Proxy wraps Finnhub response in `{ data: {...}, cached: bool }`.
   const res = await fetch(`${baseUrl}/api/finnhub/quote?symbol=${encodeURIComponent(ticker)}`, {
     cache: "no-store",
   });
   if (!res.ok) return null;
-  const data = (await res.json()) as { c?: number };
-  return typeof data.c === "number" && data.c > 0 ? data.c : null;
+  const wrapper = (await res.json()) as { data?: { c?: number } };
+  const c = wrapper?.data?.c;
+  return typeof c === "number" && c > 0 ? c : null;
 }
 
 export async function POST(req: Request) {
