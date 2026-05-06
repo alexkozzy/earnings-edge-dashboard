@@ -2,6 +2,7 @@
  * SignalCard — mobile-only single-signal card (table is hidden under sm:).
  * Same data as SignalRow but stacked for narrow screens.
  */
+import Link from "next/link";
 import type { Signal } from "@/lib/types";
 
 const TIER_COLOR: Record<Signal["tier"], string> = {
@@ -41,9 +42,13 @@ export function SignalCard({ signal }: { signal: Signal }) {
             >
               {signal.tier}
             </span>
-            <span className="font-mono text-base font-semibold">
+            <Link
+              href={`/signal/${encodeURIComponent(signal.id)}`}
+              className="font-mono text-base font-semibold hover:text-[var(--accent)] hover:underline"
+              title="Open detail / share permalink"
+            >
               {signal.ticker}
-            </span>
+            </Link>
             <span
               className={`rounded px-1.5 py-0.5 font-mono text-xs ${
                 signal.direction === "YES"

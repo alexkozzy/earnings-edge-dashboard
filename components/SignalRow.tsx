@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Signal } from "@/lib/types";
 
 const TIER_COLOR: Record<Signal["tier"], string> = {
@@ -40,7 +41,13 @@ export function SignalRow({ signal }: { signal: Signal }) {
         </span>
       </td>
       <td className="px-4 py-3 font-mono text-sm font-semibold">
-        {signal.ticker}
+        <Link
+          href={`/signal/${encodeURIComponent(signal.id)}`}
+          className="hover:text-[var(--accent)] hover:underline"
+          title="Open detail / share permalink"
+        >
+          {signal.ticker}
+        </Link>
       </td>
       <td className="px-4 py-3 text-sm">
         <div className="max-w-md">

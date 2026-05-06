@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import { NavTabs } from "@/components/NavTabs";
+import { Footer } from "@/components/Footer";
+import { KeyboardShortcuts } from "@/components/KeyboardShortcuts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,12 +75,8 @@ export default function RootLayout({
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
           {children}
         </main>
-        <footer className="border-t border-[var(--border)] bg-[var(--panel)]">
-          <div className="mx-auto max-w-6xl px-4 py-4 text-xs text-[var(--muted)] sm:px-6">
-            Read-only. Not investment advice. Signals are produced by the
-            scanner project; this site only visualizes the published snapshot.
-          </div>
-        </footer>
+        <Footer />
+        <KeyboardShortcuts />
       </body>
     </html>
   );
