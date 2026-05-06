@@ -97,3 +97,52 @@ empty state still clean, `/hedge` placeholder still clean).
   — needs `docs/reference_polymarket_ui.png`
 - **Phase 7 (Priority 4)**: FoggleBet visual match for Stats cohort chart
   — needs `docs/reference_foggle_bet_stats.png`
+
+## v1.3 W3 — Hedge page (snapshot `2026-05-06T16-42-04-553Z`)
+
+Production deploy: commit `7b98ae4` (hedge page form + output + API +
+finnhub-proxy unwrap fix).
+
+### Verified
+
+| Viewport | Form | Output state |
+|---|---|---|
+| desktop 1440 | 2-col grid: form 320-400px on left, empty-state right | `/api/hedge` POST returns valid HedgeResult JSON for NVDA test (verified via curl) |
+| tablet 768 | Stacks to single column | (same) |
+| mobile 375 | Form full-width, button prominent, empty-state below | (same) |
+
+### API smoke test (full, NVDA call)
+
+```
+ticker:    NVDA
+earnings:  2026-05-21 (14d), tier A
+spot:      $204.56  (from Finnhub /quote via proxy)
+market:    62% YES, hist base rate 81%
+edge:      19.0pp toward YES (hedge=NO, conflict=True)
+
+5 scenarios computed (sharp miss → sharp beat, ±15% spot moves)
+
+RECOMMENDED (edge):
+  YES on polymarket @ 62c, stake $250
+  payout_if_hits $403, downside $-250
+  binding cap: per_market
+
+PURE HEDGE ALTERNATIVE (transparency):
+  NO @ 38c, stake $250
+```
+
+### v1.3 W3 status: ✅ COMPLETE
+
+Form renders cleanly at all 3 viewports. API returns full HedgeResult
+including 5-scenario grid, edge-vs-hedge conflict resolution (edge wins
+per directive), pure-hedge alternative when there's a conflict. No
+overlap bugs detected in screenshot inspection.
+
+### Known v1.3 limitations (deferred)
+
+- Post-calculation rendering not screenshotted (Playwright would need
+  to interact with form, beyond current screenshot.ts scope). Logic is
+  React-deterministic from API response shape; manual smoke OK.
+- Cost-basis input is total-dollars-per-contract (e.g. $155 for a $1.55
+  call); no per-share toggle. Documented in form label.
+- No Black-Scholes; intrinsic value at scenario spot only. v1 approximation.
