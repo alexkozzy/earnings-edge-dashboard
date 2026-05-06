@@ -24,6 +24,33 @@ import type { Direction, PaperBet, Signal } from "./types";
 const PAPER_STAKE_DOLLARS = 250;
 /** Resolution-window cushion past earnings_date in days. */
 const EXPIRY_DAYS_AFTER_EARNINGS = 21;
+/** Earnings must be at least this far in the future to log a bet. */
+const MIN_LEAD_TIME_HOURS = 12;
+/** Earnings more than this far out are dropped — Polymarket markets typically don't exist this far ahead. */
+const MAX_LEAD_TIME_DAYS = 90;
+
+/**
+ * Hard filter: bet only on future earnings within a sane window.
+ *
+ * Rejects:
+ *   - earnings_date in the past
+ *   - earnings_date < 12h from now (markets are about to settle, no time to position)
+ *   - earnings_date > 90 days out (markets typically don't exist that far ahead)
+ *   - unparseable earnings_date
+ *
+ * This is the belt-and-suspenders check. Even if the upstream scanner missed
+ * a stale signal, the publisher (here) catches it.
+ */
+export function isFutureEarnings(earningsDate: string, now: Date = new Date()): boolean {
+  if (!earningsDate) return false;
+  const iso = earningsDate.length === 10 ? `${earningsDate}T00:00:00Z` : earningsDate;
+  const edt = new Date(iso);
+  if (Number.isNaN(edt.getTime())) return false;
+  const deltaMs = edt.getTime() - now.getTime();
+  if (deltaMs < MIN_LEAD_TIME_HOURS * 60 * 60 * 1000) return false;
+  if (deltaMs > MAX_LEAD_TIME_DAYS * 24 * 60 * 60 * 1000) return false;
+  return true;
+}
 
 function dedupKey(ticker: string, earningsDate: string, side: Direction): string {
   return `${ticker}:${earningsDate}:${side}`;
@@ -89,6 +116,10 @@ export type LogResult = {
   logged: number;
   skipped_existing: number;
   skipped_tier_c: number;
+  /** Signals whose earnings_date was past or out of the lead-time window. */
+  skipped_past_or_far_earnings: number;
+  /** Tickers that were skipped for non-future earnings (debug aid). */
+  skipped_past_tickers?: string[];
   error?: string;
   commit?: string;
 };
@@ -103,7 +134,10 @@ export async function logPaperBets(signals: Signal[]): Promise<LogResult> {
     logged: 0,
     skipped_existing: 0,
     skipped_tier_c: 0,
+    skipped_past_or_far_earnings: 0,
+    skipped_past_tickers: [],
   };
+  const now = new Date();
 
   // Step 1: read existing open bets to dedup.
   const open = await readJsonl<PaperBet>(dataRepoConfig.paths.paperBetsOpen);
@@ -123,6 +157,13 @@ export async function logPaperBets(signals: Signal[]): Promise<LogResult> {
       continue;
     }
     if (sig.resolved) continue;
+    // HARD FILTER: future earnings only, within lead-time window.
+    // Stale signals must never reach paper-bet logging — they corrupt P&L.
+    if (!isFutureEarnings(sig.earnings_date, now)) {
+      result.skipped_past_or_far_earnings += 1;
+      result.skipped_past_tickers!.push(`${sig.ticker}:${sig.earnings_date}`);
+      continue;
+    }
     const side = sideFromSignal(sig);
     const key = dedupKey(sig.ticker, sig.earnings_date, side);
     if (existingKeys.has(key)) {
