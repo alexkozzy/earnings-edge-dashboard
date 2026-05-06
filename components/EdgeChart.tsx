@@ -54,8 +54,9 @@ export function EdgeChart({ signals }: { signals: Signal[] }) {
 
   return (
     <div className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
-      <div className="mb-2 flex items-baseline justify-between">
-        <h2 className="text-sm font-semibold">Edge map</h2>
+      {/* Header: stack vertically on narrow viewports so title + description don't fight */}
+      <div className="mb-2 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+        <h2 className="text-sm font-semibold whitespace-nowrap">Edge map</h2>
         <p className="text-xs text-[var(--muted)]">
           Points above the diagonal: base rate &gt; market price (long YES edge).
           Below: short YES edge.
@@ -64,7 +65,10 @@ export function EdgeChart({ signals }: { signals: Signal[] }) {
       <div className="h-80 w-full">
         {mounted ? (
         <ResponsiveContainer width="100%" height="100%">
-          <ScatterChart margin={{ top: 16, right: 24, bottom: 32, left: 16 }}>
+          {/* Bottom margin increased from 32 → 64 to give legend its own band
+              below the x-axis ticks. The redundant "Market-implied probability"
+              label dropped — the 0–100% ticks + chart h2 already communicate it. */}
+          <ScatterChart margin={{ top: 16, right: 24, bottom: 64, left: 16 }}>
             <CartesianGrid stroke="#1f2026" strokeDasharray="3 3" />
             <XAxis
               type="number"
@@ -74,13 +78,6 @@ export function EdgeChart({ signals }: { signals: Signal[] }) {
               tickFormatter={(v) => `${Math.round(v * 100)}%`}
               stroke="#94949b"
               fontSize={12}
-              label={{
-                value: "Market-implied probability",
-                position: "insideBottom",
-                offset: -16,
-                fill: "#94949b",
-                fontSize: 12,
-              }}
             />
             <YAxis
               type="number"
@@ -141,7 +138,14 @@ export function EdgeChart({ signals }: { signals: Signal[] }) {
               }}
             />
             <Legend
-              wrapperStyle={{ fontSize: 12, color: "#94949b", paddingTop: 8 }}
+              verticalAlign="bottom"
+              align="center"
+              wrapperStyle={{
+                fontSize: 12,
+                color: "#94949b",
+                paddingTop: 16,
+                bottom: 0,
+              }}
             />
             {(["A", "B", "C"] as const).map((tier) => (
               <Scatter

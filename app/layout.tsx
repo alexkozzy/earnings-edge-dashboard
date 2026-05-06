@@ -60,9 +60,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)]">
         <header className="border-b border-[var(--border)] bg-[var(--panel)]">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-            <Link href="/" className="flex items-baseline gap-3">
-              <span className="text-lg font-semibold tracking-tight">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-6 sm:py-4">
+            <Link href="/" className="flex shrink-0 items-baseline gap-2 sm:gap-3">
+              <span className="whitespace-nowrap text-base font-semibold tracking-tight sm:text-lg">
                 Earnings Edge
               </span>
               <span className="hidden text-xs uppercase tracking-widest text-[var(--muted)] sm:inline">
