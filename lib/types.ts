@@ -128,3 +128,102 @@ export type CalibrationSummary = z.infer<typeof CalibrationSummarySchema>;
 
 /** Threshold below which the calibration tab shows the "insufficient data" fallback. */
 export const CALIBRATION_MIN_N = 20;
+
+/* -----------------------------------------------------------------------
+ * Paper-trading additions (v1.1, additive only).
+ *
+ * The paper-trading engine logs simulated bets at signal-creation time on
+ * currently-open prediction markets, then retroactively marks them won/lost
+ * when the underlying earnings event settles.
+ *
+ * Storage lives in the GH `earnings-edge-data` repo (see lib/dataRepo.ts):
+ *   - data/paper_bets_open.jsonl     active, unresolved bets
+ *   - data/paper_bets_settled.jsonl  resolved history (immutable append)
+ *
+ * IMPORTANT: schema is additive. PaperBet fields align with the existing
+ * Signal schema (tier `A|B|C`, side `YES|NO`). New fields like sector,
+ * industry, market_cap_bucket are OPTIONAL so older snapshots still parse.
+ * --------------------------------------------------------------------- */
+
+export const VenueEnum = z.enum(["polymarket", "kalshi"]);
+export type Venue = z.infer<typeof VenueEnum>;
+
+export const PaperBetStatusEnum = z.enum([
+  "open",
+  "settled_win",
+  "settled_loss",
+  "expired",
+]);
+export type PaperBetStatus = z.infer<typeof PaperBetStatusEnum>;
+
+export const MarketCapBucketEnum = z.enum(["mega", "large", "mid", "small"]);
+export type MarketCapBucket = z.infer<typeof MarketCapBucketEnum>;
+
+export const PaperBetMetadataSchema = z.object({
+  /** From Finnhub /stock/profile2 — gross sector. Optional until classified. */
+  sector: z.string().optional(),
+  /** Finer industry from Finnhub or AV /OVERVIEW. Optional until classified. */
+  industry: z.string().optional(),
+  /** Optional cap bucket; classified daily by the AV refresh job. */
+  market_cap_bucket: MarketCapBucketEnum.optional(),
+  /** Confidence tier copied from the parent Signal. */
+  confidence_tier: TierEnum,
+  /** Edge magnitude (pp) at the moment we logged the bet. */
+  edge_at_entry_pp: z.number(),
+  /** Track if Polymarket question text changed mid-flight (per spec). */
+  market_question_changed: z.boolean().optional(),
+});
+export type PaperBetMetadata = z.infer<typeof PaperBetMetadataSchema>;
+
+export const PaperBetResolutionSchema = z.object({
+  settled_at: z.string().datetime(),
+  /** Realized YES/NO outcome of the underlying market. null if expired. */
+  actual_outcome: DirectionEnum.nullable(),
+  realized_pnl_dollars: z.number(),
+});
+export type PaperBetResolution = z.infer<typeof PaperBetResolutionSchema>;
+
+export const PaperBetSchema = z.object({
+  bet_id: z.string().min(1),
+  /** Links back to the Signal that triggered this bet. */
+  signal_id: z.string().min(1),
+  ticker: z.string().min(1).max(10),
+  earnings_date: z.string(),
+  market_question: z.string().min(1),
+  venue: VenueEnum,
+  side: DirectionEnum,
+  /** Best-ask price we paid, in cents 0..100. */
+  entry_price_cents: z.number().min(0).max(100),
+  stake_dollars: z.number().nonnegative(),
+  /** stake_dollars / (entry_price_cents/100). */
+  shares: z.number().nonnegative(),
+  created_at: z.string().datetime(),
+  /** Resolution deadline (typically earnings_date + a few days). */
+  expires_at: z.string().datetime(),
+  status: PaperBetStatusEnum,
+  resolution: PaperBetResolutionSchema.nullable(),
+  metadata: PaperBetMetadataSchema,
+});
+export type PaperBet = z.infer<typeof PaperBetSchema>;
+
+/** Per-cohort summary used by the Stats page cohort chart. */
+export const CohortSummarySchema = z.object({
+  /** Cohort key, e.g. "tier:A" or "sector:Technology". */
+  cohort: z.string(),
+  /** Display label for the chart legend. */
+  label: z.string(),
+  n: z.number().int().nonnegative(),
+  win_rate: z.number().min(0).max(1).nullable(),
+  mean_edge_pp: z.number().nullable(),
+  total_pnl_dollars: z.number(),
+  /** True if N < 30 — UI should grey out. */
+  insufficient: z.boolean(),
+});
+export type CohortSummary = z.infer<typeof CohortSummarySchema>;
+
+/** Per-sector breakdown row for the Stats page. */
+export const SectorBreakdownSchema = CohortSummarySchema;
+export type SectorBreakdown = z.infer<typeof SectorBreakdownSchema>;
+
+/** Sample-size threshold below which cohort breakdowns are flagged. */
+export const COHORT_MIN_N = 30;
