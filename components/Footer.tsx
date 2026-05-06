@@ -24,7 +24,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--panel)]">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 text-xs text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div className="max-w-2xl">
           Read-only. Not investment advice. Signals are produced by the
           scanner project; this site only visualizes the published snapshot.

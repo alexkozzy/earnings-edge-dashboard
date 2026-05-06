@@ -3,11 +3,13 @@
 import useSWR from "swr";
 import { jsonFetcher } from "@/lib/swr";
 import type { SignalsSnapshot } from "@/lib/types";
+import { SignalCardGrid } from "./SignalCardGrid";
 import { SignalGrid } from "./SignalGrid";
 import { SignalGridSkeleton } from "./SignalGridSkeleton";
 import { EdgeChart } from "./EdgeChart";
 import { DataFreshness } from "./DataFreshness";
 import { SignalControls } from "./SignalControls";
+import { useState } from "react";
 
 type ApiResponse = {
   snapshot: SignalsSnapshot;
@@ -19,6 +21,9 @@ export function LiveSignalsView({
 }: {
   initialData: ApiResponse | null;
 }) {
+  // "cards" is the new v1.1 default; "table" is the dense power-user view.
+  const [view, setView] = useState<"cards" | "table">("cards");
+
   const { data, error, isLoading } = useSWR<ApiResponse>(
     "/api/signals",
     jsonFetcher,
@@ -97,8 +102,40 @@ export function LiveSignalsView({
         </div>
       </div>
       <EdgeChart signals={snapshot.signals} />
-      <SignalControls />
-      <SignalGrid signals={snapshot.signals} />
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <SignalControls />
+        <div className="flex items-center gap-1 self-start rounded-md border border-[var(--border)] bg-[var(--panel)] p-0.5 text-xs sm:self-center">
+          <button
+            type="button"
+            onClick={() => setView("cards")}
+            className={`rounded px-2 py-1 transition-colors ${
+              view === "cards"
+                ? "bg-[var(--accent-soft)] text-[var(--accent)]"
+                : "text-[var(--muted)] hover:text-[var(--foreground)]"
+            }`}
+            aria-pressed={view === "cards"}
+          >
+            Cards
+          </button>
+          <button
+            type="button"
+            onClick={() => setView("table")}
+            className={`rounded px-2 py-1 transition-colors ${
+              view === "table"
+                ? "bg-[var(--accent-soft)] text-[var(--accent)]"
+                : "text-[var(--muted)] hover:text-[var(--foreground)]"
+            }`}
+            aria-pressed={view === "table"}
+          >
+            Table
+          </button>
+        </div>
+      </div>
+      {view === "cards" ? (
+        <SignalCardGrid signals={snapshot.signals} />
+      ) : (
+        <SignalGrid signals={snapshot.signals} />
+      )}
     </div>
   );
 }

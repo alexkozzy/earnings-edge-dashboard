@@ -33,6 +33,13 @@ html, body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* All monospaced number renderings get tabular-nums so percentages and
+ * dollar columns line up. Inter is the spec's target font but Geist also
+ * supports tabular numerals via OpenType. */
+.font-mono, [class*="tabular-nums"] {
+  font-variant-numeric: tabular-nums;
+}
+
 /* Force dark always — public read-only, dark theme is canonical. */
 :root {
   color-scheme: dark;

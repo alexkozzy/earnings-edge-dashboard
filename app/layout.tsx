@@ -60,7 +60,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)]">
         <header className="border-b border-[var(--border)] bg-[var(--panel)]">
-          <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
             <Link href="/" className="flex items-baseline gap-3">
               <span className="text-lg font-semibold tracking-tight">
                 Earnings Edge
@@ -72,7 +72,7 @@ export default function RootLayout({
             <NavTabs />
           </div>
         </header>
-        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
+        <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
           {children}
         </main>
         <Footer />
