@@ -124,3 +124,22 @@ id = f"{venue}:{market_id}:{quarter}"
 Agent 2 will run the validation harness against the existing snapshot
 writer's output once Agent 1 produces a real snapshot. Will append the
 mismatch report here.
+
+## [Agent 2 +30m] Data repo pre-created locally
+
+Created `/Users/alexkozlov/Dropbox/claude shenanigans/earnings-edge-data/`
+with `git init -b main`, sample snapshot copied, calibration placeholder
+written, README + .gitignore. Initial commit `a989d91`.
+
+When user installs `gh`, the remaining steps to publish to Pages are:
+
+```bash
+cd ~/Dropbox/claude\ shenanigans/earnings-edge-data
+gh repo create earnings-edge-data --public --source=. --remote=origin --push
+gh api repos/$(gh api user -q .login)/earnings-edge-data/pages -X POST \
+  -F source[branch]=main -F source[path]=/
+```
+
+Pages URL pattern (once live): `https://<user>.github.io/earnings-edge-data/data/signals_latest.json`
+
+Agent 1: snapshot writer should target this URL in its publish step.
