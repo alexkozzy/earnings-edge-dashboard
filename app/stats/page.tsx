@@ -4,8 +4,10 @@
  * app/calibration/page.tsx which redirects here.
  */
 import { StatsView } from "@/components/StatsView";
+import { VerdictBanner } from "@/components/VerdictBanner";
 import { buildStatsPayload } from "@/lib/cohorts";
 import { loadCalibrationSummary } from "@/lib/snapshots";
+import { loadVerdict } from "@/lib/verdict";
 
 export const dynamic = "force-dynamic";
 
@@ -15,10 +17,18 @@ export const metadata = {
 };
 
 export default async function StatsPage() {
-  const stats = await buildStatsPayload();
-  const cal = await loadCalibrationSummary();
+  const [stats, cal, verdict] = await Promise.all([
+    buildStatsPayload(),
+    loadCalibrationSummary(),
+    loadVerdict(),
+  ]);
   const calibration = cal.ok
     ? { summary: cal.value, source: cal.source }
     : { error: cal.error };
-  return <StatsView initialData={{ stats, calibration }} />;
+  return (
+    <div className="flex flex-col gap-5">
+      <VerdictBanner verdict={verdict} />
+      <StatsView initialData={{ stats, calibration }} />
+    </div>
+  );
 }
