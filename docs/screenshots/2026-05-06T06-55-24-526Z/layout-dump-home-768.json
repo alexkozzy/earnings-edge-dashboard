@@ -1,0 +1,158 @@
+[
+  {
+    "tag": "DIV",
+    "cls": "recharts-tooltip-wrapper",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 41,
+      "y": 224,
+      "w": 0,
+      "h": 0
+    }
+  },
+  {
+    "tag": "DIV",
+    "cls": "recharts-legend-wrapper",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 57,
+      "y": 510,
+      "w": 646,
+      "h": 34
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "absolute left-0 top-0 bottom-0 w-[2px] bg-[var(--good)]",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 25,
+      "y": 730,
+      "w": 2,
+      "h": 71
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "absolute left-0 top-0 bottom-0 w-[2px] bg-[var(--good)]",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 25,
+      "y": 802,
+      "w": 2,
+      "h": 71
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "absolute left-0 top-0 bottom-0 w-[2px] bg-[var(--warn)]",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 25,
+      "y": 874,
+      "w": 2,
+      "h": 71
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "absolute left-0 top-0 bottom-0 w-[2px] bg-transparent",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 25,
+      "y": 946,
+      "w": 2,
+      "h": 71
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "absolute left-0 top-0 bottom-0 w-[2px] bg-[var(--good)]",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 393,
+      "y": 730,
+      "w": 2,
+      "h": 71
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "absolute left-0 top-0 bottom-0 w-[2px] bg-[var(--warn)]",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 393,
+      "y": 802,
+      "w": 2,
+      "h": 71
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "absolute left-0 top-0 bottom-0 w-[2px] bg-[var(--warn)]",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 393,
+      "y": 874,
+      "w": 2,
+      "h": 71
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "absolute left-0 top-0 bottom-0 w-[2px] bg-transparent",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 393,
+      "y": 946,
+      "w": 2,
+      "h": 71
+    }
+  },
+  {
+    "tag": "NEXT-ROUTE-ANNOUNCER",
+    "cls": "",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+    }
+  },
+  {
+    "tag": "SPAN",
+    "cls": "",
+    "position": "absolute",
+    "zIndex": "auto",
+    "overflow": "visible",
+    "rect": {
+      "x": 0,
+      "y": -20000,
+      "w": 18,
+      "h": 18
+    }
+  }
+]
