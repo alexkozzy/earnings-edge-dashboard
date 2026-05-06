@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 type Binding = { keys: string[]; label: string; href?: string; action?: string };
 const BINDINGS: Binding[] = [
   { keys: ["g"], label: "Go to Live Signals", href: "/" },
-  { keys: ["c"], label: "Go to Calibration", href: "/calibration" },
+  { keys: ["s"], label: "Go to Stats", href: "/stats" },
   { keys: ["h"], label: "Go to Hedge", href: "/hedge" },
   { keys: ["/"], label: "Focus sort/filter controls", action: "focus_controls" },
   { keys: ["?"], label: "Toggle this help", action: "help" },
@@ -64,9 +64,9 @@ export function KeyboardShortcuts() {
         router.push("/");
         return;
       }
-      if (k === "c") {
+      if (k === "s") {
         e.preventDefault();
-        router.push("/calibration");
+        router.push("/stats");
         return;
       }
       if (k === "h") {
