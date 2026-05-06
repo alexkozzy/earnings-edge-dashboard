@@ -1,0 +1,28 @@
+{
+  "total_calls": 20,
+  "calls_by_endpoint": {
+    "EARNINGS": 20
+  },
+  "tickers_called": [
+    "MU",
+    "AMD",
+    "AAPL",
+    "GOOGL",
+    "JPM",
+    "GS",
+    "TSLA",
+    "F",
+    "XOM",
+    "HAL",
+    "GIS",
+    "KMX",
+    "FDX",
+    "DAL",
+    "NKE",
+    "DPZ",
+    "ACN",
+    "FDS",
+    "JNJ",
+    "LLY"
+  ]
+}

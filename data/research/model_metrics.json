@@ -1,0 +1,25 @@
+{
+  "n_oos": 443,
+  "auc_model": 0.7408668730650154,
+  "auc_ci_low": 0.685569526972689,
+  "auc_ci_high": 0.7980321731449267,
+  "auc_implied": 0.7723039215686275,
+  "brier_model": 0.16681762575521578,
+  "brier_implied": 0.15770822121896164,
+  "brier_naive": 0.1991514607059263,
+  "logloss_model": 0.5342940025251555,
+  "logloss_implied": 0.4871478909336907,
+  "logloss_naive": 0.5884812613007877,
+  "delta_logloss_vs_implied": -0.04714611159146476,
+  "model_beats_implied_on_logloss": false,
+  "quarters_used": [
+    [
+      2026,
+      1
+    ],
+    [
+      2026,
+      2
+    ]
+  ]
+}
