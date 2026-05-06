@@ -7,6 +7,7 @@ import { SignalGrid } from "./SignalGrid";
 import { SignalGridSkeleton } from "./SignalGridSkeleton";
 import { EdgeChart } from "./EdgeChart";
 import { DataFreshness } from "./DataFreshness";
+import { SignalControls } from "./SignalControls";
 
 type ApiResponse = {
   snapshot: SignalsSnapshot;
@@ -96,6 +97,7 @@ export function LiveSignalsView({
         </div>
       </div>
       <EdgeChart signals={snapshot.signals} />
+      <SignalControls />
       <SignalGrid signals={snapshot.signals} />
     </div>
   );

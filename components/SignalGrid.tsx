@@ -1,8 +1,63 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import type { Signal } from "@/lib/types";
 import { SignalRow } from "./SignalRow";
 import { SignalCard } from "./SignalCard";
+import { readControlsFromSearch } from "./SignalControls";
+import type { SortKey, FilterKey } from "./SignalControls";
+
+const TIER_ORDER: Record<Signal["tier"], number> = { A: 0, B: 1, C: 2 };
+
+function applyFilter(signals: Signal[], filter: FilterKey): Signal[] {
+  switch (filter) {
+    case "tierA":
+      return signals.filter((s) => s.tier === "A");
+    case "tierAB":
+      return signals.filter((s) => s.tier === "A" || s.tier === "B");
+    case "stable":
+      return signals.filter((s) => s.regime_stable);
+    case "fresh":
+      return signals.filter((s) => !s.consensus_recently_revised);
+    case "all":
+    default:
+      return signals;
+  }
+}
+
+function applySort(signals: Signal[], sort: SortKey): Signal[] {
+  const out = [...signals];
+  switch (sort) {
+    case "tier":
+      out.sort((a, b) => {
+        const t = TIER_ORDER[a.tier] - TIER_ORDER[b.tier];
+        if (t !== 0) return t;
+        return Math.abs(b.edge_magnitude_pp) - Math.abs(a.edge_magnitude_pp);
+      });
+      break;
+    case "earnings":
+      out.sort((a, b) => a.earnings_date.localeCompare(b.earnings_date));
+      break;
+    case "ticker":
+      out.sort((a, b) => a.ticker.localeCompare(b.ticker));
+      break;
+    case "edge":
+    default:
+      out.sort(
+        (a, b) =>
+          Math.abs(b.edge_magnitude_pp) - Math.abs(a.edge_magnitude_pp),
+      );
+      break;
+  }
+  return out;
+}
 
 export function SignalGrid({ signals }: { signals: Signal[] }) {
+  const search = useSearchParams();
+  const { sort, filter } = readControlsFromSearch(
+    search ? new URLSearchParams(search.toString()) : new URLSearchParams(),
+  );
+
   if (signals.length === 0) {
     return (
       <div className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-8 text-center text-sm text-[var(--muted)]">
@@ -12,13 +67,17 @@ export function SignalGrid({ signals }: { signals: Signal[] }) {
     );
   }
 
-  // Sort by tier (A before B before C), then by edge_magnitude_pp descending.
-  const tierOrder: Record<Signal["tier"], number> = { A: 0, B: 1, C: 2 };
-  const sorted = [...signals].sort((a, b) => {
-    const tierDiff = tierOrder[a.tier] - tierOrder[b.tier];
-    if (tierDiff !== 0) return tierDiff;
-    return Math.abs(b.edge_magnitude_pp) - Math.abs(a.edge_magnitude_pp);
-  });
+  const filtered = applyFilter(signals, filter);
+  const sorted = applySort(filtered, sort);
+
+  if (sorted.length === 0) {
+    return (
+      <div className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-8 text-center text-sm text-[var(--muted)]">
+        No signals match the current filter. Try{" "}
+        <span className="font-mono">All</span> or a wider filter.
+      </div>
+    );
+  }
 
   return (
     <>
