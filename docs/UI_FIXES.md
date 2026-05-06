@@ -63,3 +63,18 @@ vision instead of taking up a full column.
   missing**. Built from the spec's verbal description — palette tokens,
   border opacity values, padding all match the spec. Pixel-perfect
   parity with the original screenshot can't be confirmed.
+
+## Cron schedule constraint (Vercel Hobby tier)
+
+Vercel Hobby plan caps cron job frequency at **once per UTC day** total. The
+v1.1 spec called for 15-min polling + 6-hour resolution sweeps; both violate
+the cap. `vercel.json` now uses:
+
+- `0 14 * * *` — poll-and-log: daily at 14:00 UTC (covers most pre-market
+  earnings and lets daily Finnhub state refresh once per day)
+- `0 20 * * *` — resolve: daily at 20:00 UTC (after most US market closes,
+  catches earnings reported that day)
+
+To upgrade to sub-daily polling: switch to **Vercel Pro ($20/mo)** then
+change `vercel.json` schedules to `*/15 * * * *` and `0 */6 * * *`. No
+application code changes needed.

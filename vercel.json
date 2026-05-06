@@ -3,11 +3,11 @@
   "crons": [
     {
       "path": "/api/cron/poll-and-log",
-      "schedule": "*/15 * * * *"
+      "schedule": "0 14 * * *"
     },
     {
       "path": "/api/cron/resolve",
-      "schedule": "0 */6 * * *"
+      "schedule": "0 20 * * *"
     }
   ]
 }
