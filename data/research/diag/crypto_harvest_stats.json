@@ -1,0 +1,17 @@
+{
+  "kept": 24692,
+  "drop_counts": {
+    "volume_too_high": 9441,
+    "not_crypto_topic": 528,
+    "no_end_date": 2,
+    "no_condition_id": 5,
+    "no_volume": 3638,
+    "unresolved_5050": 9,
+    "prices_bad": 4
+  },
+  "tag_pages": {
+    "crypto": 10200,
+    "bitcoin": 10200,
+    "ethereum": 10200
+  }
+}

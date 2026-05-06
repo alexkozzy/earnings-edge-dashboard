@@ -1,0 +1,10 @@
+[phase1] discovering tag sizes
+  crypto: ~10200 events scanned in probe
+  bitcoin: ~10200 events scanned in probe
+  ethereum: ~10200 events scanned in probe
+[phase2] parallel fetching all pages
+  total page jobs: 156
+[phase2] fetched 31200 event objects (with dups across tags)
+[phase3] unique events: 25483
+[done] kept=24692
+[drops] {'volume_too_high': 9441, 'not_crypto_topic': 528, 'no_end_date': 2, 'no_condition_id': 5, 'no_volume': 3638, 'unresolved_5050': 9, 'prices_bad': 4}

@@ -1,0 +1,21 @@
+=== A1: ECON harvest ===
+[harvest:econ] tag=fed events=87 mkts=446 kept_so_far=446
+[harvest:econ] tag=inflation events=91 mkts=470 kept_so_far=910
+[harvest:econ] tag=cpi events=48 mkts=279 kept_so_far=918
+[harvest:econ] tag=jobs events=15 mkts=83 kept_so_far=1001
+[harvest:econ] tag=fomc events=22 mkts=190 kept_so_far=1038
+[harvest:econ] tag=economy events=879 mkts=4139 kept_so_far=4267
+[harvest:econ] tag=gdp events=22 mkts=126 kept_so_far=4268
+[harvest:econ] tag=interest-rates events=17 mkts=64 kept_so_far=4298
+[harvest:econ] wrote 4298 rows to /Users/alexkozlov/Dropbox/claude shenanigans/earnings-edge-dashboard/data/research/gamma_markets/econ.jsonl
+{
+  "kept": 4298,
+  "raw_events": 1181,
+  "raw_markets_seen": 5797,
+  "drop_counts": {
+    "no_end_date": 56,
+    "no_prices": 3,
+    "no_tokens": 1
+  }
+}
+=== A2: CRYPTO harvest ===

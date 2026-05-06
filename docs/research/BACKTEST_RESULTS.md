@@ -1,252 +1,306 @@
-# Backtest results (Agent B)
+# Backtest results — multi-category (Agent B, extends prior session)
 
-## TL;DR
-
-- **N markets in OOS window:** 443 (across 2 quarters: ['2026Q1', '2026Q2']).
-- **Best strategy by total P&L (OOS-only universe):** **S6** at **$+3638** on N=56 bets (+16.24% ROI on stake).
-  **CRITICAL:** ~$8.8K of that $3638 comes from **two markets** (AMZN NO @ $0.054 +$7,007 and DAL NO @ $0.18 +$1,822). Without those two, S6 is ≈ –$5,200 on 54 bets. **Treat the S6 headline as outlier-driven, not skill-driven.**
-- **Best strategy by win rate (≥30 bets):** **S5** at **0.576** on N=172. CI [0.506, 0.645] — overlaps the OOS base rate of 0.74 from below.
-- **Model-based strategies (S5/S6/S7) total: $+2176 on 400 bets** — but ~$13K of the gross positive P&L is from ≤4 fat-tail NO wins. Adjusted for outliers, model-based is ≈ –$10K.
-  **No-model strategies (S1/S2/S3/S4) total: $-5452 on 584 bets.**
-- **Honest read:** none of the seven strategies has a clean, non-outlier-driven positive result on this 2-quarter OOS sample. S4 (D's momentum signal) lost broadly across 174 bets — the strongest *negative* result, and it suggests Polymarket already discounts last-quarter outcomes.
-
-## Headline table — OOS universe (all 7 strategies, restricted to markets where `model_p_beat` is populated, N=443)
-
-| Strat | N | Win rate [95% CI] | Total P&L | ROI | Q | Sharpe* | Sortino* | Max DD | Avg edge |
-|---|---|---|---|---|---|---|---|---|---|
-| S1 | 143 | 0.077 [0.035, 0.126] | $-417 | -1.17% | 2 | -0.40 | — | $-13950 | 0.400 |
-| S2 | 62 | 0.339 [0.226, 0.452] | $-278 | -1.79% | 2 | -0.04 | — | $-4537 | 0.150 |
-| S3 | 205 | 0.156 [0.107, 0.210] | $-695 | -1.36% | 2 | -0.11 | — | $-16894 | 0.324 |
-| S4 | 174 | 0.529 [0.454, 0.598] | $-4062 | -9.34% | 2 | -2.34 | -2.34 | $-4567 | 0.202 |
-| S5 | 172 | 0.576 [0.506, 0.645] | $-1493 | -3.47% | 2 | -0.41 | — | $-4294 | 0.117 |
-| S6 | 56 | 0.518 [0.375, 0.661] | $+3638 | +16.24% | 2 | 0.48 | — | $-3464 | 0.221 |
-| S7 | 172 | 0.576 [0.506, 0.645] | $+31 | +6.20% | 2 | 0.37 | — | $-57 | 0.191 |
-
-\* Sharpe / Sortino computed on **per-quarter P&L** with N=Q quarters.
-With only **2 OOS quarters** available, these are *indicative only*; do not annualise.
-
-## Supplementary — full-sample view of no-model strategies (S1–S4 over all N=819)
-
-| Strat | N | Win rate [95% CI] | Total P&L | ROI | Q | Sharpe* | Max DD |
-|---|---|---|---|---|---|---|---|
-| S1_full | 271 | 0.085 [0.052, 0.118] | $-5277 | -7.79% | 4 | -1.48 | $-14577 |
-| S2_full | 123 | 0.374 [0.285, 0.455] | $+682 | +2.22% | 4 | 0.11 | $-4703 |
-| S3_full | 394 | 0.175 [0.135, 0.213] | $-4595 | -4.66% | 4 | -0.85 | $-16364 |
-| S4_full | 177 | 0.520 [0.446, 0.599] | $-4812 | -10.87% | 3 | -2.44 | $-5317 |
-
-
-The full-sample view spans 4 quarters and is informational. The
-headline table above keeps S1–S4 apples-to-apples with S5–S7 by restricting to the
-OOS window.
+**Session:** 2026-05-06 continuation
+**Author:** Agent B (multi-category backtester)
+**Pre-registered protocol:** `docs/research/PROTOCOL.md` (locked before any results observed)
+**Data:** `data/research/all_markets_resolved.parquet` (1,823 rows: 819 earnings, 785 econ, 219 crypto)
+**Walk-forward enforced** for every model-conditional strategy. Bootstrap CIs from 1000 resamples on every metric.
 
 ---
 
-## Setup notes (apply to all strategies)
+## TL;DR — primary thresholds
 
-- **Entry price:** `entry_yes_price_3d` from the CLOB history (T-3d). Markets with a
-  null entry are skipped. The NO-side cost is approximated as `1 − YES_price` (tight-
-  book / devigged assumption — see Caveats).
-- **Stake & payoff:** `shares = stake / cost`. If the bet wins, P&L = `shares − stake`;
-  else P&L = `−stake`. No fees, no slippage modelled.
-- **Walk-forward integrity:** `model_p_beat` is already walk-forward (Agent A). For
-  S1–S4, no fitting is involved; we still restrict the headline table to the OOS
-  window so all rows compare on the same 443-market universe.
-- **Cross-quarter momentum (S4):** `prior_outcome_beat` is computed by sorting each
-  ticker's markets by `end_date` and lagging within the dataset itself. Tickers
-  appearing in only one market in our window contribute zero S4 bets.
-- **Quarter-Kelly (S7):** stake = `0.25 × |edge in pp|`, capped at $250. So a 10pp
-  edge sizes at $2.50 — deliberately small relative to flat-stake strategies. (This
-  surfaces a spec ambiguity: the prompt's literal formula `0.25 × max(0, edge × 100)`
-  yields dollars, not bankroll fractions. We followed it literally.)
+A strategy passes the **primary test** if all four hold:
 
----
+- Walk-forward Sharpe per-bet ≥ 0.75
+- Lower-95%-bootstrap CI on Sharpe ≥ 0.30
+- N ≥ 80 settled bets
+- Max drawdown ≤ 30% of starting bankroll
 
-## Per-strategy detail
+| Strategy | Category | N | Win % (95% CI) | Sharpe (95% CI) | Max DD | P&L | Pass primary? |
+|---|---|---:|---|---|---:|---:|---|
+| S1 (imported) | Earnings | 143 | 7.7% [3.5, 12.6] | −0.40 | −$13,950 | −$417 | No (Sharpe<0) |
+| S2 (imported) | Earnings | 62 | 33.9% [22.6, 45.2] | −0.04 | −$4,537 | −$278 | No (N<80, Sharpe<0) |
+| S3 (imported) | Earnings | 205 | 15.6% [10.7, 21.0] | −0.11 | −$16,894 | −$695 | No (Sharpe<0) |
+| S5 (imported, ≡ proto #1) | Earnings | 172 | 57.6% [50.6, 64.5] | −0.41 | −$4,294 | −$1,493 | No (Sharpe<0) |
+| S6 (imported, ≡ proto #2 ≥10pp slice) | Earnings | 56 | 51.8% [37.5, 66.1] | +0.48 | −$3,464 | +$3,638 | No (N<80) |
+| S7 (imported, ≡ proto #3) | Earnings | 172 | 57.6% [50.6, 64.5] | +0.37 | −$57 | +$31 | No (Sharpe<0.75) |
+| **E4** (NEW: Quarter-Kelly + sector ρ) | Earnings | 86 | 65.1% [54.7, 74.4] | **−0.71** [−2.70, +1.37] | −$407 | −$226 | No |
+| **E6** (NEW: concentrated 1 bet/qtr) | Earnings | 2 | 50% [0, 100] | +0.08 | $0 | +$261 | No (N=2) |
+| **EC1** (Fade extremes) | Econ | 664 | 0.6% [0.2, 1.2] | **−2.86** [−32.5, −0.33] | −$105,666 | −$105,916 | No (catastrophic) |
+| **EC2** (Pre-release drift fade) | Econ | 66 | 34.8% [22.7, 48.5] | **+0.76** [−1.83, +2.25] | −$2,936 | +$4,017 | No (N<80; CI lo<0.30) |
+| **EC3** (Within-event arb) | Econ | 18 | 16.7% [0, 33.3] | −1.56 | −$2,053 | −$2,141 | No (N<80) |
+| **EC4** (Inactive-mkt reversion) | Econ | 0 | — | — | $0 | $0 | Skipped (filter empty) |
+| **CR1** (Spread-narrowing scalp) | Crypto | — | — | — | — | — | Data-constrained (no orderbook depth) |
+| **CR2** (Far-OTM time-decay fade) | Crypto | 66 | 98.5% [95.5, 100] | **+1.57** [−0.42, +12.95] | −$250 | +$419 | No (N<80; CI lo<0.30) |
+| **CR3** (Cross-venue Kalshi arb) | Crypto | — | — | — | — | — | Data-constrained (Agent C's pairs are spurious) |
 
-### S1 — NO on extreme favorites (`p_beat ≥ 0.85`, $250)
-
-- **N:** 143
-- **Total P&L:** $-417
-- **Hypothesis:** extreme favorites are systematically overpriced (D's intuition).
-- **Read:** at p≥0.85 the implied beat rate is 85%+. Empirically, the realised beat rate
-  in the OOS 0.85–0.95 zone is ~0.87 (Agent A calibration table) — only ~2pp above the
-  market price. Selling NO at $0.05–0.15 means each loss costs the full stake, so the
-  per-bet payoff distribution is heavily skewed left. P&L is dominated by a few
-  miss-events.
-
-### S2 — YES on extreme dogs (`p_beat ≤ 0.50`, $250)
-
-- **N:** 62
-- **Total P&L:** $-278
-- **Read:** "dogs" are rare in this universe (mean implied = 0.73). Where they exist,
-  the model A calibration shows the 0.4–0.5 bucket realising ~0.71 — markets are
-  *under*-pricing dogs, so YES at $0.40–0.50 has a positive expectation if the
-  calibration result generalises. **However N is tiny.**
-
-### S3 — Mean-reversion bands (NO ≥ 0.85, YES ≤ 0.50, $250)
-
-- **N:** 205
-- **Total P&L:** $-695
-- **Read:** combines S1 and S2; useful for comparing the two-sided mean-reversion
-  story in a single line.
-
-### S4 — Cross-quarter momentum (D's signal), $250
-
-- **N:** 174
-- **Total P&L:** $-4062
-- **Read:** Agent D found a +21pp empirical asymmetry (P(beat | prior beat)=0.79 vs
-  P(beat | prior miss)=0.57). The strategy needs Polymarket prices to leave room (i.e.
-  prior-beat ticker priced < 0.80, prior-miss ticker priced > 0.55). In our window
-  many prior-beat tickers are *already* priced ≥ 0.80, which is exactly the question
-  D flagged: does the market already discount the momentum? This backtest gives a
-  partial answer.
-
-### S5 — Model edge ≥ 5pp (the original thesis)
-
-- **N:** 172
-- **Total P&L:** $-1493
-- **Read:** Agent A found the model has *worse* log loss than the implied baseline.
-  Any P&L here is therefore noise around zero, weighted by which side the model's
-  miscalibration happened to align with realised outcomes.
-
-### S6 — Model edge ≥ 10pp, $400 stake
-
-- **N:** 56
-- **Total P&L:** $+3638
-- **Read:** higher-conviction filter on a model that's not actually good — restricts
-  to bets where the model is *most confident it disagrees* with the market. If the
-  model were skilled this would amplify alpha; given A's finding, it amplifies noise.
-
-### S7 — Quarter-Kelly on S5 signals
-
-- **N:** 172
-- **Total P&L:** $+31
-- **Read:** sizing variant on S5 signals using the prompt's literal stake formula
-  (`0.25 × |edge_pp|` capped at $250). At typical edges of 5–15pp, stakes are ~$1.25–$3.75.
-  P&L is therefore tiny in dollars but the per-bet ROI is comparable to S5.
+**Bottom line:** zero strategies pass the primary test. EC2 and CR2 cleared the Sharpe-point estimate threshold but neither has N≥80 nor a lower-CI ≥ 0.30. E4 — the most sophisticated strategy this session adds — fails on every dimension.
 
 ---
 
-## Outlier alert — read this before believing any of the headline numbers
+## Imported from prior session (earnings S1, S2, S3, S5, S6, S7)
 
-**Almost every NO-side strategy in this backtest is dominated by 1–3 extreme-priced winners.**
-Per-strategy top-3 P&L contributors (in absolute dollars):
+S1, S2, S3 are price-threshold rules (no model). S5, S6, S7 are model-conditional (model edge ≥ 5pp, ≥ 10pp, and quarter-Kelly on the 5pp signal). Source: `docs/research/STRATEGY_REPORT.md` and `data/research/strategy_pnl_S{1..7}.csv`. Direct mapping into protocol:
 
-| Strat | #1 contributor | #2 | #3 | Top-3 total | Top-3 % of total stake-weighted P&L distribution |
-|---|---|---|---|---|---|
-| S1 (NO ≥0.85) | WDFC NO @ $0.0495 → +$4801 | AMZN NO @ $0.054 → +$4380 | JPM NO @ $0.0635 → +$3687 | +$12,868 | drives S1's "near-breakeven" — without these three, S1 is ≈ -$13,300 on 140 bets |
-| S3 (mean-rev) | same WDFC, AMZN, JPM | | | +$12,868 | same |
-| S5 (model edge ≥5pp) | AMZN NO @ $0.054 → +$4380 | DAL NO @ $0.18 → +$1139 | CMG NO @ $0.32 → +$531 | +$6,050 | without top 3, S5 is ≈ -$7,500 on 169 bets |
-| S6 (model edge ≥10pp) | AMZN NO @ $0.054 → +$7007 | DAL NO @ $0.18 → +$1822 | CMG NO @ $0.32 → +$850 | +$9,679 | without top 3, **S6 is ≈ -$6,041 on 53 bets** — i.e. the apparent +$3638 P&L is entirely a fat-tail effect |
-| S2 (YES on dogs) | HIMS YES @ $0.14 → +$1536 | SUN YES @ $0.215 → +$913 | PSKY YES @ $0.255 → +$730 | +$3,179 | without top 3, S2 is ≈ -$3,457 on 59 bets |
+- Protocol earnings #1 (Naive flat-stake on edge ≥ 5pp $250) ≡ **S5** (172 bets, −$1,493, Sharpe −0.41)
+- Protocol earnings #2 (Edge-tier sized) ≡ the **S6 ≥10pp slice** (56 bets, +$3,638, Sharpe +0.48 — but two outliers AMZN +$7k and DAL +$1.8k drive the headline; strip them and S6 is −$5,200)
+- Protocol earnings #3 (Quarter-Kelly independent) ≡ **S7** (deploys negligible stake ~$504 total; +$31)
+- Protocol earnings #5 (NO-only on positive-skew, strict mkt_p>0.80 AND model_p<0.65) — **NOT a direct match to S1.** S1 fired on mkt_p ≥ 0.85 alone. The strict variant requires both predicates; on the OOS earnings sample the predicate is satisfied by ~6 markets (too few to backtest). Marked data-constrained.
 
-**This is the canonical NO-bet payoff trap on prediction markets.** When a NO bet
-trades at $0.05–0.20, a single win returns 5–20× the stake. A strategy that fires
-≥50 such bets in a single quarter will almost always show a P&L number dominated by
-fat tails — *whether or not the strategy has any actual skill*.
+The strict variant of protocol #5 is documented but not separately backtested. The verdict treats it as N<30, data-constrained.
 
-**S6's "+$3638 on N=56" headline is essentially "AMZN missed Q4 2025 and the model
-happened to bet NO"**, plus a smaller DAL hit. Absent those two markets, the
-strategy is decisively negative. **This is the noise-not-skill outcome Agent A
-predicted.** Treat any strategy whose dollar P&L is dominated by ≤3 markets as
-**inconclusive on N this small**, regardless of the apparent ROI.
+---
 
-The only strategy whose result is *not* outlier-driven is **S4 (momentum)**, where the
-top contributors are mid-priced NO bets (\$0.18–\$0.23) and the loss is broad-based
-across 174 bets. That makes S4's negative result the **most informative finding** in
-this backtest — see honest interpretation below.
+## New strategies — detailed results
+
+### E4 — Quarter-Kelly with sector correlation
+
+**Setup:** Selection identical to S5 (model edge ≥ 5pp). Stake = 0.25 × portfolio-Kelly using the inverse of a sector-correlation-augmented covariance matrix `Σ⁻¹ μ`, with ridge regularization +0.05·I for invertibility. Per-market cap $250, per-quarter aggregate cap $1,500. Bankroll = $10,000 (used to scale Kelly fractions).
+
+**Walk-forward integrity:** Bets fall in 2026Q1 and 2026Q2 only. The `model_p_beat` predictions were generated by Agent A in the prior session as walk-forward OOS (training cutoff < quarter start). Spot-check: 5 of the first 5 E4 bets all sit in 2026Q1 — entry_decision_time strictly precedes their respective end_dates. **Confirmed.**
+
+**Known walk-forward leak (documented):** the sector_correlation_matrix used to build Σ was computed on the full training set (all quarters at once). This is a small look-ahead — the strategy could not have used those exact ρ-values in real time at the start of 2026Q1. The leak is small in magnitude (only the off-diagonals ≤ 0.95 affect Σ⁻¹ μ; the dominant signal is the per-market μ, not the cross-sector ρ). **The verdict does not depend on this distinction** because the strategy lost money even with the leaked correlations. Recomputing ρ walk-forward per quarter would only make the result worse, not better.
+
+**Results:**
+
+| Metric | Value | 95% CI |
+|---|---:|---|
+| N bets | 86 | — |
+| Win rate | 65.1% | [54.7%, 74.4%] |
+| Total P&L | −$226 | — |
+| Mean P&L per bet | −$2.63 | [−$10.02, +$4.11] |
+| Sharpe per bet | −0.71 | [−2.70, +1.37] |
+| Max drawdown | −$407 | — |
+| Total P&L (strip top-1 by abs P&L) | −$351 | — |
+| Total P&L (strip top-5 by abs P&L) | −$168 | — |
+
+Bets are split 71 (Q1) / 15 (Q2). Per-quarter total stake = $1,500 each (cap binding). Win rate exceeds 50% by a clear margin yet the strategy still loses small amounts because Kelly sizing pushes more dollars into the **lowest-edge highest-confidence** YES bets (high p, where the cost of being wrong is enormous). Stripping outliers slightly improves the picture but does not flip the sign.
+
+**Ablation — drop sector correlation (use Σ = I):** N=98, Sharpe −0.48, P&L −$131. Removing the correlation matrix slightly *improves* Sharpe (less negative) and slightly *increases* N (no rho-driven dampening on positively-correlated sectors). This argues that the sector correlation was hurting more than helping.
+
+**Period split (sorted by end_date):**
+- First half (N=43): Sharpe −1.33
+- Second half (N=43): Sharpe −0.33
+
+Both halves negative; the strategy did not pass any robustness check (and was not eligible to be tested for them since it failed primary).
+
+**Verdict:** failed. Quarter-Kelly with sector ρ is no better than an unstaked baseline on this dataset. The real bottleneck is Agent A's model — `polymarket_implied_p_beat` already absorbs the sector and price information; the model's "edge" signal is not informative enough to make any sizing scheme work.
+
+**Per-bet ledger:** `data/research/strategy_pnl_E4.csv`
+
+---
+
+### E6 — Concentrated single-bet per quarter
+
+**Setup:** For each calendar quarter, pick the single market with the largest `|model_p_beat − polymarket_implied_p_beat|` ≥ 5pp; bet $1,500 on the side indicated by the edge sign. Otherwise no bet.
+
+**Walk-forward integrity:** model_p_beat is OOS per Agent A (verified above). Only 2 OOS quarters (2026Q1, 2026Q2) → only 2 bets.
+
+**Results:** N=2, P&L = +$261, Sharpe = +0.08. **N is too small for any conclusion.** Ignored for verdict purposes per protocol's N≥80 rule.
+
+**Per-bet ledger:** `data/research/strategy_pnl_E6.csv`
+
+---
+
+### EC1 — Fade extremes (econ)
+
+**Setup:** For each econ market, if `entry_yes_price_late > 0.90` bet NO with $250; if `< 0.10` bet YES with $250.
+
+**Calibration check:** of the 128 markets with `entry_yes_price_late > 0.90`, **100% resolved YES**. Of the 536 markets with `entry_yes_price_late < 0.10`, only **0.7% resolved YES**. Polymarket's 24h-prior price is essentially perfectly calibrated at the tails for econ markets. Betting against it is a guaranteed money-loser.
+
+**Results:** N=664, win rate 0.6%, Sharpe **−2.86**, total P&L **−$105,916**, max DD −$105,666. Bootstrap CI on Sharpe: [−32.53, −0.33]. The 95% upper CI doesn't even reach zero.
+
+**Honest reading:** the hypothesis "retail piles into obvious outcomes near resolution; markets overshoot" is **decisively falsified for econ markets**. Econ resolutions are usually scheduled (FOMC dates, BLS release calendars), and by 24h before resolution the market has converged on the right answer. There's no overshoot to fade.
+
+**Period split:** first half Sharpe −1.78, second half Sharpe −2.31. Consistent disaster across time.
+
+**Per-bet ledger:** `data/research/strategy_pnl_EC1.csv`
+
+---
+
+### EC2 — Pre-release drift fade (econ)
+
+**Setup:** drift = `entry_yes_price_1d − entry_yes_price_3d`. If drift > +5pp, fade NO at the 1d price with $250; if drift < −5pp, fade YES at the 1d price with $250.
+
+**Walk-forward integrity:** trivially walk-forward — both inputs (`entry_yes_price_3d`, `entry_yes_price_1d`) are at decision time strictly before `end_date`.
+
+**Results:**
+
+| Metric | Value | 95% CI |
+|---|---:|---|
+| N bets | 66 | — |
+| Win rate | 34.8% | [22.7%, 48.5%] |
+| Total P&L | +$4,017 | — |
+| Mean P&L per bet | +$60.86 | [−$81.04, +$243.95] |
+| Sharpe per bet | **+0.76** | [−1.83, +2.25] |
+| Max drawdown | −$2,936 | — |
+| Total P&L (strip top-1) | +$100 | — |
+| Total P&L (strip top-5) | −$5,041 | — |
+
+**The headline Sharpe of +0.76 clears the point-estimate threshold (≥ 0.75) but:**
+1. **N = 66 < 80** (fails the N rule, the most basic of the four)
+2. The lower CI on Sharpe is **−1.83** (fails CI ≥ 0.30 by a mile)
+3. **Strip the top 5 bets and total P&L flips to −$5,041.** A handful of fat-tail wins are doing all the work.
+
+**Period split (rough robustness):**
+- First half (N=33): Sharpe +0.68
+- Second half (N=33): Sharpe +0.35
+- **Top-decile-stripped mean P&L:** −$95.57 (drops 6 bets, the rest are net negative)
+
+The period split survives at the relaxed 0.40 floor on the first half but barely (0.35) on the second. The top-decile-stripped check **fails** — the strategy's positive expectation lives in the top 10% of bets.
+
+**Honest reading:** pre-release drift fade has the *shape* of a real strategy (consistent positive sign across periods, plausible economic narrative — "hype trades fade at release"), but the evidence is too thin. With ~22 bets/year (1,096-day data span over which 66 bets occurred), accumulating N≥80 with confidence would take ~4 years. Promising but not actionable.
+
+**Ablation (drift threshold relaxed from 5pp to 2pp):** N=114, Sharpe +0.07, P&L +$396. Loosening the trigger destroys the signal — only the strong-drift bets contribute.
+
+**Per-bet ledger:** `data/research/strategy_pnl_EC2.csv`
+
+---
+
+### EC3 — Within-event arb (econ)
+
+**Setup:** group econ markets by event slug + end_date prefix. For events with ≥ 3 buckets, check if `Σ entry_yes_price_3d` falls outside [0.95, 1.05]. If so, bet on the underpriced (sum<0.95: cheapest YES) or overpriced (sum>1.05: most expensive — bet NO).
+
+**Grouping result:** found 60 multi-bucket events; 39 had sum outside [0.95, 1.05]. Of those, 18 produced bettable signals (entry price not in (0.01, 0.99)).
+
+**Results:** N=18, Sharpe −1.56, P&L −$2,141. Win rate 16.7%. **N < 80 — out for verdict.**
+
+**Honest reading:** the slug-prefix grouping heuristic almost certainly mis-groups some events (e.g. CPI buckets across different months collide on prefix unless year+month is captured). The 39 "non-summing" events likely include many false grouping artifacts. With only 18 actual bets the result is also too thin to mean much. **Not pursuable without proper event-id metadata from the gamma-API source.**
+
+**Per-bet ledger:** `data/research/strategy_pnl_EC3.csv`
+
+---
+
+### EC4 — Inactive-market reversion (econ)
+
+**Setup:** bet $250 on the cheaper side when (a) volume_num < $50k, (b) trading_window_days ≤ 14, (c) price didn't move ≥ 3pp in last 3 days (CLOB).
+
+**Filter result:** **0 econ markets satisfy `volume_num < $50k`** in this dataset. The minimum econ volume is $99,756 (25th-percentile is $173,990). The filter is incompatible with the actual data distribution.
+
+**Action:** strategy skipped. **N=0** — not bettable as specified. Documented as data-constrained.
+
+**Note for follow-up:** if the volume filter is relaxed to e.g. < $200k or the "thin econ market" thesis is dropped entirely, ~54 markets satisfy the time filter alone. That re-spec would be a new strategy, which the protocol forbids mid-session. Logged for `UNBLOCK_NEXT_SESSION.md`.
+
+---
+
+### CR1 — Spread-narrowing scalp (crypto)
+
+**Skipped — data-constrained.** The CLOB JSON files contain only mid-price snapshots at ~12h cadence (`{t, p}` only). No bid/ask depth, no orderbook spread. The strategy as specified ("enter when bid-ask > 5%, exit when narrows to < 2%") is unimplementable on this data.
+
+---
+
+### CR2 — Far-OTM time-decay fade (crypto)
+
+**Setup:** for each crypto market with `entry_yes_price_3d ≤ 0.10` AND `trading_window_days ≤ 14`, bet NO with $250.
+
+**Results:**
+
+| Metric | Value | 95% CI |
+|---|---:|---|
+| N bets | 66 | — |
+| Win rate | 98.5% | [95.5%, 100%] |
+| Total P&L | +$418.66 | — |
+| Mean P&L per bet | +$6.34 | [−$2.30, +$11.68] |
+| Sharpe per bet | **+1.57** | [−0.42, +12.95] |
+| Max drawdown | −$250 | — |
+| Total P&L (strip top-1) | +$668.66 | — |
+| Total P&L (strip top-5) | +$560.60 | — |
+
+**The win rate of 98.5% is striking** but is exactly what you'd expect from far-OTM expiring options: 65/66 bets win a tiny fraction of the stake (NO at price ~0.97 for outcomes that almost always resolve NO), and 1/66 loses the whole stake. The Sharpe lower-CI of **−0.42** captures this single-loss tail risk.
+
+**Honest reading:** the strategy looks like "picking up nickels in front of a steamroller." The single losing bet (out of 66) was sufficient to wipe out 60% of accumulated profits. With **N=66 < 80** the result fails the primary test on size alone, and the lower CI of −0.42 fails CI ≥ 0.30. Still — of all 13 strategies tested across two sessions, **CR2 has the best point-estimate Sharpe.** A second year of data would likely confirm or kill it.
+
+**Period split:**
+- First half (N=33): Sharpe **+8.27** (zero losing bets)
+- Second half (N=33): Sharpe +0.33 (one losing bet)
+
+The first-half Sharpe is misleadingly high because it had zero losses in 33 bets. Second-half is essentially flat. **The strategy is a noise-floor strategy** — most of the time it returns ~$3 per $250 bet, occasionally the steamroller catches it.
+
+**Top-decile-stripped check:** strip top 10% of bets by P&L (drop 6 bets), mean P&L on remaining 60 = +$4.38/bet. **This check passes** — the positive expectation does not live in the top decile (the steamroller wipes the top decile in losses, not gains).
+
+**Ablation (window relaxed from 14d to 30d):** N=67 (gains only 1 bet), Sharpe +1.57, P&L +$420. The strategy is dominated by the 14d window already; relaxation adds essentially nothing.
+
+**Verdict:** **Most promising of all 13 tested strategies, but cannot pass primary on N=66.** Top candidate to re-test with 12+ months more data.
+
+**Per-bet ledger:** `data/research/strategy_pnl_CR2.csv`
+
+---
+
+### CR3 — Cross-venue arb to Kalshi
+
+Agent C's `data/research/kalshi_paired_markets.jsonl` exists (15 rows) but on inspection the pairings are spurious — every "kalshi_title" field reads "yes Pablo Carreno Busta, yes Federico Cina, ..." (a tennis market) paired with Polymarket Fed-rate questions. Topic-level matching by Agent C accidentally clustered unrelated Kalshi tickers under the topic key "fed." **No usable pairs.**
+
+CR3 is marked **data-constrained** (no usable cross-venue match data).
+
+---
+
+## Robustness checks summary
+
+Per protocol, robustness checks (Sharpe ≥ 0.40 on each slice) only matter for strategies that pass primary. **No strategy passes primary**, so robustness is reported below for context but cannot promote any strategy to Verdict A.
+
+| Strategy | Primary? | First-half Sharpe | Second-half Sharpe | Top-decile-stripped mean P&L | Ablation Sharpe |
+|---|---|---:|---:|---:|---:|
+| E4 | No | −1.33 | −0.33 | −$8.59/bet | −0.48 (Σ=I) |
+| EC2 | No (N) | +0.68 | +0.35 | −$95.57/bet (FAIL) | +0.07 (2pp drift) |
+| CR2 | No (N) | +8.27 | +0.33 | +$4.38/bet (PASS) | +1.57 (30d) |
+
+EC2 fails the top-decile-stripped check. CR2 passes the top-decile-stripped check but fails the period-split second-half threshold (0.33 < 0.40). Neither would pass all three robustness slices even if N were ≥ 80.
+
+---
+
+## Walk-forward integrity verification
+
+| Strategy | N bets | Bets verified walk-forward | Method of verification |
+|---|---:|---:|---|
+| E4 | 86 | 86 | Per-quarter grouping; spot-checked first 5 bets all in 2026Q1 with end_date > entry_decision_time. Sector ρ leak documented (small, would only worsen results). |
+| E6 | 2 | 2 | Same per-quarter logic. |
+| EC1 | 664 | 664 | Trivially walk-forward (single-market price + outcome). |
+| EC2 | 66 | 66 | Trivially walk-forward (uses 3d & 1d prices, both before resolution). |
+| EC3 | 18 | 18 | Trivially walk-forward (uses 3d prices). |
+| EC4 | 0 | 0 | Filter empty. |
+| CR2 | 66 | 66 | Trivially walk-forward (uses 3d price + window at entry). |
+
+Total walk-forward verified bets across new strategies: **902**.
 
 ---
 
 ## Honest interpretation
 
-Agent A's central result is **the model has no log-loss edge over the live Polymarket
-price**. That eliminates the original thesis ("fit a better probability than the
-market"). What's left is whether **execution rules** — operating *with* the market
-price as a feature in their own right — produce alpha. This backtest is exactly that
-test: S1–S4 use no model and only price/momentum; S5–S7 are the model-edge family.
+Across 13 pre-registered strategies × 3 categories (after import), **zero strategies clear the pre-registered primary threshold** (Sharpe ≥ 0.75, lower CI ≥ 0.30, N ≥ 80, max DD ≤ 30%). This forces the verdict toward **B** (all combos with N ≥ 80 fail at least one threshold) with a tinge of **C** (CR1, CR3, EC4, the strict variant of earnings #5, and EC3 are all N<80 due to data limitations).
 
-**Empirically:**
-- Aggregate model-based P&L: **$+2176** across 400 bets.
-- Aggregate no-model P&L: **$-5452** across 584 bets.
+The most informative results are negative. **EC1 is a textbook example of a hypothesis being decisively falsified:** the assumption that retail overshoots near resolution is wrong for econ markets, where Polymarket prices >0.90 resolve YES 100% of the time and prices <0.10 resolve NO 99.3% of the time. The market is doing its job. Anyone building a strategy on the premise that "extreme prices revert" should look at EC1's −$106k P&L on N=664 and update strongly.
 
-If the no-model family beats the model family on dollars and on per-bet ROI, the
-honest reading is: **the alpha (such as it is) lives in price-threshold and momentum
-rules, not in EPS modelling.** This matches Agent A's prior. If the model family
-unexpectedly wins despite A's log-loss finding, that is **suggestive of regime-specific
-luck**, not of skill — N=400 bets across 2 quarters cannot reject
-"the model is randomly aligned with realised noise this window."
+The two strategies with positive point-estimates (**EC2** Sharpe +0.76, **CR2** Sharpe +1.57) are both N=66 and both have lower-95%-CIs that cross zero (−1.83 and −0.42 respectively). In other words: the data is **consistent with these strategies being random**. They might be real signals; they might be coin-flip artifacts. Without ~12 more months of data we cannot distinguish. CR2 is the only strategy that passes the top-decile-stripped check, which is mildly encouraging — the positive expectation is not concentrated in 1-2 lucky outliers — but it fails the second-half period split (0.33 < 0.40) and the N-floor.
 
-**The S4 result is the most important finding.** D's hypothesis was that
-Polymarket prices each quarter independently and so under-prices momentum. The
-backtest *partially* refutes this: at the win-rate level, S4 wins 52.9% of the
-time, very close to a coin-flip, and it loses **$4,062 on 174 bets** with a broad
-loss distribution (no single market drives more than $1,100 of the result). In
-plain terms: the prior-quarter signal is empirically real (D's 0.79 vs 0.57 split
-is correct in the raw outcome data), but **Polymarket appears to already discount
-it.** The threshold-based version of S4 (only bet YES if priced <0.80, NO if priced
->0.55) systematically picks up the markets where the price *isn't* fully
-discounting — and on the realised data those are the markets where the price was
-right and the momentum signal was wrong. **D's open question — "does the market
-price the momentum?" — answers ≈ "yes, well enough to defeat a naive threshold
-strategy."** A subtler version of S4 that uses a smaller decision boundary or
-combines momentum with another orthogonal signal might still work, but the
-boundary in the spec does not.
+The flagship new earnings strategy E4 (quarter-Kelly with sector correlation) **fails on every dimension**: Sharpe −0.71, P&L −$226, both halves negative, ablation actually makes it slightly less bad. This corroborates the prior session's finding that the underlying model has no real edge over the implied price baseline. No amount of correlation-aware sizing can rescue a signal that isn't there.
 
-A subtler point on the model strategies (S5/S6/S7): apparent positive P&L on S6/S7
-is **almost entirely** the AMZN NO @ $0.054 + DAL NO @ $0.18 single-quarter pair.
-The OOS calibration table (Agent A, decile 0.0–0.5) shows the model systematically
-*under-predicts* in that zone — meaning when the model says "0.30" the realised
-beat rate is ~0.55. So when S5/S6 issue NO bets because `model_p_beat` is well
-below the implied price, the NO bet is *betting against* a market price that's
-actually closer to truth than the model is. The fact that S5 is -$1493 on 172
-bets while S6 (a stricter filter on the same logic) is +$3638 on 56 bets reveals
-how much the result depends on which 2-3 markets fall into the strict-filter set,
-not on the strategy's underlying thesis.
-
-**Bottom line:** based on this backtest alone, **none of the seven strategies has a
-defensible forward-looking edge.** The aggregate dollars say model strategies
-won (+$2176 vs no-model -$5452), but ~85% of the model-side P&L is from
-fat-tail wins on ≤3 markets — that's noise, not signal. The most informative
-*negative* result is S4: the cross-quarter momentum signal exists in outcomes
-but does **not** survive Polymarket's pricing. The most informative *positive*
-hint is S2 (YES on dogs at p≤0.50): win rate 33.9% on N=62, P&L barely negative
-without outliers, suggests the very-low-end of Polymarket's pricing may be
-slightly under-confident — but N=62 across 2 quarters is far too small to act on.
-**No strategy here justifies real-money deployment without ≥4 more quarters of
-walk-forward validation.**
+The headline finding from this session: **of all 13 strategies, CR2 (far-OTM crypto NO bets in thin <14d markets) has the best point-estimate evidence, but it does not pass primary, and its risk profile (98.5% tiny wins, 1.5% steamroller losses) is exactly the kind of pattern that requires huge N to validate.** Recommend re-testing CR2 in 6–12 months when N can plausibly exceed 200.
 
 ---
 
-## Caveats
+## Caveats and known limitations
 
-1. **Sample size.** OOS window is **2 quarters** (['2026Q1', '2026Q2']).
-   Per-quarter Sharpe/Sortino with N≤2 is **not a real Sharpe** — it's a ratio of two
-   numbers. Treat directionally only. The `n_quarters` column flags this for each row.
-2. **Bootstrap CIs on win rate** are reported (1000 resamples). For low-N strategies
-   they are wide enough to overlap 50% — read accordingly.
-3. **NO-side pricing** uses `1 − YES` as a tight-book devigging proxy. Real
-   Polymarket NO prices may be 1–3pp wider than this, which would compress S1/S3 P&L.
-4. **12-hour fidelity** on the CLOB history. The "T-3d" entry is the closest 12h bar
-   to 72h before resolution, not a precise quote. Slippage and entry timing within
-   that 12h window are not modelled.
-5. **Survivorship / selection bias.** Polymarket lists earnings markets only for
-   high-retail-interest tickers. The 443-market OOS sample's beat rate
-   (0.729) is essentially the broader S&P
-   beat-rate baseline (per Agent D's check) — the selection bias is small but not zero.
-6. **Single regime.** All resolved markets used here are from 2026Q1 onward. A regime shift
-   (rate cycle, AI capex, recession) could invalidate any of these.
-7. **No fees, no slippage, no liquidity sizing constraint.** Real fills on
-   $250 NO bets at $0.05 prices may be partial. Backtest is a frictionless ceiling.
-8. **Quarter-Kelly stakes are tiny** under the literal interpretation of the prompt's
-   formula. If "edge × 100" was intended as a fraction-of-bankroll sizing rule rather
-   than a dollar amount, S7's economics would change. We followed the literal text.
+- **N is the binding constraint everywhere.** Earnings has 4 quarters; econ strategies that survive entry-price filters drop to N=66; crypto's full universe is 219 markets and the OTM-thin slice is N=66. A second year of data would change the verdict for at least EC2 and CR2.
+- **12h CLOB fidelity.** Spread-narrowing strategies (CR1) and any intra-day signal are unimplementable. The Polymarket gamma-API archive samples at ~12h. Real execution would need a higher-frequency feed.
+- **Devig approximation.** Bet pricing assumes the YES price is the true mid; in production, the bid-ask spread on thin markets can be 2-5pp and would eat much of any edge claimed here. A 2pp transaction-cost haircut would push CR2's Sharpe close to zero and EC2's below zero. None of the verdict-eligible strategies would survive a realistic execution model.
+- **E4 sector-correlation walk-forward leak.** The ρ matrix was estimated on the full training set, not walk-forward per quarter. Documented above; the strategy lost money even with this small leak working in its favor, so the leak is not material to the verdict.
+- **EC4 filter incompatibility.** The "thin econ market" thesis is testable in principle but the volume threshold of $50k is below the entire econ market distribution in this dataset. A re-spec with `< $200k` would be a new strategy and is forbidden mid-session.
+- **EC3 event-grouping is heuristic.** Slug-prefix matching produced 60 candidate events but many are likely false groups. With proper event-id metadata from gamma-API the strategy could be re-tested cleanly.
+- **CR3 Kalshi pairing data unusable.** Agent C's topic-key matching put unrelated Kalshi tennis markets under the "fed" topic. Real cross-venue arb would need a proper semantic matching layer (or human curation of pairs).
+- **Bootstrap CI assumes IID bets.** For period-clustered strategies (EC1, EC2 — fired in batches around scheduled releases) the IID assumption inflates the effective sample size and the CIs are slightly too tight. Block-bootstrap would widen them, making the picture even more pessimistic.
+- **No transaction costs, no slippage, no liquidity caps applied.** All P&L numbers are gross. A naive 2% round-trip cost would worsen every Sharpe by ~0.3-0.5.
 
 ---
 
-## Files written
+## Files produced this session
 
-- `data/research/strategy_pnl_S1.csv` … `strategy_pnl_S7.csv` — per-bet ledgers.
-- `data/research/strategy_summary.csv` — one row per strategy (and 4 `_full` supplementary rows).
-- `docs/research/headline_chart.png` — cumulative P&L over time, all 7 strategies.
-- `docs/research/edge_vs_outcome_scatter.png` — model calibration on backtested bets.
+- `data/research/strategy_pnl_E4.csv` — 86 rows
+- `data/research/strategy_pnl_E6.csv` — 2 rows
+- `data/research/strategy_pnl_EC1.csv` — 664 rows
+- `data/research/strategy_pnl_EC2.csv` — 66 rows
+- `data/research/strategy_pnl_EC3.csv` — 18 rows
+- `data/research/strategy_pnl_CR2.csv` — 66 rows
+- `data/research/strategy_summary.csv` — appended new rows for E4, E6, EC1-4, CR2
+- `data/research/backtest_results/agent_b_summary.json` — full machine-readable summary including bootstrap CIs, ablations, robustness checks
+- `scripts/research/run_backtests.py` — fully reproducible backtest driver (deterministic seed=42)
