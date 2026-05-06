@@ -91,7 +91,6 @@ export async function readJsonl<T>(repoPath: string): Promise<ReadResult<T[]>> {
       out.push(JSON.parse(t) as T);
     } catch {
       // Skip corrupt lines but flag in console — better than dying.
-      // eslint-disable-next-line no-console
       console.warn(`[dataRepo] skipping unparseable JSONL line in ${repoPath}`);
     }
   }
