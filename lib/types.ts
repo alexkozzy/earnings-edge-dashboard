@@ -227,3 +227,83 @@ export type SectorBreakdown = z.infer<typeof SectorBreakdownSchema>;
 
 /** Sample-size threshold below which cohort breakdowns are flagged. */
 export const COHORT_MIN_N = 30;
+
+/* -----------------------------------------------------------------------
+ * Hedge tool types (v1.3, additive only).
+ *
+ * Inputs: a user's options/stock position and a selected ticker that has
+ * a future earnings event. Outputs: P&L scenarios across earnings-outcome
+ * spot moves, paired with a recommended prediction-market hedge sized via
+ * Kelly + caps + liquidity floor.
+ *
+ * Per user directive: when the +EV (model edge) direction conflicts with
+ * the position-hedge direction, the recommended action is the EDGE side.
+ * The hedge alternative is shown for transparency but not the default.
+ * --------------------------------------------------------------------- */
+
+export const InstrumentEnum = z.enum(["stock", "call", "put"]);
+export type Instrument = z.infer<typeof InstrumentEnum>;
+
+export const PositionEnum = z.enum(["long", "short"]);
+export type PositionSide = z.infer<typeof PositionEnum>;
+
+export const OptionPositionSchema = z.object({
+  ticker: z.string().min(1).max(10),
+  position: PositionEnum,
+  instrument: InstrumentEnum,
+  /** Required for call/put; ignored for stock. */
+  strike: z.number().positive().optional(),
+  /** Required for call/put (ISO date). */
+  expiry: z.string().optional(),
+  contracts: z.number().positive(),
+  /** $ paid per contract (or per share if instrument=stock). */
+  cost_basis: z.number().nonnegative(),
+});
+export type OptionPosition = z.infer<typeof OptionPositionSchema>;
+
+export const HedgeScenarioRowSchema = z.object({
+  label: z.string(),
+  spot_move_pct: z.number(),
+  spot_price: z.number(),
+  option_pnl_dollars: z.number(),
+  hedge_pnl_dollars: z.number(),
+  combined_pnl_dollars: z.number(),
+});
+export type HedgeScenarioRow = z.infer<typeof HedgeScenarioRowSchema>;
+
+export const HedgeRecommendationSchema = z.object({
+  side: DirectionEnum,
+  /** Why this side won (edge or hedge). */
+  source: z.enum(["edge", "hedge", "agreed"]),
+  venue: VenueEnum,
+  stake_dollars: z.number().nonnegative(),
+  /** Best-ask cents for the chosen side. */
+  entry_price_cents: z.number().min(1).max(99),
+  estimated_payout_dollars: z.number(),
+  estimated_downside_dollars: z.number(),
+  /** Which cap actually bound the size. */
+  binding_cap: z.enum(["kelly", "per_market", "liquidity", "edge_zero"]),
+});
+export type HedgeRecommendation = z.infer<typeof HedgeRecommendationSchema>;
+
+export const HedgeResultSchema = z.object({
+  ticker: z.string(),
+  earnings_date: z.string(),
+  days_to_earnings: z.number(),
+  signal_tier: TierEnum,
+  current_spot: z.number().nullable(),
+  spot_source: z.enum(["finnhub", "unavailable"]),
+  market_question: z.string(),
+  market_implied_prob_yes: z.number().min(0).max(1),
+  historical_base_rate: z.number().min(0).max(1),
+  edge_magnitude_pp: z.number(),
+  edge_direction: DirectionEnum,
+  hedge_direction: DirectionEnum,
+  conflict: z.boolean(),
+  scenarios: z.array(HedgeScenarioRowSchema),
+  recommendation: HedgeRecommendationSchema,
+  /** Pure-hedge alternative shown for transparency when there's a conflict. */
+  hedge_alternative: HedgeRecommendationSchema.nullable(),
+  generated_at: z.string().datetime(),
+});
+export type HedgeResult = z.infer<typeof HedgeResultSchema>;
