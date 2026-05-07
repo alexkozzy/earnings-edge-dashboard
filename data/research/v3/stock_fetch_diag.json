@@ -1,0 +1,14 @@
+{
+  "total_tickers": 417,
+  "ok": 416,
+  "skipped": 0,
+  "empty": 1,
+  "err": 0,
+  "elapsed_sec": 15,
+  "first_10_errors": [
+    [
+      "FRGE",
+      "empty history"
+    ]
+  ]
+}
