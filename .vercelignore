@@ -1,0 +1,16 @@
+# Research artifacts — committed to git for reproducibility but
+# not needed in the Vercel deploy bundle. Exclude to keep upload fast.
+data/
+
+# Research scripts — only run locally / in agents
+scripts/
+
+# Local screenshot snapshots — historical record, not runtime needs
+docs/screenshots/
+
+# Local env files (also gitignored, but defense-in-depth)
+.env.research
+.env.local
+
+# Build artifacts (already excluded by next/turbopack but explicit)
+.next/cache/
