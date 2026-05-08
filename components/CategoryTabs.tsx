@@ -16,19 +16,20 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export type Category = "earnings" | "econ" | "crypto";
+export type Category = "earnings" | "econ" | "crypto" | "geopolitics";
 
 const CATEGORIES: { value: Category; label: string }[] = [
   { value: "earnings", label: "Earnings" },
   { value: "econ", label: "Econ data" },
   { value: "crypto", label: "Crypto" },
+  { value: "geopolitics", label: "Geopolitics" },
 ];
 
 export function readCategoryFromSearch(
   search: URLSearchParams | null,
 ): Category {
   const raw = search?.get("category") ?? "";
-  if (raw === "econ" || raw === "crypto") return raw;
+  if (raw === "econ" || raw === "crypto" || raw === "geopolitics") return raw;
   return "earnings";
 }
 

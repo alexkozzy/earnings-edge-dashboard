@@ -1,0 +1,112 @@
+{
+  "generated_at": "2026-05-08T04:33:25.036670+00:00",
+  "total_markets_with_entry": 2911,
+  "raw_harvested": 35067,
+  "date_range": {
+    "earliest": "2023-05-31",
+    "latest": "2026-12-31"
+  },
+  "sub_category_counts": {
+    "discretionary": 2565,
+    "hard_currency": 252,
+    "action_count": 94
+  },
+  "sub_tag_counts": {
+    "other": 2418,
+    "iran": 244,
+    "israel": 72,
+    "ukraine": 53,
+    "korea": 45,
+    "china_taiwan": 33,
+    "venezuela": 29,
+    "trump_putin": 13,
+    "syria": 2,
+    "yemen": 1,
+    "cuba": 1
+  },
+  "liquidity_tier_counts": {
+    ">200K": 1956,
+    "15-50K": 369,
+    "5-15K": 308,
+    "<5K": 171,
+    "50-200K": 107
+  },
+  "outcome_yes_won_count": 681,
+  "outcome_no_won_count": 2230,
+  "research_status": {
+    "v5_cycle_1_verdict": "Calibration holds \u2014 0 of 5 testable cells pass primary",
+    "v5_cycle_2_status": "in progress (LLM-graded ambiguity test with placebo)"
+  },
+  "top_10_by_volume": [
+    {
+      "question": "Will Donald Trump win the 2024 US Presidential Election?",
+      "volume_num": 1531479284.504353,
+      "entry_yes_price_3d": 0.5825,
+      "outcome_yes_won": 1,
+      "sub_tag": "other"
+    },
+    {
+      "question": "Will Kamala Harris win the 2024 US Presidential Election?",
+      "volume_num": 1037039118.18879,
+      "entry_yes_price_3d": 0.368,
+      "outcome_yes_won": 0,
+      "sub_tag": "other"
+    },
+    {
+      "question": "Will Donald Trump be inaugurated?",
+      "volume_num": 400409526.886835,
+      "entry_yes_price_3d": 0.9945,
+      "outcome_yes_won": 1,
+      "sub_tag": "other"
+    },
+    {
+      "question": "US forces enter Iran by April 30?",
+      "volume_num": 269049107.0837461,
+      "entry_yes_price_3d": 0.9995,
+      "outcome_yes_won": 1,
+      "sub_tag": "iran"
+    },
+    {
+      "question": "Will any other Republican Politician win the 2024 US Presidential Election?",
+      "volume_num": 241655099.850067,
+      "entry_yes_price_3d": 0.0005,
+      "outcome_yes_won": 0,
+      "sub_tag": "other"
+    },
+    {
+      "question": "Fed decreases interest rates by 50+ bps after January 2026 meeting?",
+      "volume_num": 235065166.637259,
+      "entry_yes_price_3d": 0.0005,
+      "outcome_yes_won": 0,
+      "sub_tag": "other"
+    },
+    {
+      "question": "Fed increases interest rates by 25+ bps after January 2026 meeting?",
+      "volume_num": 216455743.153891,
+      "entry_yes_price_3d": 0.0005,
+      "outcome_yes_won": 0,
+      "sub_tag": "other"
+    },
+    {
+      "question": "US x Iran ceasefire by April 7?",
+      "volume_num": 173696184.17746878,
+      "entry_yes_price_3d": 0.105,
+      "outcome_yes_won": 1,
+      "sub_tag": "iran"
+    },
+    {
+      "question": "Will the Fed increase interest rates by 25+ bps after the March 2026 meeting?",
+      "volume_num": 172972056.63332495,
+      "entry_yes_price_3d": 0.0015,
+      "outcome_yes_won": 0,
+      "sub_tag": "other"
+    },
+    {
+      "question": "Kamala Harris wins the popular vote?",
+      "volume_num": 163779786.645492,
+      "entry_yes_price_3d": 0.6845,
+      "outcome_yes_won": 0,
+      "sub_tag": "other"
+    }
+  ]
+}

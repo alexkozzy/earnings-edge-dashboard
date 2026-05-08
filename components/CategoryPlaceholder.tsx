@@ -12,6 +12,7 @@ const LABELS: Record<Category, string> = {
   earnings: "Earnings",
   econ: "Econ data",
   crypto: "Crypto",
+  geopolitics: "Geopolitics",
 };
 
 export function CategoryPlaceholder({ category }: { category: Category }) {

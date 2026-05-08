@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { LiveSignalsView } from "@/components/LiveSignalsView";
 import { CategoryTabs, type Category } from "@/components/CategoryTabs";
 import { CategoryPlaceholder } from "@/components/CategoryPlaceholder";
+import { GeopoliticsOverview } from "@/components/GeopoliticsOverview";
 import { loadSignalsSnapshot } from "@/lib/snapshots";
 
 // Always render fresh on each request — we don't want to ship stale signals
@@ -10,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 function parseCategory(raw: string | string[] | undefined): Category {
   const v = Array.isArray(raw) ? raw[0] : raw;
-  if (v === "econ" || v === "crypto") return v;
+  if (v === "econ" || v === "crypto" || v === "geopolitics") return v;
   return "earnings";
 }
 
@@ -24,7 +25,9 @@ export default async function HomePage({
   const category = parseCategory(sp.category);
 
   let body: React.ReactNode;
-  if (category !== "earnings") {
+  if (category === "geopolitics") {
+    body = <GeopoliticsOverview />;
+  } else if (category !== "earnings") {
     body = <CategoryPlaceholder category={category} />;
   } else {
     const result = await loadSignalsSnapshot();
