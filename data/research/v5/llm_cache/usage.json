@@ -1,0 +1,12 @@
+{
+  "cycle_1": {
+    "resolution_grading": {
+      "calls": 199,
+      "in_context_dollars_estimated": 0.0,
+      "note": "in-context grading by Agent D directly reading question text; no external API calls"
+    }
+  },
+  "remaining_budget_calls": 301,
+  "remaining_budget_dollars": 15.0,
+  "note": "in-context calls don't draw from external $15 budget"
+}

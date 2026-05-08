@@ -1,0 +1,200 @@
+condition_id,question,sub_category,grade,reason,ground_truth,entry_yes_price_3d
+0x493720f91c0b4d1273bd744c1412826c4b23469f25654b7f918d66f49e266745,Will Alberta vote for independence in 2025?,discretionary,CRISP,dated vote outcome,0,0.0035
+0x394851952cb613c24a24b9eb695b828617545a40b4c0013ddc16222ea68561f8,Russia x Ukraine Ceasefire in 2024?,discretionary,AMBIGUOUS,ceasefire definition / scope ambiguity,0,0.009
+0x38b4857b4be08493cdb6aad1052332b57fe58d4e16b2f1979434ce2260433358,Will Elon Musk post 280-299 tweets in November 2025?,discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0005
+0xfac2af4b0dd00903861de0d99be87c71c9f45824e002fef274677c9f3fd4051c,Will BSW win the most seats in the next German election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0xb9998922e9b800d3c8dd65636a4f9905bae8d587f8cfd78d06c6209b33bb46cf,Trump ineligible to run for President?,discretionary,AMBIGUOUS,eligibility requires legal interpretation,0,0.003
+0x9a6aae9fbe7ebfea1527b25b0b83e7fcf22ccc6216deb414c3e830266dfc36ec,Trump and Harris agree to Fox News debate?,discretionary,AMBIGUOUS,"requires interpretation of ""agree/agreement/reach""",0,0.0315
+0x2e317c0dceb7b4ab2abe7c43f302b0253321f92a941709f871975799fd5a168b,Will Florida be the closest state?,discretionary,AMBIGUOUS,"""closest"" requires margin convention",0,0.022
+0x98373b521fb96a8ac01b352d38b3095c21c8d30eadac1fe3a7e69f6c77eb2c66,Will Nikki Haley drop out in July by the start of the Republican National Convention?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.013
+0x805d5d29303a29387e9b541f5c7405bcea69f8ef56137ce174356cb0e548d3ee,Trump ends taxes on tips in first 100 days?,discretionary,AMBIGUOUS,"open scope on what counts as ""ends taxes/policy"" within window",0,0.0065
+0x534da3946b8da84a8687e346e735fcc1d7c7078c057b1a7769cb9991b3e67968,Will Gavin Newsom win the popular vote in the 2024 Presidential Election?,discretionary,CRISP,named candidate + dated election,0,0.0005
+0xe53ae76973ece475c9e375ff9aa80bff1bd1119abd8ab38d7d689e76d9238686,"Will the US next strike Iran on January 19, 2026 (ET)?",discretionary,AMBIGUOUS,"""next strike/attack"" no fixed date",0,0.0005
+0x023e46ac9f644a03bcfcd2ac9cc382163cafb2a3bc586c21653ed29548558460,"Will Elon Musk post 340-359 tweets from November 21 to November 28, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0055
+0x343bd70dc933edcae475b2053c6a3cf10ea6383ef2ef87d0ab70e31a045f8645,Marwan Barghouti released by October 31?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.017
+0x81dc62c84e8f1d9f2cfd4ca576bf0d5ef27d39e0bcf7b12f115a9064ed0c15de,Will Rick Scott be the next Senate Majority Leader?,discretionary,CRISP,office-holder identity question,0,0.003
+0xe36af7728445b62f1e06a904041d5f1455f9c290b07b91fc903696d08db762be,Will Robert Sarah be the next pope?,discretionary,CRISP,office-holder identity question,0,0.0225
+0x715eb6357edc59dc38d9f7da929e63be58fa4d3b7bd1415d7950a60bd4317827,Will Zelenskyy and Putin meet next in Turkey?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0235
+0xa90efba18a797c85610d23b1da4b99ffaad4c39e3d8f69e7040e8864eb597d52,"Will Elon Musk post 400-419 tweets from February 3 to February 10, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0015
+0xa267dab4540df43726f82e371a31c2eadf27f7fd9b7ca37f1dea287936a45d29,Will Antonio Ecarri Angola Win the 2024 Venezuela presidential election?,discretionary,CRISP,named candidate + dated election,0,0.001
+0xb232b902eb9d8aa18cd7923e1f35485711d9ee4434f41e99cf2380269bff0b7a,"Will the US next strike Iran on January 31, 2026 (ET)?",discretionary,AMBIGUOUS,"""next strike/attack"" no fixed date",0,0.033
+0x18b1dc1565575cb2ff48bbc078070170ca3278691860cca7c97131fc657a9530,Will José Cardoso win the 2026 Portugal presidential election?,discretionary,CRISP,named candidate + dated election,0,0.0005
+0x9d5303049d7f0e9a9c8a440200e3714dd5799e50602ab6cfbef0de40c06a9021,"Will Elon Musk post 140-159 tweets from December 12 to December 19, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0025
+0x1856330daa03470c528752c1c10c1f5300e78fa808a93be29317fdcc4a791a9d,Will Republicans control 228 seats in the House after the election?,discretionary,CRISP,numeric seat threshold,0,0.001
+0x6fbd4837e709e999c3f82eb22fa68fc08c424fdb41059aa0cdf3405d06773a0d,"Will Elon Musk post 160-179 tweets from March 3 to March 10, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0005
+0x2bd564bdef719d33ddc1c564c80bf0b6da83632e902150e587964a91c1152ec9,Will a Republican win California US Senate Election?,discretionary,CRISP,partisan-outcome of named race,0,0.0215
+0x38c7a14f589e49f43e6bfa9ed465441cac588d2d1c7c1415945df80e111fa5da,Will Andy Beshear be D-nom for VP on Election Day?,discretionary,CRISP,specific VP-nominee identity,0,0.0005
+0xf981fb146169eac1cf8bd6e35a2102cc4f7efe92369ae1c413d532dc51d1cfe0,Will the next Dutch government be PVV + VVD + D66?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0x60acc46cda1f0619259acf3ef8c77bf734ff08cbed256ca3d1e9444138e21266,Will Trump nominate Jerome Powell as the next Fed chair?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0xab6faa3e66abacc484bbb4bd31ae5e2a56d6f6252b5023631f1bd9e5299fa2f8,Will Donald Trump win Nobel Peace Prize in 2025?,discretionary,CRISP,Nobel committee announcement is crisp,0,0.021
+0x7829bbc06202abf9db6b04e3ac3b9038922392d40b0344a398bb9b3852be29e1,Will a Republican win Massachusetts US Senate Election?,discretionary,CRISP,partisan-outcome of named race,0,0.028
+0xbbfa1cdad9819acdd36bfa2fac3d2f1ff64021c3d4a7459661010ce9ff33cefb,"Will the US next strike Iran on January 29, 2026 (ET)?",discretionary,AMBIGUOUS,"""next strike/attack"" no fixed date",0,0.015
+0xc52cb22f2ca2fff02170862d971fdeafb7c0ff13fde292a2af508546b337aa4c,Will Călin Georgescu win the Romanian presidential election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0xe2abc7b99067945a75cc308dd009e27e4191e09df00b77b3d314545287eb6cee,Will the next Dutch government be PVV + VVD?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0xdbf039208c7ec82f5fc414680ce98f0ce7e2bf396b12ed43e18519a354a6d7ed,Will Gholam-Hossein Esmaeili be the next President of Iran?,discretionary,CRISP,office-holder identity question,0,0.0005
+0xf8455f2bf006c1de7244ced9b0cf2953ac2b9e32d1124c61cc519acc4c3e252c,"Will Elon Musk post 400-419 tweets from January 2 to January 9, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.05
+0x0833435364858b75e88280c9eef252b0f1e4a5ec69712fb341e7e797da8776d9,"Will Elon Musk post 140-159 tweets from February 10 to February 17, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0005
+0x6679ee3522c4fcb5266bbddcf75973bc2735d9c80c517e7c179c035680a01cec,Will a candidate from another party win Montana US Senate Election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.002
+0x87aa0528695acd3266625acb21e282379e8bd15964a729576015542af3b36b17,Will the next Dutch government be PVV + GL/PvdA + VVD + CDA + D66?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0xeee36eb4a7474ed4415c966a86491a2880d799479c776776a0e1b06671e3b690,Will Sebastian Burduja be the next Mayor of Bucharest?,discretionary,CRISP,office-holder identity question,0,0.0005
+0xdb38635fa192748f48d28aacb7dc05f8c5777f2c8f529a6647d81fb25dfa82dc,Will Zohran Mamdani not win the 2025 New York City mayoral election?,discretionary,CRISP,named candidate + dated election,0,0.045
+0x874113a400a67fae988f00d1b78d3157b6bb8a6c1dc9fcb70f140de7166bea6c,Will Devin Nunes win the 2024 Republican VP nomination?,discretionary,CRISP,named race in specific year,0,0.0005
+0xdf4d0baef31895effa199e618abe9ae3a8d6288bddcaad4e6ecd6df09594c25e,Biden vs Trump: who polls higher 1 week after debate?,discretionary,AMBIGUOUS,poll aggregation is methodology-dependent,0,0.0175
+0xb92f22143e7b48609a82573fa8197dc73683a15acb467b0f51ee63da7e3f520b,Will any other Democratic Politician win the 2024 US Presidential Election?,discretionary,CRISP,named candidate + dated election,0,0.0005
+0xdc4696c01c081834beae55f04eb852cf46e911fe63f779440390f753e9025fe9,"Will Elon Musk post 420-439 tweets from January 13 to January 20, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0015
+0xc11dd6459a3a82ab0563a8fd7b76a5f2249c2607a9430ed66f8f2194c70a5982,Will Ahmed Aboutaleb become the next Prime Minister of the Netherlands?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0x819c78a2541fe1402d06ff9f52d48c58fa09b783adca75d4d4eedf4a27d0e928,Will LaVerne Gore win the 2025 Cleveland mayoral election?,discretionary,CRISP,named candidate + dated election,0,0.012
+0xabe05aa3efb620cf283a9a7f967eaced0aee898b14f3b170347a3392d7401f03,"Will France, UK, or Germany strike Iran by February 28?",discretionary,CRISP,specific dated strike deadline,0,0.007
+0xf4c062740bed86e48b44177aae609c9c76e44cba5318aba240b94066939b672b,Will SPD win the most seats in the next German election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0x89ff77ee1c11d6c8a480bfaab11eefd6f87b8f2076a065be0706453857dc0958,Will Iran close the Strait of Hormuz in 2025?,discretionary,AMBIGUOUS,"""close"" definition (full blockade vs partial) interpretation",0,0.0025
+0xf86b5d640c385a42a621554ed9c766647c494917532a9f91d09241a440c5ed89,Will Dan Trifu finish third in the 2025 Bucharest mayoral by-election?,discretionary,CRISP,rank-order outcome from official tally,0,0.002
+0xc40ccfa556630ab2202f19086f58bb2c0f4b5c563f7fbf575168744505f14dc4,Will Dan Trifu be the next Mayor of Bucharest?,discretionary,CRISP,office-holder identity question,0,0.0005
+0xa068761026b778d901bda82e3fc1429b6a2922b68de80795ef7afd9204430a0d,Will Russia capture Kupiansk-Vuzlovyi by November 30?,discretionary,AMBIGUOUS,capture verification can be contested,0,0.0385
+0x2e902560e7751b52d4476446d503f88b232677703759288949596016dd3fa4e7,Will Robert Giuffra be Trump's Attorney General?,discretionary,CRISP,Senate-confirmed AG identity,0,0.0015
+0x935db621991284ca0b34b8b1243b8347bd55a62de82cf74859780b93ac4f1fda,Will the Bloc Québécois win the most seats in Alberta in the next Canadian Election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0xccbfe9aaeeb3639ebae86443370a955d5273ee47e43bd765bbd0a7306d3bce3a,Will Oman strike Iran by April 30?,discretionary,CRISP,specific dated strike deadline,0,0.004
+0xea3c3d537c0495872754400b9ab59755a932d3e2b6115e309d62ed236ee1b612,Trump out as President in 2025?,discretionary,AMBIGUOUS,"""out"" requires legal/political interpretation",0,0.0025
+0xe42745319821ec7c531d38afcb0cb9d8a53a414efc3470824b4103204bef7c97,Will Trump announce Judy Shelton as next Fed Chair in 2025?,discretionary,CRISP,dated event default,0,0.0045
+0x89e2bbbd8edfbf77f96b92db99f854d7f1384842a52c5bf448800bd6324a0b6d,Will Amy Klobuchar be the Democratic Presidential Nominee?,discretionary,CRISP,official party nomination is crisp,0,0.0005
+0x027fb2d0015f7fbae58491502e906948373c88cd49dc90f0d36c1e692644e42e,Will Olaf Scholz be the next Chancellor of Germany?,discretionary,CRISP,office-holder identity question,0,0.0105
+0xb38ff89ca80358305983b93c73fea18d3269d7776f3bb77bfd75b0ce838cae70,Will Přísaha win the most seats in the next Czech parliamentary election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0015
+0x08fbe3be22b176f9fd7a915ccd5b23470d6671747a05a4500346897f2834113e,[Single Market] Will Hillary Clinton win the U.S. 2024 Democratic presidential nomination?,discretionary,CRISP,official party nomination is crisp,0,0.01
+0x02907c864d97466515cb46f5a738409b12a4569154fa62328f56555891804557,North Korea x South Korea military clash in 2024?,discretionary,AMBIGUOUS,"""military X"" requires interpretation of what counts",0,0.009
+0x3ba0d281712a7df3cabf1d641af2f269b4f5a4932887e635793d6fcd4a09aac0,"Will Elon Musk post 520-539 tweets from March 6 to March 13, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0035
+0xd1047755d35a03b7ceea9923daae56ecf67784446daa63e87eebc471b4b9dbd9,"US strikes Iran by January 16, 2026?",discretionary,CRISP,dated event default,0,0.0035
+0x9b4b6d0fba8860423c65e62045380878bf16e8155d5e58277af99f65c625509c,"Will Elon Musk post 360-379 tweets from February 3 to February 10, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,1,0.0085
+0xbca6d54d68335e9e27f1e14df168fdced87988d91eb5d411f61b869243c80099,Will another party win the most seats?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0015
+0xd1e72aedfdb18839ca6532e2dbc95a89ecb93247298f1953d1d4c02e7889b1f4,Will the Government shutdown end October 31-November 3?,discretionary,CRISP,specific date for shutdown end,0,0.0005
+0x67f5f2ce94e999560348ba7cea12b82e032f503f572084756bd6cad0b1f5bb3e, Karen Bass recall election called before September?,discretionary,AMBIGUOUS,process step (called) interpretation-dependent,0,0.015
+0xa1997b3a88f85dfa1e838748cb5a00e082871276d8c057a7fa63cef88121a8f8,Starmer out before July?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.006
+0x90cf5a30dbfb33d2a6c8f3335f891aa20e5d52c6b0d6365e04e6c11cf05d6a0d,Will Penny Mordaunt be next UK prime minister?,discretionary,CRISP,specific identity question,0,0.0005
+0xd6fa28dce85f3fd0c3a25f6eec7980775a9c1e321e1f988c9fbd91760908be8f,Will the next Dutch government be PVV + CDA + D66?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0x438a3a56964f33c393d34b0e57f709bc1721a679c962e81642e5487930e4dc96,Will another candidate be D-nom for VP on Election Day?,discretionary,CRISP,specific VP-nominee identity,0,0.0005
+0xdd38f1c91c1a1b90d4268afa7178d570c7efe3597ef3271594ab689d7423e597,Will Reza Pahlavi enter Iran before September?,discretionary,AMBIGUOUS,physical presence verification ambiguous,0,0.002
+0x464970747ef4695bbf1d46757b122caa5b3fad410f8a79bcc773e6524b769835,Will a candidate from another party win Delaware Presidential Election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0045
+0xac51c43100e1aaf4968aa61fe72eb320dd308959dc6a7a14a6f3ebe758e7f88d,Trump nominates Elon Musk to Cabinet?,discretionary,AMBIGUOUS,cabinet nomination type interpretation,0,0.011
+0x03ae1b62fa4eea75c286e9d461afa30d943be864f61dcc1f86f6764c4ec099c6,Will Ahsha Safai win the San Francisco Mayoral Election?,discretionary,CRISP,named candidate + dated election,0,0.0015
+0x5b19d5d3ee794049f4ff27a66d87a7cf3fc55abf317e331988716a7b41f0c297,Will a candidate from another party win Arkansas Presidential Election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0035
+0xbcbaf0cda0371263542ae37e012a021f0f3a1ec85a4e674f95cdfeb18fa39d0c,Will Elon Musk post 60-79 tweets in April 2026?,discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0005
+0x78dca20ad6401138b24acc0d953b58fd2676128a92afb515f257dd334da9023c,Will a candidate from another party win Washington US Senate Election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0075
+0x7971c1427c8fb405b03774efe61de9abd937c83e74944c09f2deefd66601f8b0,"Will Elon Musk post 0-19 tweets from February 27 to March 6, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.001
+0xcdd330cae61b17c8e88dc1376d7de966f39387427bdac9d6d100f2a1d92947e3,Yoon in jail before July?,discretionary,AMBIGUOUS,incarceration status interpretation,0,0.045
+0x387d5a499328023ded8132ce272b4faf87eccfa6521737a85bfe09a01183c2ef,Will ODS win the most seats in the next Czech parliamentary election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0045
+0x9bbd4aaca039b708e2c0c3b6324d3037be46c44db49541e6b0fc38c8ab719f0a,Will Stuart Cooper win TN-7 Special Election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0x8288d2d383414fce6bc4b7609ed5074c86bce99cb0b13ff01a23bad674901998,Will another candidate win the MN-5 Democratic House District?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0x26c0b0cbc44517dfc8ad8c750ee24e048e5ca733155515c0ac4bce686317bbb1,Hunter Biden in jail before election day?,discretionary,AMBIGUOUS,incarceration status interpretation,0,0.0135
+0xdbded28bb7b5ef0ae091e60894c4c8aa1556de87d2e8edac6104be50b69cc6a8,Trump sentenced to prison in NY case before election?,discretionary,AMBIGUOUS,sentencing-event interpretation,0,0.0085
+0xc87eefa985446d46cd4251c089e120d6583f532df43d2f6a277b5c253097be8e,Will Trump go on SNL before inauguration?,discretionary,AMBIGUOUS,"appearance scope (host, guest, cameo)",0,0.0045
+0xab53ef40981b322cd90b06272dacbd778a427d77655898f1d9a741cf5b5e3d50,Will Kim Dong-yeon be elected the next president of South Korea?,discretionary,CRISP,specific office identity,0,0.0005
+0x34d650cd671bfe703a0bbb2b2aab0387afb6292a6cdf4a08836245246b4f7b54,Will Elise Stefanik be the first elected Speaker of the House for the 119th congress?,discretionary,CRISP,specific procedural office,0,0.004
+0xafd8bd9f9f4fcf42dcd1a159990126dff2ffe8b3afb9543b4a4e565c94b0d0f0,Will Kamala lead in RCP by 3.5 or more on Oct 4?,discretionary,CRISP,RCP lead is a defined index threshold,0,0.0025
+0x74f97b1c6caf682f5ef9ccd325b3344959bf8fd38fe565e5398ecfebb827b4c0,Will Biden announce resignation by July 31?,discretionary,AMBIGUOUS,announcement is interpretation-dependent (rumor vs official),0,0.015
+0x8e97cc08d441a872877f33d66730a30c98a3735c5b64cd72a9b9e779c9737c8f,North Korea nuke by May 31?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.013
+0xca9d229eb89ebbc44fcee5469c9ca9c9cff9c35dbb451cd2cf2321decc933536,Will the US strike Iran next?,discretionary,AMBIGUOUS,"""next strike"" lacks date scope",0,0.0005
+0x27e47fcc55d252f5ffeee42bf8e2d7d6d5a54e4ff7a31e95e5cb057e18b7d0dc,Will a Republican win Maine US Senate Election?,discretionary,CRISP,partisan-outcome of named race,0,0.029
+0x6831e2d6108d2316252466bf828cdb02aa16c5e8152ff428d2c0a035d5637e60,Will Elon Musk post 440-459 tweets in December 2025?,discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0005
+0xb6bd48fa92be4a8bc52b307d9aa34b1fc79adbf58bc3ab1599a9aef0b4344495,Will Caroline van der Plas become the next Prime Minister of the Netherlands?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0005
+0x768603866bc5ce73836ccae47d72ee47cdd605d41320d3894ca41412f784d775,[Single Market] Will Nikki Haley win the U.S. 2024 Republican presidential nomination?,discretionary,CRISP,official party nomination is crisp,0,0.0025
+0x6e4a56d8073645a86354e47f82a70f8ccc1881cbdcb54e0a32fbebb954f2ce9b,Will Matt Gaetz be Trump's Attorney General?,discretionary,CRISP,Senate-confirmed AG identity,0,0.0005
+0x937b00af36c37c4f0a627bfa522c5aa677d661588851b368715af2e58bb1b20f,Will POTUS tweet 11-13 times Feb 7-14?,discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.0215
+0x2f4dc2d6eb4d8385899d543c44a994949a260f34a3f6df2e9ef5d8697ddfa7d5,Will Joe Biden be the 2024 Democratic VP nominee?,discretionary,CRISP,official party nomination is crisp,0,0.0005
+0x23fd2b26c4e095465ba0d2ebce8d5eda57009ddc59aad8b68ab19ca968b41eed,"Israel strikes Iran by January 31, 2026?",discretionary,CRISP,dated event default,0,0.055
+0x661a6d0e875ac492ff936bbe61b899ef0dd48f44936f33438720d484fdfcbc7e,Will a Republican win New Mexico Presidential Election?,discretionary,CRISP,partisan-outcome of named race,0,0.075
+0x5643164887403da23bf20c0f7ac21dcf56acba71e41772f4947eedda9cda59c5,"Will Elon Musk post 300-319 tweets from November 25 to December 2, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.176
+0x170e269fe2091f2092c5c1ddafca0519081a0bafcb0941ae13fbc1addb08d782,Will Republicans have 54 seats in Senate after election?,discretionary,CRISP,numeric seat-count,0,0.1195
+0xbbd25d204f6666004598d64000fea1bef677767e3268026fc57f4f9e348dd96e,"Will Trump say ""Charlie Kirk"" in March?",discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.16
+0xc72a9d5b3221905539ede69f52a5e990a7325f1610216b2620705cf2a3cd6472,"Will Elon Musk post 260-279 tweets from December 9 to December 16, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,1,0.127
+0xff21f6951a1a4fd0e9d12d1bc641e49943e81a0f54487d20e8967a84ee39ebd2,"Will Elon Musk post 180-199 tweets from November 18 to November 25, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.075
+0x475e0fd32b211c0cfe6755638efceba2373d01a7224c7750f77f978db104f639,2024 presidential election: GOP wins by 105-154,discretionary,CRISP,numeric vote-margin threshold,0,0.0975
+0x669b35203fbaaf260e1e5198b8ca2ebd7887d7ffa6985dab99abb0bf94ef674e,Will the red bloc win between 78 and 80 seats in the Norwegian election?,discretionary,CRISP,numeric range/threshold,0,0.08
+0x67cf70277c7adc7c1de3bc26d5867124ce836be8e7cf120269406e2bef788caa,"Will Elon Musk post 260-279 tweets from November 11 to November 18, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,1,0.162
+0x1407ef3df88eeb834f5acc7c83dd1a52a62fa2c79a10a4c1184c585936e9faa3,"Military action against Iran ends on April 11, 2026?",discretionary,AMBIGUOUS,"""military X"" requires interpretation of what counts",0,0.0765
+0x50d01a34bec98cbbdccca27ce177d3643c95d95672036a9528f491bdfcbba974,"Will Elon Musk post 280-299 tweets from January 30 to February 6, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,1,0.1505
+0xcd6b8c35e1e11e19967784b0aa6811fc20a81639201203122de2c063fa9bb646,"Will Rutte say ""Nazi"" or ""Hitler"" during NATO Public Forum Address on June 24?",discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.085
+0xe1565440a5643fb6fce8235617264fa18a24c1bafb4601f9c30aeb0134ac79a8,Will Kamala Harris win Hawaii by the largest margin?,discretionary,AMBIGUOUS,comparative-largest requires tie-break convention,0,0.125
+0x9fa71d8f9795c72c4573baf18a30dca215b9a4a7b7d9b8eb54ae6a02889eb1a5,"Will Elon Musk post 380-399 tweets from December 23 to December 30, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.105
+0x6d20fbec2da69596c8c350ba463fb1132ec47a34c89d71d0294ca75b6c419339,Will another person win the Bolivian election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),1,0.075
+0xf4cef13ee0ed433972e45b5e8a8571f814a3b220870aa9cfefab972ffb32bdd8,Will Taylor Swift attend the DNC?,discretionary,AMBIGUOUS,attendance verification can be ambiguous,0,0.195
+0xc7ccf00d77e843b86ea9d9027e6c1da91c52f8fea154658d740dfc0a15bc6a74,"Will Elon Musk post 440-459 tweets from December 30 to January 6, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.0615
+0x6ef8ef55a05e303a09b6fa1f2c00d18d4c98eb3d829b44db82a03be665ab901c,Russia x Ukraine Ceasefire by Friday? ,discretionary,AMBIGUOUS,ceasefire definition / scope ambiguity,0,0.059
+0x729832336b1344aab2531ba0bfb192a674fce114004eb020d5bc3cd9bfcb40d3,Will Ramaswamy place 2nd in the 2024 Iowa Caucus?,discretionary,CRISP,rank-order outcome from official tally,0,0.065
+0xc5675bc58c8117391cc243780c1b709ce1ef744aa27779c78ee82f3dc974ca1b,Will the Kharg Island oil terminal be hit by April 30?,discretionary,AMBIGUOUS,"""hit"" threshold (damage level) interpretation",0,0.07
+0xbdaabd5cd63551f73e6f046fc3fadd410c324ffa92a755660a4cfd08d030a619,"Will Elon Musk post 160-179 tweets from November 18 to November 25, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.165
+0x84d3f50aed81bd7e414e0e9f86f07b9ca439c4d672d7141562f9ff3dfe740b10,"Will Trump say ""Crooked Joe"" during victory rally? ",discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.135
+0x6e49c30d1d8d5cc632a19cee18355a5b6fce100087222c86f448ec22003cc5e1,"Will Elon Musk post 340-359 tweets from November 25 to December 2, 2025?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.051
+0x613e429931f3073610c3a54c5c80c592fb9b949da3d5fbc8375bf5e9f188fc20,"Will the 7-day moving average of Strait of Hormuz transits be between 12 and 15 on April 12, 2026?",discretionary,CRISP,numeric threshold,0,0.145
+0x039b490964fb1224c7bccc8d62cad1e0a9dbd676973bf4f110b7fe8f9f2742e5,"Will Trump say ""carnage"" during his inauguration speech?",discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.175
+0x45217673671bd96b4449ead71cc5a2cce050254142ca078d1bdfa044f60c2293,"Will Donald Trump post 120-139 Truth Social posts from April 24 to May 1, 2026?",discretionary,CRISP,mechanical numeric/observable count with bounded scope,0,0.2
+0xbd5d1e406ef6afdf1bbf2fe3ccb2b936f3bac9a163a291b58c01cd03d830288d,Will Eric Conroy be the Republican nominee for OH-01?,discretionary,CRISP,official party nomination is crisp,1,0.97
+0xf72c6c1e44bcf0108ad3d126e41e5dac1bc27336d88edd13580b6cb0e38f2d93,Will Nigel Farage win election to UK parliament?,discretionary,CRISP,default crisp (no ambiguity triggers fired),1,0.937
+0x0a573d0d2e1f013707b2b6b5429b35db371fdb31f67909ed719abb381b1de6e1,Will a Democrat win New York Presidential Election?,discretionary,CRISP,partisan-outcome of named race,1,0.9765
+0x29e7164544fd3c577bd2da5a9079ba388b1e4dcd6c52cb70bac4eb75abf00173,Will Missouri's abortion protection measure pass?,discretionary,CRISP,ballot measure pass/fail,1,0.87
+0x6541d506c7a337b80fb9e4ed7487347a90d8c59071136e7caa11dc42b3755eb5,Will Trump debate Kamala on Sept 10?,discretionary,CRISP,specific debate event on specific date,1,0.982
+0xb156f975ef4e42fc1c32bb838098adcb91fd88f4cd6be2004b95ad53540a7bb7,Will a Republican win Nebraska's 3rd congressional district?,discretionary,CRISP,partisan-outcome of named race,1,0.9835
+0x6104608801f44f9a32275c9a9bbe044414a64956000a1177362be5ef27e5ac44,Trump admin announces cutting Ukraine aid by Friday?,discretionary,AMBIGUOUS,relative weekday date — context-dependent scope,1,0.885
+0x04a1462e83c415194ac700181bd97f97db149fdcfa4fd3fef745795cfe3ad975,Will Jeannette Jara win the 1st round of the 2025 Chilean presidential election?,discretionary,CRISP,named candidate + dated election,1,0.935
+0x9dde2865d61deaeae5e1ed23c3cc2d3645f354f807d46d8108df293f8681b9a2,Will Norway win the most gold medals in the 2026 Winter Olympics?,discretionary,CRISP,gold-medal table outcome,1,0.9955
+0xc5beee218c5ebc772faa7f53a7196a3d1ba16dfcb74767586c232c2e3c89ed3c,Will a Democrat win New York US Senate Election?,discretionary,CRISP,partisan-outcome of named race,1,0.974
+0x40802562d59f370cc95cd842fde20462fcb627cb275d418fac2e984762f037a2,Will Ukraine hold Kursk through 2024?,discretionary,AMBIGUOUS,territorial control verification can be contested,1,0.994
+0x3ee86a850a9f5b495d65ad5e409e5903a1f14ccc78c4e8bfa82fdb4c497b543d,Will Ap win the most seats in the next Norwegian parliamentary election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),1,0.925
+0x0a68368782ad0b7798c3802233513ce20004906f69d24431a548e15a19bc2891,"Trump declares a national emergency by June 30, 2026?",discretionary,CRISP,official declaration with date deadline,1,0.9695
+0x78a7554bdf3861f7557bc637ae5298d948fbe26632e10042b34b8a0f6724cc4a,Will the US strike Somalia next?,discretionary,AMBIGUOUS,"""next strike"" lacks date scope",1,0.9995
+0xabf5cc61e402873d84f619357c7b4673994b302f81d0cd4adff234f9efa5e37a,"Will Trump name ""Bush"" in April?",discretionary,AMBIGUOUS,"scope of utterance unclear (interview, tweet, speech?)",1,0.9555
+0xd73f60114a0e7169a55082daef1228cb27fa50c939eea22cb0589f6bac6ce5d3,Iran x Israel/US conflict ends by May 15?,discretionary,AMBIGUOUS,event-ending requires interpretation,1,0.9995
+0xe88e8e620c7909a760072e04c24bdbfbc2c7b1941bf8cd96ce8c578cfc380ffd,Will Gitanas Nauseda win the 2024 Lithuanian presidential election?,discretionary,CRISP,named candidate + dated election,1,0.9855
+0xb8498bb4d013be50bd4af336c0cadf62ab0f2885cc968b742304d6edccfc7190,Will Trump sign mineral deal without Zelenskyy apology?,discretionary,AMBIGUOUS,"deal-signing interpretation; what counts as ""sign""",1,0.9985
+0xeef3c14eb999ee70b3c7ba528d34a9b7da2a60bc55256374a7dc0bc0c6d955ba,Will Israel strike Syria by September 15?,discretionary,CRISP,specific dated strike deadline,1,0.9995
+0x90394c2848abe272fc43ab6d3842efc6ebcf41aee50ec9fdca1980a6452ff19a,Will Andrej Babiš be the next Prime Minister of the Czech Republic after the elections?,discretionary,CRISP,office-holder identity question,1,0.87
+0x87d67272f0ce1bb0d80ba12a1ab79287b2a235a5f361f5bcbc06ea0ce34e61c5,Will there be a US Government shutdown? ,discretionary,AMBIGUOUS,shutdown definition / scope (full vs partial) ambiguous if no date scope,1,0.9985
+0x92ebb98c37641b8f37ba7d8f86eca57b026ea5f050b9216be12ddacfd7e34537,Will Trump say 'crypto' or 'Bitcoin' during the 2025 State of the Union?,discretionary,CRISP,dated event default,0,0.255
+0x8698572ca0243d41683c62f45ccb6ad17b6c90393188d48e54ea47c319ba5c4a,"Ukraine strikes another tanker in Black Sea by March 31, 2026?",discretionary,CRISP,dated event default,1,0.345
+0x535144ad317cdc4013ea477a2184ee2743a387e16eb14c89f4ca6942d80e3f0d,Will the Individual taxation referendum be approved in Switzerland’s 8 March 2026 popular vote?,discretionary,CRISP,binary referendum outcome,1,0.465
+0xe7c0f5dc1be16566f894fd93fb631a6a767cf1e8116449d03e5e80a549fb3d76,Trump and Biden shake hands at first debate?,discretionary,AMBIGUOUS,physical event observation may be ambiguous,0,0.325
+0xaa4803f1ebb163af02026e4689b4bb498900ab7c4dbe230c332cf12f218e959a,Will Daniel Baluta be the next Mayor of Bucharest?,discretionary,CRISP,office-holder identity question,0,0.286
+0x9a615cbdd9d230739f633023c4ddcab6b38e37d9e7551f3d6297ee48f78eda2a,Will Democrats win between 50 and 54 seats in the 2025 Virginia House of Delegates election?,discretionary,CRISP,numeric range/threshold,0,0.265
+0x7320a31f5b0babc0c2c99e8a14d120f577affb38793379307b6f56efdb849f49,"US strikes Iran by March 5, 2026?",discretionary,CRISP,dated event default,1,0.365
+0x9ba0e12a339b01159f86cd697890e24ab2a25749cdaa8beb6a1a744fb4a93610,Will Russia capture Pokrovsk by August 31?,discretionary,AMBIGUOUS,capture verification can be contested,1,0.35
+0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20,"US strikes Iran by February 28, 2026?",discretionary,CRISP,dated event default,1,0.455
+0x1abb01bf1b40437116748b2f30de85404349a9b92c14d21031990698915e99f9,Iran military response by Monday?,discretionary,AMBIGUOUS,"""military X"" requires interpretation of what counts",0,0.24
+0x63eed4826f75272a6ff68e0d0d6d0e0e685407a75e5dc9dd78236693c4ab1741,"US strikes Iran by March 6, 2026?",discretionary,CRISP,dated event default,1,0.395
+0x58798f2c10ec863168c5fe947323744562c404280427c7a47d196a875cf0e0c1,Will Pennsylvania be the tipping point state?,discretionary,AMBIGUOUS,tipping-point definition is convention-dependent,1,0.335
+0x3ad10b05e536a030e250fa6f19e5ffc95133d87d34c084f8cd2075e129332cab,"US x Venezuela military engagement by March 31, 2026?",discretionary,AMBIGUOUS,"""military X"" requires interpretation of what counts",1,0.38
+0xfdcd333ff42c2908a1c1ba56435e9de40969c32c1e83a1c2bc76352a74c5c0d8,2024 presidential election: GOP wins by 65-104,discretionary,CRISP,numeric vote-margin threshold,1,0.22
+0x4f9c680b7637b5e0a338cfefaf71086af79a95abdd6d906c4f9fd0c134bbf404,"Will DeepSeek V4 be released on April 28, 2026?",discretionary,CRISP,specific release-date claim,0,0.495
+0xf9acb73448000e3d6366d5394430a6bfabca5ee1a8bf64fed5c606ca1f7298c8,"Will Leavitt say ""Mortgage"" or ""Loan"" during the next White House press briefing?",discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.465
+0x98bafdb1a843ad1ee3f10222f43c8b675940922b119c0e0364a219281306098f,Will a Democrat win Wisconsin US Senate Election?,discretionary,CRISP,partisan-outcome of named race,1,0.66
+0x208af01cb24712bc18c8ba0a387d34b3c210f431641061c760ff4394213f6d89,Will Brad Garlinghouse attend presidential inauguration?,discretionary,AMBIGUOUS,attendance verification can be ambiguous,1,0.535
+0xf8b730810252255fa217a2828b46b7a3c0ed63b702c817461270ce9e65b5ec25,"Israel x Iran ceasefire broken by March 31, 2026?",discretionary,AMBIGUOUS,ceasefire-broken requires interpretation of what counts as a violation,1,0.705
+0x689eb479c285abbe526ea31e32f3b300c8f77d7f144e78f3f2d35e200e52c2b6,Yoon out as president of South Korea in 2025?,discretionary,AMBIGUOUS,"""out"" requires legal/political interpretation",1,0.775
+0xda882673997b5f279b79be0b406be449f511508bf3a22cea0294d0028a4b58c9,Will Mojtaba Khamenei tweet again on March 20?,discretionary,CRISP,mechanical numeric/observable count with bounded scope,1,0.68
+0x8dc441a58abb86dfa3f97d1e9d1fb81b3ff4dfdf387e86e9d52fa07a2c7b12c0,"Will Tim Walz say ""Coach"" during the debate?",discretionary,CRISP,default crisp (no ambiguity triggers fired),1,0.63
+0x58d102be7f1046597d9f208b84a0d5f844960151bc771bca1ae138353c4caa50,Will Trump win Miami?,discretionary,CRISP,default crisp (no ambiguity triggers fired),1,0.605
+0x97004cec761044f6eb772191377b3a352d3ec05ec0249a1bf5ca442ba1fac097,Will Ukraine agree to pay back U.S. aid before July?,discretionary,AMBIGUOUS,"requires interpretation of ""agree/agreement/reach""",1,0.762
+0xb21be382d4d6ba6417ef0b3b91c73e426dbd216800a42ffa62c1cac392ef4fd6,"Will Keir Starmer say ""Denmark"" or ""Greenland"" during the next Prime Minister's Questions?",discretionary,CRISP,default crisp (no ambiguity triggers fired),0,0.77
+0xbf8d3c113339a9212ca0f263aede776db4a34762aedc006f70a8703215954863,Will Salvador Nasralla win the 2025 Honduras presidential election?,discretionary,CRISP,named candidate + dated election,0,0.615
+0x077fc0c447abfc7e094713e86d62acc20480560a6eb60bfbfc86a1c5f00b9339,Will the government shutdown end November 12?,discretionary,CRISP,specific date for shutdown end,0,0.71
+0xfcde02af15efe40e336d67f0ef9aa49e9d40c37b92961fb890afc4afdbfe54d6,Will TISZA – Respect and Freedom Party (TISZA) win the most seats in the next Hungarian parliamentary election?,discretionary,CRISP,default crisp (no ambiguity triggers fired),1,0.695
+0x06dcf640b5f29035442dfa0472b72a641df54b1e99e186368f3c6b16ecab3913,Will 7-8 justices on South Korea's Constitutional Court vote for Yoon's impeachment before May?,discretionary,CRISP,default crisp (no ambiguity triggers fired),1,0.66
+0x51f5cc47c2f0b706cd4981e84d1197460d0d662270e27b2f68e91fd515e3a875,GOP wins popular vote by 1.5-1.75%?,hard_currency,CRISP,numeric vote-margin threshold,0,0.001
+0xd68f141aff610df79e579ad93c223cd1771d69ab0a42d33ce5013bbbe7a43934,Will the AfD win over 30% of the vote in the German election?,hard_currency,CRISP,default crisp (no ambiguity triggers fired),0,0.021
+0x5d7aae2086ed7e3ea82b65f5d8ed17ac4fa241c92a0a167bee0b356ae498f802,Will Kamala Harris get less than 68m votes in the 2024 U.S. Presidential Election?,hard_currency,CRISP,dated event default,0,0.035
+0xfa2fe71de6a4121dad1e599542e29f18f2da8c3107c8d13ca8c2c998e864a930,Will the U.S. tariff rate on China be between 150% and 200% on April 30?,hard_currency,CRISP,numeric threshold,0,0.008
+0x32f8d40aaacb6b8b94395555d1e82ee75a84ba5e62e15ab2966b78b5e2f332a4,GOP wins popular vote by 3-4%?,hard_currency,CRISP,numeric vote-margin threshold,0,0.0005
+0xca02f54adad0a5a3ab3a6a41dbd9a869d300043fd98038c886cad563cb6e6847,Will Lee Jae-myung win 35-40% of the vote in the South Korea election?,hard_currency,CRISP,default crisp (no ambiguity triggers fired),0,0.0025
+0x23cfb7f4d4cefbac8e464cb53717654d84f82f5ab7ad4497662c122d94bb658f,Will Trump's approval rating hit 30% before August?,hard_currency,CRISP,numeric threshold-touch,0,0.003
+0x0f32d4d7167f073d9d903b91b48dfe08d2762e8b0a29e14e649bfef89512ce61,Will the Democratic candidate win Arizona by 4.0% or more?,hard_currency,CRISP,numeric range/threshold,0,0.045
+0xe64946cd8d2d19ea559c78db03cd93688f842bc6277fbbf921a1423ca0e98f6c,Will $TRUMP hit $10 or $20 first?,hard_currency,CRISP,price-touch which-comes-first,0,0.13
+0x69b604e3d43293ee5aedc9fa00c8d8380cb7e5a71ef189503a532f083e2b8081,Will Mikie Sherrill win by 6-9%?,hard_currency,CRISP,numeric vote-margin threshold,0,0.2
+0xf7ddbcf3f56543a8fa36cad800d0390d1e423f0cc049cdb5a14592eabe87f3c2,"Will Kevin Warsh be formally nominated to be Chair of the Federal Reserve by February 18, 2026?",hard_currency,CRISP,dated event default,0,0.09
+0x0228c334b70792abe9e3c0f8dddf34b8a371837d830c2278c518338c6d4cde13,Will Trump’s approval rating be between 43.0% and 43.4% on October 10?,hard_currency,CRISP,numeric threshold,0,0.35
+0xd3c462e6120f6819aa74014787cfb6a213dca39e1dd550e160f8bacbf4a017bc,Will Lee Jun-seok win between 5% and 8% of the vote in the South Korea election?,hard_currency,CRISP,numeric range/threshold,0,0.245
+0x1e68b29be798c37448e00f83180358d0edb02393f8d6a68d50d1175798865287,Will Rafał Trzaskowski win by 4-8%?,hard_currency,CRISP,numeric vote-margin threshold,0,0.255
+0xc11e05cc1d5aadc7a35ca4d152f0e6773acd2a38503d5129e7d988d67073ee9a,Trump fined over $100k?,hard_currency,CRISP,numeric fine threshold,0,0.595
+0xa2ece5c7bb0eef95a16880a2d43135d3d97cdeeddc834cee0966bd12ea1bdc5b,Trump’s first TikTok >100M views by Friday?,hard_currency,AMBIGUOUS,relative weekday date — context-dependent scope,1,0.975
+0x04e07c6085d96ecc1ac7568d6cb640f09e4d300a25afc763b67f15d8f2c8597c,Fed increases interest rates by 25+ bps after January 2025 meeting?,action_count,CRISP,mechanical numeric/observable count with bounded scope,0,0.0015
+0xd72622d154dfe65b9c019d6afcfe75a55717e5c502db611f555b101aafbf6ec5,Will the Fed decrease interest rates by 50+ bps after the April 2026 meeting?,action_count,CRISP,dated event default,0,0.0005
+0x4b4a00cc1b9a54b43cf79dfe8efbbf66826ce9129eb9d73f2a47907072792444,Will Elon Musk post 2000+ tweets in April 2026?,action_count,CRISP,dated event default,0,0.0005
+0x6cc501fa617e3a46ececf6e3990fe1afeeaa6bc897d3c7049c005fd1bdc42c2f,Fed decreases interest rates by 50+ bps after September 2024 meeting?,action_count,CRISP,mechanical numeric/observable count with bounded scope,1,0.345
+0xb5dd9533834c4f552754f7f8a1df775d8b1ce38661b9a03061c1da7bbf139aa3,"Will the total number of TSA passengers for February 21 be between 1,800,000 and 2,000,000?",action_count,CRISP,mechanical numeric/observable count with bounded scope,0,0.0685
+0x7d1715bc1b4444f0cba5ed1b4783776f548e1030d09cd1b98ccc35f60bb850f6,"Will Leavitt say ""President"" 60+ times during the next press briefing?",action_count,CRISP,mechanical numeric/observable count with bounded scope,1,0.565
+0x6036f178fa884664fae572c12fe4e1ead6004d6fecf04e77421bb0bff9781caa,"Will the total number of TSA passengers for February 14 be greater than 1,900,000?",action_count,CRISP,mechanical numeric/observable count with bounded scope,1,0.885
