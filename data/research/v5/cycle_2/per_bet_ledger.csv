@@ -1,0 +1,306 @@
+condition_id,question,sub_category,sub_tag,grade,entry_yes_price_3d,side,entry_price,outcome_yes_won,win,pnl,strategy
+0x3ac961dca3c4f0fc34bf94c661962012ab5e8bcdcadfc99affa06eddde00b29f,Biden drops out of presidential race?,discretionary,other,AMBIGUOUS,0.695,YES,0.695,1,1,20.942446043165475,S5
+0xc84dfa2ab4a808d1b96a2cf439f8b88a1c5c37762253280deb7663a195d9b859,Trump announces end of military operations against Iran by June 30th?,discretionary,iran,AMBIGUOUS,0.55,YES,0.55,1,1,39.90909090909091,S5
+0xa9937410f8aae98cc6440a7480ad832be5a1a998afcf5a6e77c6f5aa4c0f259f,US x Iran ceasefire by May 31?,discretionary,iran,AMBIGUOUS,0.335,YES,0.335,1,1,98.25373134328356,S5
+0xd5a64f75a5d7107e53e7c3eaf52865624a0c79ad8c41379faef4285494991326,Will Russia capture Pokrovsk by December 31?,discretionary,other,AMBIGUOUS,0.54,YES,0.54,1,1,41.59259259259258,S5
+0x2fc417b2e4f3be9d8007d48bcab0e9c3015c4e988f0faf3d081f08ffe0317503,Pavel Durov released in August?,discretionary,other,AMBIGUOUS,0.335,YES,0.335,1,1,98.25373134328356,S5
+0xb124766234e1f19bc156a0edfb492f8c4cc3fa25303e722ad52780b66a3b70df,Biden drops out in July? ,discretionary,other,AMBIGUOUS,0.42,YES,0.42,1,1,68.04761904761905,S5
+0x0e72ce28c3f56e4ef9b3770e03f0d2cf08c5db1eeeb8d1c0a0d9b1d3865c500b,Will Trump talk to Nigel Farage in February?,discretionary,other,AMBIGUOUS,0.34,YES,0.34,0,0,-51.0,S5
+0xd85d61234bca7dfed426bd2440b8990ceeb455ddbba8bb9257d5d861066b45b2,"Will the Trump administration release any Epstein-related files on December 22, 2025?",discretionary,other,AMBIGUOUS,0.81,YES,0.81,1,1,10.728395061728392,S5
+0xb2a02ec1302923548722a92a0d21a0c440915ad15c429b5a61e825b4b1c82047,"Military action against Iran ends by April 11, 2026?",discretionary,iran,AMBIGUOUS,0.755,YES,0.755,1,1,15.2251655629139,S5
+0xdc8391521f8ddad9dac60dc32ffeb7d1f78c707b241ceb4b383066e4d31595a8,Will Russia capture Kurakhove before December?,discretionary,other,AMBIGUOUS,0.585,YES,0.585,0,0,-51.0,S5
+0x3dba4e07efac6d60b8ae1b70b25f87cfb811e2163a4a63a5e4a946fbe47932d8,Biden drops out before the Democratic convention?,discretionary,other,AMBIGUOUS,0.66,YES,0.66,1,1,24.75757575757575,S5
+0xcba58d7e057d3a6051d062d6b62388f9207b6f3bc9212835f137128720964c76,Israel x Hamas ceasefire cancelled before April?,discretionary,israel,AMBIGUOUS,0.345,YES,0.345,1,1,93.92753623188406,S5
+0x2e94bb8dd09931d12e6e656fe4fe6ceb3922bc3d6eab864bb6cd24773cf67269,Khamenei out as Supreme Leader of Iran by June 30?,discretionary,iran,AMBIGUOUS,0.635,YES,0.635,1,1,27.740157480314963,S5
+0xa6ddb7146f48a12dbf73456d654211b01d7493829932c31b7fe85d82120d338f,Iran x Israel/US conflict ends by April 30?,discretionary,iran,AMBIGUOUS,0.615,YES,0.615,1,1,30.300813008130078,S5
+0x4f7bd51376ac212cfdfba705d083ef7664579951ff5c85fa549e32e88c461468,"Will Russia enter Rizdvianka by March 31, 2026?",discretionary,other,AMBIGUOUS,0.4,YES,0.4,1,1,74.0,S5
+0xd8084b77d5386b0c907a3e82567c737896ba0102af5de7ab7295aee6023409b6,Iran military response by Friday?,discretionary,iran,AMBIGUOUS,0.445,YES,0.445,0,0,-51.0,S5
+0x0af4fc7fc85ce04980cf9193bd36111400d096cdf257e5fe7e0e3968137ada9e,Will Alec Baldwin be named in Epstein files?,discretionary,other,AMBIGUOUS,0.76,YES,0.76,1,1,14.78947368421052,S5
+0xb2f7ed87460c653102e97db0d70e9fa5a8dd65d8ded48a6cd98ee6991afd8c0b,Israel military response against Iran by Friday?,discretionary,iran,AMBIGUOUS,0.53,YES,0.53,0,0,-51.0,S5
+0x77791e343f0c9befba6344921e846af705e5b63937c475d105707dd24a758902,Will Trump talk to Ursula von der Leyen in April?,discretionary,other,AMBIGUOUS,0.695,YES,0.695,1,1,20.942446043165475,S5
+0x4a2fbd6b2903641f940af5165b151d970915360667a8af3ab3e24c94f3eb002c,Will Elon Musk create a new political party in 2025?,discretionary,other,AMBIGUOUS,0.525,YES,0.525,1,1,44.23809523809524,S5
+0x2e52a72e036adfba7577a3f04f08b4b49e379a66837760bc567504b8ea88a759,Yoon arrested by January 31?,discretionary,other,AMBIGUOUS,0.63,YES,0.63,1,1,28.365079365079367,S5
+0x9f9b80acee3dff860af4b12f2399b07a8eca79376143e2c3565bcf833a96b4a0,Will Elon Musk create a new political party before August?,discretionary,other,AMBIGUOUS,0.405,YES,0.405,1,1,72.45679012345678,S5
+0x3a17af0a20c160507cbdee8f0755e76bd21d2c09375f186a31c1aa456632c0ae,Will Trump release more Epstein files by December 26?,discretionary,other,AMBIGUOUS,0.335,YES,0.335,1,1,98.25373134328356,S5
+0x12d1b41c90a2ff07173ab2469aad97fb9e80f781b36c32f99fbf4ae28a28b42a,Will Trump talk to Emmanuel Macron in January?,discretionary,other,AMBIGUOUS,0.51,YES,0.51,1,1,47.0392156862745,S5
+0x640938ae857aa2dfaa5aeb2af07ec853ab0eec5395a5d4ab1c31842f1d3ab271,Will Russia capture Kupiansk by December 31?,discretionary,other,AMBIGUOUS,0.675,YES,0.675,1,1,23.074074074074076,S5
+0x5c2e6aef8af5931e9bfa3750364626d754531d2fada2885d45c356b175962a25,Iran x Israel/US conflict ends by April 15?,discretionary,iran,AMBIGUOUS,0.5575,YES,0.5575,1,1,38.686098654708516,S5
+0xb34dea60466c534a9cec1653ef49fb94d0daa9a90cee58bbe3b31dca715b110e,Will Kevin Spacey be named in Epstein files?,discretionary,other,AMBIGUOUS,0.39,YES,0.39,1,1,77.2051282051282,S5
+0x49686d26fb712515cd5e12c23f0a1c7e10214c7faa3cb0a730aabe0c33694082,"Will Trump deport 250,000-500,000 people?",discretionary,other,AMBIGUOUS,0.85,YES,0.85,1,1,7.82352941176471,S5
+0xee1ee3d926fe8fd697485c6a057484a5814f3c02533f0490869fa4ca75abaded,Democratic sweep?,discretionary,other,AMBIGUOUS,0.835,YES,0.835,1,1,8.880239520958085,S5
+0x1b07e957981a04e688191208a4fc8b8349a93d6de03eba460fda38e647dafa5b,Sea/Air ceasefire in Ukraine before May? ,discretionary,ukraine,AMBIGUOUS,0.425,YES,0.425,1,1,66.64705882352942,S5
+0x4413ead4b809809217039b9a07e7d982485d0c8c4814f909caf7effe68f202c4,Will Brooke Rollins attend the 2026 State of the Union address?,discretionary,other,AMBIGUOUS,0.715,YES,0.715,1,1,18.930069930069934,S5
+0xc0be7b1f19f9b658778c2be7e6bc67596a00f347ab64392d0f5d387534c7c3b4,"US x Iran ceasefire extended by April 21, 2026?",discretionary,iran,AMBIGUOUS,0.445,YES,0.445,0,0,-51.0,S5
+0x81b06cb917c9a2aabc67a7765bc3c640e88a699bbf451b29915049c0766cde04,US x Iran ceasefire by June 30?,discretionary,iran,AMBIGUOUS,0.455,YES,0.455,1,1,58.89010989010988,S5
+0x7f4f3962471f14be7619652ce074f8ed07937f37aeb3427338c183fbfa0ae4f2,Will Zelensky visit Israel by Nov 10?,discretionary,ukraine,AMBIGUOUS,0.53,YES,0.53,0,0,-51.0,S5
+0x18dccc229331c63d8360d1400ece2355627637547d8dcd54aa5f7f1b5580686e,"Military action against Iran ends on April 9, 2026?",discretionary,iran,AMBIGUOUS,0.413,YES,0.413,1,1,70.06537530266344,S5
+0x38dfa2de75cfe3d28917237db30b7ef55045c8b000922dca1ac96aa27cd9f4ed,Will Kash Patel attend the 2026 State of the Union address?,discretionary,other,AMBIGUOUS,0.725,YES,0.725,0,0,-51.0,S5
+0x91dbde104fee004a34f638f9a49d7fb8d4e8bc75e213aab92cd853cbbc4c9c90,Will Eric Adams drop out?,discretionary,other,AMBIGUOUS,0.6,YES,0.6,1,1,32.33333333333334,S5
+0x3c0585e53f8a8ac29b1e81fbc89485dcdf451f0409648fa36417cc9f0487317b,Will Russia capture Siversk by December 31?,discretionary,other,AMBIGUOUS,0.57,YES,0.57,1,1,36.71929824561404,S5
+0x1ddc0e7de1634d1204dda3bef66ffe18b0d52d8605c0a363755480de0dc81d41,Israel strike on Iranian nuclear facility before July?,hard_currency,israel,AMBIGUOUS,0.57,YES,0.57,1,1,36.71929824561404,S5
+0xc3ad8026d7dbbad93b96ffd93b37bf6d7b2005c9ec1df5aae9090f96d5ecc7bc,Will Trump reduce or pause tariffs on Cambodia in April?,hard_currency,other,AMBIGUOUS,0.545,YES,0.545,1,1,40.74311926605503,S5
+0x3ac961dca3c4f0fc34bf94c661962012ab5e8bcdcadfc99affa06eddde00b29f,Biden drops out of presidential race?,discretionary,other,AMBIGUOUS,0.695,NO,0.30500000000000005,1,0,-51.0,S6
+0xc84dfa2ab4a808d1b96a2cf439f8b88a1c5c37762253280deb7663a195d9b859,Trump announces end of military operations against Iran by June 30th?,discretionary,iran,AMBIGUOUS,0.55,NO,0.44999999999999996,1,0,-51.0,S6
+0xa9937410f8aae98cc6440a7480ad832be5a1a998afcf5a6e77c6f5aa4c0f259f,US x Iran ceasefire by May 31?,discretionary,iran,AMBIGUOUS,0.335,NO,0.665,1,0,-51.0,S6
+0xd5a64f75a5d7107e53e7c3eaf52865624a0c79ad8c41379faef4285494991326,Will Russia capture Pokrovsk by December 31?,discretionary,other,AMBIGUOUS,0.54,NO,0.45999999999999996,1,0,-51.0,S6
+0x2fc417b2e4f3be9d8007d48bcab0e9c3015c4e988f0faf3d081f08ffe0317503,Pavel Durov released in August?,discretionary,other,AMBIGUOUS,0.335,NO,0.665,1,0,-51.0,S6
+0xb124766234e1f19bc156a0edfb492f8c4cc3fa25303e722ad52780b66a3b70df,Biden drops out in July? ,discretionary,other,AMBIGUOUS,0.42,NO,0.5800000000000001,1,0,-51.0,S6
+0x0e72ce28c3f56e4ef9b3770e03f0d2cf08c5db1eeeb8d1c0a0d9b1d3865c500b,Will Trump talk to Nigel Farage in February?,discretionary,other,AMBIGUOUS,0.34,NO,0.6599999999999999,0,1,24.757575757575765,S6
+0xd85d61234bca7dfed426bd2440b8990ceeb455ddbba8bb9257d5d861066b45b2,"Will the Trump administration release any Epstein-related files on December 22, 2025?",discretionary,other,AMBIGUOUS,0.81,NO,0.18999999999999995,1,0,-51.0,S6
+0xb2a02ec1302923548722a92a0d21a0c440915ad15c429b5a61e825b4b1c82047,"Military action against Iran ends by April 11, 2026?",discretionary,iran,AMBIGUOUS,0.755,NO,0.245,1,0,-51.0,S6
+0xdc8391521f8ddad9dac60dc32ffeb7d1f78c707b241ceb4b383066e4d31595a8,Will Russia capture Kurakhove before December?,discretionary,other,AMBIGUOUS,0.585,NO,0.41500000000000004,0,1,69.48192771084337,S6
+0x3dba4e07efac6d60b8ae1b70b25f87cfb811e2163a4a63a5e4a946fbe47932d8,Biden drops out before the Democratic convention?,discretionary,other,AMBIGUOUS,0.66,NO,0.33999999999999997,1,0,-51.0,S6
+0xcba58d7e057d3a6051d062d6b62388f9207b6f3bc9212835f137128720964c76,Israel x Hamas ceasefire cancelled before April?,discretionary,israel,AMBIGUOUS,0.345,NO,0.655,1,0,-51.0,S6
+0x2e94bb8dd09931d12e6e656fe4fe6ceb3922bc3d6eab864bb6cd24773cf67269,Khamenei out as Supreme Leader of Iran by June 30?,discretionary,iran,AMBIGUOUS,0.635,NO,0.365,1,0,-51.0,S6
+0xa6ddb7146f48a12dbf73456d654211b01d7493829932c31b7fe85d82120d338f,Iran x Israel/US conflict ends by April 30?,discretionary,iran,AMBIGUOUS,0.615,NO,0.385,1,0,-51.0,S6
+0x4f7bd51376ac212cfdfba705d083ef7664579951ff5c85fa549e32e88c461468,"Will Russia enter Rizdvianka by March 31, 2026?",discretionary,other,AMBIGUOUS,0.4,NO,0.6,1,0,-51.0,S6
+0xd8084b77d5386b0c907a3e82567c737896ba0102af5de7ab7295aee6023409b6,Iran military response by Friday?,discretionary,iran,AMBIGUOUS,0.445,NO,0.5549999999999999,0,1,39.0900900900901,S6
+0x0af4fc7fc85ce04980cf9193bd36111400d096cdf257e5fe7e0e3968137ada9e,Will Alec Baldwin be named in Epstein files?,discretionary,other,AMBIGUOUS,0.76,NO,0.24,1,0,-51.0,S6
+0xb2f7ed87460c653102e97db0d70e9fa5a8dd65d8ded48a6cd98ee6991afd8c0b,Israel military response against Iran by Friday?,discretionary,iran,AMBIGUOUS,0.53,NO,0.47,0,1,55.382978723404264,S6
+0x77791e343f0c9befba6344921e846af705e5b63937c475d105707dd24a758902,Will Trump talk to Ursula von der Leyen in April?,discretionary,other,AMBIGUOUS,0.695,NO,0.30500000000000005,1,0,-51.0,S6
+0x4a2fbd6b2903641f940af5165b151d970915360667a8af3ab3e24c94f3eb002c,Will Elon Musk create a new political party in 2025?,discretionary,other,AMBIGUOUS,0.525,NO,0.475,1,0,-51.0,S6
+0x2e52a72e036adfba7577a3f04f08b4b49e379a66837760bc567504b8ea88a759,Yoon arrested by January 31?,discretionary,other,AMBIGUOUS,0.63,NO,0.37,1,0,-51.0,S6
+0x9f9b80acee3dff860af4b12f2399b07a8eca79376143e2c3565bcf833a96b4a0,Will Elon Musk create a new political party before August?,discretionary,other,AMBIGUOUS,0.405,NO,0.595,1,0,-51.0,S6
+0x3a17af0a20c160507cbdee8f0755e76bd21d2c09375f186a31c1aa456632c0ae,Will Trump release more Epstein files by December 26?,discretionary,other,AMBIGUOUS,0.335,NO,0.665,1,0,-51.0,S6
+0x12d1b41c90a2ff07173ab2469aad97fb9e80f781b36c32f99fbf4ae28a28b42a,Will Trump talk to Emmanuel Macron in January?,discretionary,other,AMBIGUOUS,0.51,NO,0.49,1,0,-51.0,S6
+0x640938ae857aa2dfaa5aeb2af07ec853ab0eec5395a5d4ab1c31842f1d3ab271,Will Russia capture Kupiansk by December 31?,discretionary,other,AMBIGUOUS,0.675,NO,0.32499999999999996,1,0,-51.0,S6
+0x5c2e6aef8af5931e9bfa3750364626d754531d2fada2885d45c356b175962a25,Iran x Israel/US conflict ends by April 15?,discretionary,iran,AMBIGUOUS,0.5575,NO,0.4425,1,0,-51.0,S6
+0xb34dea60466c534a9cec1653ef49fb94d0daa9a90cee58bbe3b31dca715b110e,Will Kevin Spacey be named in Epstein files?,discretionary,other,AMBIGUOUS,0.39,NO,0.61,1,0,-51.0,S6
+0x49686d26fb712515cd5e12c23f0a1c7e10214c7faa3cb0a730aabe0c33694082,"Will Trump deport 250,000-500,000 people?",discretionary,other,AMBIGUOUS,0.85,NO,0.15000000000000002,1,0,-51.0,S6
+0xee1ee3d926fe8fd697485c6a057484a5814f3c02533f0490869fa4ca75abaded,Democratic sweep?,discretionary,other,AMBIGUOUS,0.835,NO,0.16500000000000004,1,0,-51.0,S6
+0x1b07e957981a04e688191208a4fc8b8349a93d6de03eba460fda38e647dafa5b,Sea/Air ceasefire in Ukraine before May? ,discretionary,ukraine,AMBIGUOUS,0.425,NO,0.575,1,0,-51.0,S6
+0x4413ead4b809809217039b9a07e7d982485d0c8c4814f909caf7effe68f202c4,Will Brooke Rollins attend the 2026 State of the Union address?,discretionary,other,AMBIGUOUS,0.715,NO,0.28500000000000003,1,0,-51.0,S6
+0xc0be7b1f19f9b658778c2be7e6bc67596a00f347ab64392d0f5d387534c7c3b4,"US x Iran ceasefire extended by April 21, 2026?",discretionary,iran,AMBIGUOUS,0.445,NO,0.5549999999999999,0,1,39.0900900900901,S6
+0x81b06cb917c9a2aabc67a7765bc3c640e88a699bbf451b29915049c0766cde04,US x Iran ceasefire by June 30?,discretionary,iran,AMBIGUOUS,0.455,NO,0.5449999999999999,1,0,-51.0,S6
+0x7f4f3962471f14be7619652ce074f8ed07937f37aeb3427338c183fbfa0ae4f2,Will Zelensky visit Israel by Nov 10?,discretionary,ukraine,AMBIGUOUS,0.53,NO,0.47,0,1,55.382978723404264,S6
+0x18dccc229331c63d8360d1400ece2355627637547d8dcd54aa5f7f1b5580686e,"Military action against Iran ends on April 9, 2026?",discretionary,iran,AMBIGUOUS,0.413,NO,0.587,1,0,-51.0,S6
+0x38dfa2de75cfe3d28917237db30b7ef55045c8b000922dca1ac96aa27cd9f4ed,Will Kash Patel attend the 2026 State of the Union address?,discretionary,other,AMBIGUOUS,0.725,NO,0.275,0,1,130.8181818181818,S6
+0x91dbde104fee004a34f638f9a49d7fb8d4e8bc75e213aab92cd853cbbc4c9c90,Will Eric Adams drop out?,discretionary,other,AMBIGUOUS,0.6,NO,0.4,1,0,-51.0,S6
+0x3c0585e53f8a8ac29b1e81fbc89485dcdf451f0409648fa36417cc9f0487317b,Will Russia capture Siversk by December 31?,discretionary,other,AMBIGUOUS,0.57,NO,0.43000000000000005,1,0,-51.0,S6
+0x1ddc0e7de1634d1204dda3bef66ffe18b0d52d8605c0a363755480de0dc81d41,Israel strike on Iranian nuclear facility before July?,hard_currency,israel,AMBIGUOUS,0.57,NO,0.43000000000000005,1,0,-51.0,S6
+0xc3ad8026d7dbbad93b96ffd93b37bf6d7b2005c9ec1df5aae9090f96d5ecc7bc,Will Trump reduce or pause tariffs on Cambodia in April?,hard_currency,other,AMBIGUOUS,0.545,NO,0.45499999999999996,1,0,-51.0,S6
+0xb030d9cb4bfc8073cbc3db356cdf3f00b02c07477774476bcef6fa6d08e42298,Will Donald Trump sign an executive order on April 4?,discretionary,other,CRISP,0.51,YES,0.51,1,1,47.0392156862745,S7
+0x49e0fd35e25a3c075cba2ddd500e0a69369c88a7ecf8971304495b1970d98017,Will the Bharatiya Janata Party (BJP) win the most seats in the 2026 West Bengal Legislative Assembly election?,discretionary,other,CRISP,0.5805,YES,0.5805,1,1,35.13264427217915,S7
+0x2010ff3939e8e664dd57369aa907bbaa6d03ae18be27fe3ab2f4cdcb95a8b2ab,Will a Republican win the popular vote and the Presidency? ,discretionary,other,CRISP,0.3,YES,0.3,1,1,115.66666666666669,S7
+0xaf97f60cad3509b019aab16568bf05eaec5bc53f91ea2c66e2a76ab467c754db,Will Karoline Leavitt say Egypt during next White House press briefing?,discretionary,other,CRISP,0.395,YES,0.395,0,0,-51.0,S7
+0x76c0c20596c22e4699dcce0970e0bafed1ebe22026caf4626d7d9a49c3b3b6f9,Will Jacob Frey win the 2025 Minneapolis mayoral election?,discretionary,other,CRISP,0.76,YES,0.76,1,1,14.78947368421052,S7
+0xc7e96db9aa56c83c19e7eb3d608ef821bf9ad7699c48c8864011e5caed4ebd3e,"Will Trump say ""Big trouble"" this week? (September 22-28)",discretionary,other,CRISP,0.625,YES,0.625,1,1,29.0,S7
+0xcc1635ab47d7b8edbc0ec7877bfa8f94d511b5d239419367fb01ff6e3c0a05d4,"Will Starmer say ""Child"" during the next Prime Minister's Questions event?",discretionary,other,CRISP,0.435,YES,0.435,1,1,63.94252873563218,S7
+0x48e51508835de42a12c7177cfcd45881590bdc9fa00baa1ca4173c441bb471ff,Will Donald Trump sign an executive order on August 27?,discretionary,other,CRISP,0.31,YES,0.31,0,0,-51.0,S7
+0xf8c5951cdc0168a64adbe243b468250e70a251ffea4556e7775ce430c880bffa,Will the Liberal Democrats win 46-60 seats in the next UK Election?,discretionary,other,CRISP,0.325,YES,0.325,0,0,-51.0,S7
+0x87822b3d4ccba1835d698354b01c050b55f20c5f34b14908bff4ea5a6d58af4c,Will Mark Carney be the next Canadian Prime Minister?,discretionary,other,CRISP,0.819,YES,0.819,1,1,10.050061050061053,S7
+0x13de42d032bf66c9cbb5b7e00687c665fa253605228230a05de26cfed818c2c4,"Will Trump say ""Crypto"" or ""Bitcoin"" this week? (November 3 - 9)",discretionary,other,CRISP,0.52,YES,0.52,1,1,45.153846153846146,S7
+0xcb06c7dbd4aa4a8d95861b8b69dcd7d5d0d42ddefb3983fc143fdc99fd3499cc,"Will Trump say ""My Father"" or ""My Mother"" this week? (April 27 - May 3)",discretionary,other,CRISP,0.525,YES,0.525,1,1,44.23809523809524,S7
+0x3fc804e4d893f86d49229eb42492cabf6150f5bcbf36c1b66d1e8f22bc15ec6d,"US strikes Iran by March 2, 2026?",discretionary,iran,CRISP,0.325,YES,0.325,1,1,102.84615384615384,S7
+0x301357b52de467d3f71833deb600bc43346aeafe09b7c473a82f436699b459da,Will James Talarico be the Democratic nominee for Senate in Texas?,discretionary,other,CRISP,0.715,YES,0.715,1,1,18.930069930069934,S7
+0xec062773d9bcb38e22d673402ea20e895c764e0f85d8691c541fa896812c1948,"Will Trump say ""crypto"" or ""Bitcoin"" during his inauguration speech?",discretionary,other,CRISP,0.445,YES,0.445,0,0,-51.0,S7
+0xdd22472e552920b8438158ea7238bfadfa4f736aa4cee91a6b86c39ead110917,Will Donald Trump win the 2024 US Presidential Election?,discretionary,other,CRISP,0.5825,YES,0.5825,1,1,34.83690987124463,S7
+0xac6d30c07e239485ef6ec2f7a47aee6e04e48cdeff90bbc910ffefc8c647a181,Slovakia Presidential Election: Will Peter Pellegrini win?,discretionary,other,CRISP,0.51,YES,0.51,1,1,47.0392156862745,S7
+0x9133a7c2abc25ff946a40572cce99b91078287817e513359fcf00bd8cdfacf1a,Will Melissa Bean be the Democratic Nominee for IL-08?,discretionary,other,CRISP,0.635,YES,0.635,1,1,27.740157480314963,S7
+0x33403f2501afbeafa3372043080e5360d714a9323b264cb76c3aaafc335304a5,Will the Dravida Munnetra Kazhagam (DMK) win the most seats in the 2026 Tamil Nadu Legislative Assembly election?,discretionary,other,CRISP,0.765,YES,0.765,0,0,-51.0,S7
+0x14bf5aaa9c555faded1a58acff5ecad22c41eb20757145f14355766756c6ed62,"Will Trump say ""Not American"" this week? (September 8-14)",discretionary,other,CRISP,0.545,YES,0.545,1,1,40.74311926605503,S7
+0x5185a5aa2a0012cc7a1289d2728470ce04b3c4a1f2375515e13ffca303e2f9bf,Will Donald Trump sign an executive order on May 22?,discretionary,other,CRISP,0.52,YES,0.52,0,0,-51.0,S7
+0x3948e6d65eec7e90e355e35c8a808852bcebfe4ae90325721298cfb8f4c32ca4,Will Labour win less than 325 seats in the next UK Election?,discretionary,other,CRISP,0.4615,YES,0.4615,0,0,-51.0,S7
+0x5d66f71e5a3bc66ff4894c7fbf59efaaa4c33f3689089ffaa7e0df7a139c3f95,"Will Trump name ""Jensen"" or ""Huang"" in April?",discretionary,other,CRISP,0.33,YES,0.33,1,1,100.5151515151515,S7
+0xaab820131c1a98cba47b21aa12f1e8549827d489340f2685c6643b2966782657,"Will Iran strike Kuwait by April 30, 2026?",discretionary,iran,CRISP,0.71,YES,0.71,1,1,19.422535211267615,S7
+0x362dbc85c50dc05041b8f46f9e34c9d723bda4efaccc448342c23689e2a43993,PA-10 election: Stelson (D) vs. Perry (R),discretionary,other,CRISP,0.415,YES,0.415,0,0,-51.0,S7
+0x03a629ada87bbe4c08a3cf23314f79127750af55dd810d8c25ccb39c50bc8459,"Will Trump say ""Mental Institution"" this week? (March 15)",discretionary,other,CRISP,0.655,YES,0.655,1,1,25.33587786259541,S7
+0x7eca3eee73a4d437797aeb9a1815aaf4484403bdb926791f7e5c435a7f05f0e3,Will a Democrat win Ohio US Senate Election?,discretionary,other,CRISP,0.435,YES,0.435,0,0,-51.0,S7
+0x4d848bab2da79b9ff7f2b2b0d9ddb048bb1fb47e9f782887f16e91d27de41279,Will a Republican win Arizona Presidential Election?,discretionary,other,CRISP,0.74,YES,0.74,1,1,16.567567567567565,S7
+0xeea3c1ef1764cffd540a50c7c85513ede593ce3d4bfe452aec6a0bce3e3b4d62,"US strikes Iran by March 4, 2026?",discretionary,iran,CRISP,0.345,YES,0.345,1,1,93.92753623188406,S7
+0x0c7d28659310de1bcffb52f14911f439094905e8a72dd1f341617bd0e20bc5e8,Will Elon tweet less than 250 times August 15–August 22?,discretionary,other,CRISP,0.5615,YES,0.5615,1,1,38.04719501335708,S7
+0x37426c459b51c7f10b550f643feae2788516ea46261c862b5f6883d8b4314a4c,"Will King Charles say ""AI"" or ""Artificial Intelligence"" during the joint meeting of Congress?",discretionary,other,CRISP,0.465,YES,0.465,1,1,56.5268817204301,S7
+0xd304e9e13e6b0bf28faf314d5c92f119bacd7c4076b8567d93a03a6bd445280e,"Will Trump say ""Tough Cookie"" this week? (December 22 - 28)",discretionary,other,CRISP,0.585,YES,0.585,0,0,-51.0,S7
+0x43edd40756d4dfaa633687ddbfab445cdd21f9083a45289871e95b5292793bca,"US strikes Iran by December 31, 2026?",discretionary,iran,CRISP,0.785,YES,0.785,1,1,12.694267515923563,S7
+0x8c601a3d990460a92b604488eb97a9d19d9218c39609ad438cbe788a1db653d4,Will Donald Trump sign an executive order on June 30?,discretionary,other,CRISP,0.775,YES,0.775,1,1,13.516129032258064,S7
+0xf461498d1b6c25b57eb9e2a61d33b6410593f6d48d891f2e0d8ebf23f509988a,"Will Powell say ""Pandemic"" during December press conference?",discretionary,other,CRISP,0.58,YES,0.58,1,1,35.20689655172414,S7
+0x96f6fb6567b5938fc3c2e75f9829d7287340b9581a9c4817b8bc0aff82e1c45f,2024 Balance of Power: R Prez R Senate R House,discretionary,other,CRISP,0.375,YES,0.375,1,1,82.33333333333334,S7
+0x3c5f88a130c95b8eddb33a8ca7444139a9fea357f7418ebae316d6bc2113a855,"Will Trump say ""Trump"" during Hungary PM events on November 7?",discretionary,other,CRISP,0.485,YES,0.485,1,1,52.09278350515464,S7
+0xb17631413f217b33763f011a61990dd420f760af13bba6cdccd68c52b2b72d4e,Will a Democrat win Arizona US Senate Election?,discretionary,other,CRISP,0.74,YES,0.74,1,1,16.567567567567565,S7
+0xb4511928cdf7b9a387cf3f18b19a0a842bdece1233d8575f92d15efdbf168baa,"Will Trump say ""Our great First Lady"" in April?",discretionary,other,CRISP,0.65,YES,0.65,1,1,25.92307692307692,S7
+0xffcdfe69121723210a5dfa24041fce6f4b99469fc434afc99bb3ff7a270d7fb3,Will Ciprian Ciucu be the next Mayor of Bucharest?,discretionary,other,CRISP,0.566,YES,0.566,1,1,37.33922261484099,S7
+0x35743117468978e7ddd6647790f599f21263d948f2a51fa78df47a6793fde562,"Will Trump say ""Day Care"" or ""Daycare"" this week? (January 11)",discretionary,other,CRISP,0.4,YES,0.4,0,0,-51.0,S7
+0xebe18843b0e316b35f4fb6b3b8017d5f0a5b84fc8289bde7c696550c1f3e628e,Will Trump tweet 25-29 times September 27-October 4?,discretionary,other,CRISP,0.3,YES,0.3,0,0,-51.0,S7
+0x3648ab7c146a9a85957e07c1d43a82272be71fde767822fd425e10ba0d6c0757,[Single Market] Will Glenn Youngkin win the 2024 Republican presidential nomination?,discretionary,other,CRISP,0.5,YES,0.5,0,0,-51.0,S7
+0xe8bc73364757a1a8fbf62e984698ecdce8fbfe1a56e3897d56d695d7d80dd0a8,"Will Andrew Tate post 100-129 posts from March 6 to March 13, 2026?",discretionary,other,CRISP,0.34,YES,0.34,1,1,96.05882352941177,S7
+0xd513780a1859f1a5bd88054b3c98b7454557b4292bc07c52a008aa07dd87ab30,"Will Trump say ""Nasty"" this week? (August 25 - 31)",discretionary,other,CRISP,0.625,YES,0.625,1,1,29.0,S7
+0x674027b87e5eb414494aa8e3d981969d0d1e4cd7ae8c7b8369c38d724d12760d,"Will Elon Musk post 65-89 tweets from February 7 to February 9, 2026?",discretionary,other,CRISP,0.32,YES,0.32,0,0,-51.0,S7
+0x78fcd6edb2892a1b46da7b0919f4d2d05a7b037d0f46ee465415ea8c4d1c1347,Will POTUS tweet more than 25 times Feb 7-14?,discretionary,other,CRISP,0.61,YES,0.61,1,1,30.967213114754102,S7
+0xf5e48d50c65531036b7cb5d34a42ae1f5a88a5cd1624f0e0772434968d81bd8d,"Will Iran conduct a military action against Israel on March 29, 2026?",discretionary,iran,CRISP,0.795,YES,0.795,1,1,11.893081761006286,S7
+0x2bf00860d0daa4aa11d5f6e5aba62407c5f82225e652f6405701d9ddd83c5a6c,"Will Trump say ""Hell"" this week? (December 29 - January 4)",discretionary,other,CRISP,0.75,YES,0.75,1,1,15.666666666666671,S7
+0xac4c8f562f7c6f4a191570b07a6cd8926854205a91d6da197a43924bdc4659a3,"US strikes Iran by January 18, 2026?",discretionary,iran,CRISP,0.475,YES,0.475,0,0,-51.0,S7
+0x506a96c9d159163dd47aa3e6cf321feb0ea78d361d7ef810e838980fefed581a,Slovakia Presidential Election: Will Ivan Korčok win?,discretionary,other,CRISP,0.485,YES,0.485,0,0,-51.0,S7
+0x310cf1f2674f74a68f19e9f99bad1bb59354984a13062ba9dc5f25383faddcf0,"Will Trump say ""Western Hemisphere"" during the State of the Union address?",discretionary,other,CRISP,0.385,YES,0.385,1,1,78.87012987012986,S7
+0x71da12db4aea759acbf68b2777c44b21caf6a5ee9ac335106ced647b53fb9a40,Will PH win the most seats in the 2026 Colombian Chamber of Representatives election?,discretionary,other,CRISP,0.845,YES,0.845,1,1,8.171597633136095,S7
+0xd98db52e63443f7de6a09f565afc2151dd1d987ac9b18bd04cc7b83e313760ed,Will Trump tweet less than 3 times Dec 6-13?,discretionary,other,CRISP,0.47,YES,0.47,1,1,55.382978723404264,S7
+0x4873de62c03e7ee0776aac2c26e32d9466b631af8af0169e2cca03bafccd42c6,Favorite to win on Polymarket day after debate?,discretionary,other,CRISP,0.33,YES,0.33,1,1,100.5151515151515,S7
+0xcfaa7bc4cee131fb6e724b54230616a1aad023dc6044da6b84f06b35ada28586,"Will Trump say ""Dome"" during his 4th of July remarks?",discretionary,other,CRISP,0.38,YES,0.38,0,0,-51.0,S7
+0xe1386710b61e8f800a3b27ed14528c4bc4756572451c7c97d140c5e8d8030f55,"Will Keir Starmer say ""Crisis"" during the next Prime Minister's Questions?",discretionary,other,CRISP,0.57,YES,0.57,0,0,-51.0,S7
+0x2b0a07e75ef14cf292e6d93fdd07f333057acbe249f8a7af57bb1ee3c5a52b1a,Will Donald Trump sign an executive order on July 11?,discretionary,other,CRISP,0.505,YES,0.505,0,0,-51.0,S7
+0x696ba4726b7a261960878b703c525857ba5a08ee7e1404aa83bd8faa1e1d8687,Will the next Government of Canada be a Liberal majority?,discretionary,other,CRISP,0.625,YES,0.625,0,0,-51.0,S7
+0x72857b3b967e7cdf2e85258e88c7077ba22e6a3b0c1c30b6bd6fc7ee7b7b51a3,Will Nicolas Maduro Win the 2024 Venezuela presidential election?,discretionary,venezuela,CRISP,0.695,YES,0.695,0,0,-51.0,S7
+0x458a27ca58fbbbd96f0240b2aa4b5dac0cce9bd5e87409a4021624edb2786ad0,Will Conservative Party win less than 125 seats in the next UK Election?,discretionary,other,CRISP,0.755,YES,0.755,1,1,15.2251655629139,S7
+0x26ee82bee2493a302d21283cb578f7e2fff2dd15743854f53034d12420863b55,Which party wins 2024 US Presidential Election?,discretionary,other,CRISP,0.42,YES,0.42,0,0,-51.0,S7
+0x86cf498b6ad73c7631c08157c654b7e8c44ee33dfad2c261564aa375e3394578,"Will Trump say ""Minnesota"" during the State of the Union address?",discretionary,other,CRISP,0.585,YES,0.585,1,1,34.47008547008548,S7
+0x265366ede72d73e137b2b9095a6cdc9be6149290caa295738a95e3d881ad0865,Kamala Harris wins the popular vote?,discretionary,other,CRISP,0.6845,YES,0.6845,0,0,-51.0,S7
+0x55094f77e9dbc107fc354a9b8a5939cd0b4d0cfae24c7f892dd778b565b579c4,Will Edmundo González win the 2024 Venezuela presidential election?,discretionary,venezuela,CRISP,0.325,YES,0.325,1,1,102.84615384615384,S7
+0xccf29510341e7437f067af2cb107f69d617975a734646b4a6c86089242c8daa0,Will Jason Miyares win the 2025 Virginia Attorney General election?,discretionary,other,CRISP,0.675,YES,0.675,0,0,-51.0,S7
+0x9f41292bea56c1a5671306d4285d1912af1a23e62bae6e58e6c0dc517cc98d46,Will a Republican win Texas US Senate Election?,discretionary,other,CRISP,0.84,YES,0.84,1,1,8.523809523809526,S7
+0x824df6aa7e270678a5239d697918e918834a52cc6e59ebc25b650b2df649ac82,"US strikes Iran by March 7, 2026?",discretionary,iran,CRISP,0.445,YES,0.445,1,1,61.35955056179775,S7
+0xc74c985af2daadd3900b337e128555d997342db0d724528e9b0eb5d9bf2691a2,"Will Trump say ""Palestine"" during September?",discretionary,other,CRISP,0.32,YES,0.32,1,1,105.25,S7
+0x91446872e083875e2315abb17c03854c178d65cef9e49e17b8c31352dbe2719a,"Will Trump say ""Crypto"" or ""Bitcoin"" this week? (October 27 - November 2)",discretionary,other,CRISP,0.35,YES,0.35,1,1,91.85714285714286,S7
+0x330f413895b25d8669861208d3403725516f6e3d66164bea64a8be41a4ccb0b4,Matt Gaetz confirmed as Attorney General?,discretionary,other,CRISP,0.305,YES,0.305,0,0,-51.0,S7
+0xdfd869fb69e5cb5352ebe56cf7ccb4396151dcddc8c284e74d4c33711007717e,Will Trump say “Transgender” this week? (November 10 - 16),discretionary,other,CRISP,0.78,YES,0.78,0,0,-51.0,S7
+0x8730e1eb7a53c8ae47f700f8233851cab23f1a8fd0ddd80bcbc15155ebbf5a84,"Will Trump post ""I love King"" or ""I love the King"" on Truth Social this week?",discretionary,other,CRISP,0.51,YES,0.51,0,0,-51.0,S7
+0x961ee2529ff3c3b27a9b7dc424c1d7046f52bdd5b4ae38bd74ae65f0838fabaa,Will Daniel Noboa win the 2025 Ecuadorian Presidential Election? ,discretionary,other,CRISP,0.405,YES,0.405,1,1,72.45679012345678,S7
+0xf7fbf61a0c895d7466ef299db9436ccff6af59cea208ec3bfdfb01b4d52b1705,"Will Trump post ""God Bless America"" on Truth Social this week? (March 15)",discretionary,other,CRISP,0.62,YES,0.62,0,0,-51.0,S7
+0x4c48d72bee2347ee0a0802850be8a7f36d318b405fb4bacbba455eb8a68dc6a3,Will the Liberal Party win the popular vote in Canada's next election?,discretionary,other,CRISP,0.72,YES,0.72,1,1,18.444444444444443,S7
+0x459e26ea0ef5fae66cc7174b373906acd4579b47930d63907c9b26446000aff2,"Will Trump say ""Roof"" during Carney visit on May 6?",discretionary,other,CRISP,0.525,YES,0.525,0,0,-51.0,S7
+0xa699018223c711cf05cfd64fb0a688bbec786514fa13006ada520edea02f1797,"Will Leavitt say ""Governor"" during the next White House Press Briefing?",discretionary,other,CRISP,0.555,YES,0.555,1,1,39.09009009009009,S7
+0xbb01eefb24a38a9aa1921ec168d3049e7374b28a2540937d06b3ff2524d66627,Will a Republican win Michigan Presidential Election?,discretionary,other,CRISP,0.415,YES,0.415,1,1,69.48192771084338,S7
+0x5de4dac5750688a3ab6db801fef8afb9f069270bf6e211c8ef2ef3c13d4e6734,"Will Trump say ""Too Big To Rig"" this week? (January 25)",discretionary,other,CRISP,0.6,YES,0.6,0,0,-51.0,S7
+0x9fbe1832139c5e67dbf93813aabb9ac67ab8dd3d7d32fe86957ff761a8fa1532,Will CDU win the most seats in the 2026 Rhineland-Palatinate parliamentary elections?,discretionary,other,CRISP,0.62,YES,0.62,1,1,29.645161290322577,S7
+0x352ac53453f995e751d2d90c7d781441eba9d1c4c7ebbc8e738fc570a543665b,Will a Republican win Wisconsin US Senate Election?,discretionary,other,CRISP,0.34,YES,0.34,0,0,-51.0,S7
+0x166ab6a5f3e348dc7b6d732b0848f373b042aff0290a5d7754f7628db6e4dc0f,"Will Trump say ""Board of Peace"" this week? (December 29 - January 4)",discretionary,other,CRISP,0.325,YES,0.325,0,0,-51.0,S7
+0xd25562868f4159fe3758f3fff2d0c8d1fec6f9643c05579473babcc1f393bb8f,"Will Leavitt say ""Tylenol"" or ""Autism"" during next White House press briefing?",discretionary,other,CRISP,0.4,YES,0.4,0,0,-51.0,S7
+0x8f20ff6ed2ba1e234f35e701a50c274ffb64fdd8d621254d017db0445486ab79,Will a Democrat win Nevada Presidential Election?,discretionary,other,CRISP,0.365,YES,0.365,0,0,-51.0,S7
+0x78554a269994cb47618a3f7583768a008a5c5e1396323b92e9bad4be17dcf7c7,"Will Bernie Sanders say ""Zohran"" or ""Mamdani"" during his West Virginia speech on August 8?",discretionary,other,CRISP,0.345,YES,0.345,0,0,-51.0,S7
+0xd32534b0564971fe6f3fa622a196d4006cc8b464f40bf748caf57108c54d0f5f,"Will Trump say ""AI"" or ""Artificial Intelligence"" during Saudi PM events on November 18?",discretionary,other,CRISP,0.465,YES,0.465,1,1,56.5268817204301,S7
+0x050e617aeb25a5669c45fc3257c6e507cd48b72e240565aae6a9ee34e4a3b793,"Will Keir Starmer say ""NHS"" during the next Prime Minister's Questions?",discretionary,other,CRISP,0.79,YES,0.79,1,1,12.291139240506325,S7
+0xb773804f2f8ce39e6f27487c5778506d95149ee41c194cb674a2254ff1193331,Will Seguro win all of Portugal's districts?,discretionary,other,CRISP,0.795,YES,0.795,1,1,11.893081761006286,S7
+0xc8a7d7ced51ff0c00dee61e0a98d192db2f206f1eede15c8d2e1af5bab04d5cb,"Will Israel strike Gaza on February 8, 2026?",discretionary,israel,CRISP,0.37,YES,0.37,1,1,84.13513513513513,S7
+0x806f7abef2f183ab5557e6996adc91b2c3dae3286d00a4efb38b2a05ebb124ce,Will Elon Musk tweet 800 or more times February 7-14?,discretionary,other,CRISP,0.504,YES,0.504,1,1,48.2063492063492,S7
+0xdb93abfa2dd2026687b138417b8ba86c7f3f9729e288781de5688730d70d26e6,"Will Trump say ""Cuba"" during the State of the Union address?",discretionary,cuba,CRISP,0.525,YES,0.525,0,0,-51.0,S7
+0x8a175eb42f31b198faca9a77277bf90396bae30bf065d3a9898aaa8105657ab3,"Will Trump say ""Party"" this week? (December 29 - January 4)",discretionary,other,CRISP,0.545,YES,0.545,1,1,40.74311926605503,S7
+0xf74a25ca00930e1b6bf444fcff9ded49cd7765d6e198a9af9c036688edb5a4ed,Will the White House call a full lid by 6:30PM on March 17?,discretionary,other,CRISP,0.62,YES,0.62,1,1,29.645161290322577,S7
+0xe85db2c1843ebf5eac87613544d8a7e062039ec023d60fcaab2c9bf6340de110,"Will Trump say ""Winston"" or ""Churchill"" during King Charles visit?",discretionary,other,CRISP,0.59,YES,0.59,1,1,33.745762711864415,S7
+0x08121291cd61eaea56d62dda92b80a1a5aa80d99fdf210343713902561a8939b,Will the next Government of Australia be a Labor majority?,discretionary,other,CRISP,0.365,YES,0.365,1,1,85.98630136986301,S7
+0x5ad810c8d042f53c457a413241175022503d290593c54c8fb713d4ffae5f9cb7,"Will Karoline Leavitt say ""Executive order"" during next White House press briefing?",discretionary,other,CRISP,0.749,YES,0.749,1,1,15.755674232309744,S7
+0x1586c09368022ef06b57487108ff99c83745309a79a7952ba11b916b606c6700,"Will Trump say ""Transgender"" this week? (October 13 - 19)",discretionary,other,CRISP,0.705,YES,0.705,1,1,19.921985815602838,S7
+0x0fb480eb418fa2fcf9a360a4f55d0688a02413a4c7ccbf9703b63f2fa370cecb,"Will Trump say ""Autopen"" or ""Auto Pen"" this week? (February 8)",discretionary,other,CRISP,0.545,YES,0.545,1,1,40.74311926605503,S7
+0x12f85b250c4943bb6d17804ec6c5d5e6b46dc3202f207acf7e56ce83d7319c5f,"Will Trump say ""Atlantic"" this week? (January 11)",discretionary,other,CRISP,0.585,YES,0.585,0,0,-51.0,S7
+0xa97d2a617f66ceaf5545e90e4c4f8ddc1bfefc094f1f3739bccfa9c6da226dbd,Will Trump tweet 5-9 times Nov 8-15?,discretionary,other,CRISP,0.405,YES,0.405,0,0,-51.0,S7
+0x28f1e9218bcd41ced05faf3c03f026721d87712556bf2828337551f03cae0a01,"Israel strikes Iran by March 31, 2026?",discretionary,iran,CRISP,0.62,YES,0.62,1,1,29.645161290322577,S7
+0x63cfffa8764426c9b2ffe4b521c9499b4e35c9fb53ff1be68c79dec2a016be2a,Taiwan Presidential Election: Will Ko Wen-je win?,discretionary,china_taiwan,CRISP,0.31,YES,0.31,0,0,-51.0,S7
+0x26ed2c7b22d8bbf6789e76bdcd88c22b605df53e88c7b57fb3dc48b7ab259a8f,Will Andrew Cuomo win the Democratic Primary for Mayor of New York City?,discretionary,other,CRISP,0.745,YES,0.745,0,0,-51.0,S7
+0x299730751090165592bfd5f8f12ff5bb316cd3dac7f17223128e3d4024622bcb,"Will Trump’s approval rating be between 39.0 and 39.4 on April 17, 2026?",discretionary,other,CRISP,0.31,YES,0.31,0,0,-51.0,S7
+0x91fd3b7cf10e925f169ff49dd657baf9794025b241965fecd0c1b9cbd9c1e115,Will Bhumjaithai Party (BJT) win the most seats in the 2026 Thai legislative election?,discretionary,other,CRISP,0.3,YES,0.3,1,1,115.66666666666669,S7
+0x677740d692753fcb0f1227e99e564afebd643e9ff09ca32f73aeb1ae335cdb0f,Will the White House call a full lid by 6:30PM on April 11?,discretionary,other,CRISP,0.42,YES,0.42,0,0,-51.0,S7
+0x6d250918ac8353e8aedd848e1c0934c0feb8ad1be05676f19414def48d4a914a,Trump strikes another drug boat by Sep 30?,discretionary,other,CRISP,0.3005,YES,0.3005,0,0,-51.0,S7
+0xc7b2e5c8d4a18e064af2fc9f59a12e211b7e9a4370215069d0b482e1af81a9b7,"Will Trump say ""Border"" 10 or more times during victory rally? ",discretionary,other,CRISP,0.56,YES,0.56,1,1,38.28571428571428,S7
+0x208721a1cf3bf7ef63c58140d47054496aaa9dc0feee9f3bb0d95f8bba375230,Will Trump tweet 30-39 times September 27-October 4?,discretionary,other,CRISP,0.41,YES,0.41,1,1,70.95121951219512,S7
+0x50d5ba4a47a1efe738da33723781f842985f406e26f8f4a29a78551fac1c51c0,"Will Trump post ""RINO"" on Truth Social this week? (March 8)",discretionary,other,CRISP,0.53,YES,0.53,0,0,-51.0,S7
+0xdfd3d267e9893993f70809ad9d0d21e0a56c1651910f128c3a88d6377d766c9e,Will Jay Jones win the 2025 Virginia Attorney General election?,discretionary,other,CRISP,0.32,YES,0.32,1,1,105.25,S7
+0x16ce45a17a663196c1512f6d2350f2dbdc2a2ef65a2182ecc2409938a2a669ae,Will the Associated Press first call the 2025 New Jersey governor election at 11:00 PM ET or later on Nov 4 2025?,discretionary,other,CRISP,0.44,YES,0.44,0,0,-51.0,S7
+0xa706623e258521235d3874904d77b4dd4d55a9b092c59eb5c5ed4759882f657c,"Will Trump post ""Epic Fury"" on Truth Social this week?",discretionary,other,CRISP,0.405,YES,0.405,0,0,-51.0,S7
+0x98c0aa27e741d5bfeb0a06e68bddd256b857fd27597c76c500250db1483c51aa,"US strikes Iran by March 15, 2026?",discretionary,iran,CRISP,0.58,YES,0.58,1,1,35.20689655172414,S7
+0xe90fde5bbf32a779f5ad8cd47f890acd9f86b73e34e0f620698122052189a079,Will a Republican win Maine's 2nd congressional district?,discretionary,other,CRISP,0.84,YES,0.84,1,1,8.523809523809526,S7
+0xfb898f62944858cd90a18655f393c456dd2c0d4ac17f1bbb4d06a2cebc8e1e72,"Will Trump say ""Fat"" this week? (January 18)",discretionary,other,CRISP,0.465,YES,0.465,1,1,56.5268817204301,S7
+0xc8bc0657df535fee2568c70b982f6abe49dd108d011085da65dc292d8f4f7a1a,Will Donald Trump sign an executive order on April 8?,discretionary,other,CRISP,0.65,YES,0.65,1,1,25.92307692307692,S7
+0x07e93796cdf81c9f6982d38f03aba01df60ee516cdd8a98cddc5756fba4c4c83,"Will Trump say ""Transgender"" this week? (February 8)",discretionary,other,CRISP,0.515,YES,0.515,1,1,46.08737864077669,S7
+0x325038359610a566c0963c9f0ea2ea33b2ddedf7808898c4ed4166787213f1b5,Trump sentenced to no prison time?,discretionary,other,CRISP,0.77,YES,0.77,1,1,13.93506493506493,S7
+0x9fdc4c7b35db7e7299a9f41c2b76644dd9d2923852da5881035f0bbec2d5e1ad,Will Jill Stein get the most votes of any 3rd party candidate?,discretionary,other,CRISP,0.33,YES,0.33,1,1,100.5151515151515,S7
+0xa66d14ad94746e868fc81a76d3f67cc4583a2ab08a5056e07e4b3080c4ce04a9,Who will win the VP debate according to polls?,discretionary,other,CRISP,0.77,YES,0.77,0,0,-51.0,S7
+0x01ffd0acf0d6e42558a7cbd521efde937166a1bf09f3a2dfcdf36950c2dd3635,US escorts commercial ship through Hormuz by April 30?,discretionary,other,CRISP,0.41,YES,0.41,0,0,-51.0,S7
+0x64d6a172e63a085198fcd8032da984cc42398e21d8984eaf4813ce6e3f0469a6,Will the Slovenian Democratic Party (SDS) win the most seats in the 2026 Slovenian parliamentary election?,discretionary,other,CRISP,0.725,YES,0.725,0,0,-51.0,S7
+0x0bec8a350b24975b0f28366399c4ea04044c8d795b8b2cf2d7fdf8f21824302e,"Will Trump say ""Board of Peace"" during Saudi PM events on November 18?",discretionary,other,CRISP,0.37,YES,0.37,1,1,84.13513513513513,S7
+0x34b5567e4f9a1b9561fba0f39c60b4da1f33052c8918dedc954401494d947cee,Will a Democrat win Wisconsin Presidential Election?,discretionary,other,CRISP,0.525,YES,0.525,0,0,-51.0,S7
+0xe65c106aa601e254aaa51c2897d1d99be0d0f753f642422656e6aa1db940f6ac,"Will Trump post ""Ammo"" or ""Ammunition"" on Truth Social this week?",discretionary,other,CRISP,0.5,YES,0.5,0,0,-51.0,S7
+0x57dc89d2f5803961a1c72add5969c2887f9591821d05421f2819fa17b664dd59,Will a Republican win Ohio US Senate Election?,discretionary,other,CRISP,0.575,YES,0.575,1,1,35.95652173913044,S7
+0x4b78de44ea49d0eb8d5fee85352294b6f679a47c56944c6ad5c945e9a2ba7211,Government shutdown on Saturday?,discretionary,other,CRISP,0.71,YES,0.71,0,0,-51.0,S7
+0x7058f8abef2ca5e080b6febb7ec45da60319582619e89183b700aca3d8fb21da,Trump strikes another drug boat by Oct 31?,discretionary,other,CRISP,0.77,YES,0.77,1,1,13.93506493506493,S7
+0xffaff77c56cb9f1e322129b8e1e525ceadd1d0e8dc2a62a4b33f3cb23bff9572,Favorite to win on Polymarket week after debate?,discretionary,other,CRISP,0.745,YES,0.745,1,1,16.114093959731548,S7
+0xdcf2271b7c57b7de917ef6205de87a46a4c180970e9480c9290bc9d18b74db93,Will Eric Adams endorse Cuomo?,discretionary,other,CRISP,0.8,YES,0.8,1,1,11.5,S7
+0x5475a91387df16bd7f5b5fd5937dd2305365c01d6116c071d6859b377882f403,"Will Trump say ""Mortgage"" during WEF Address on January 21?",discretionary,other,CRISP,0.6,YES,0.6,1,1,32.33333333333334,S7
+0xd009ac14bccdd12925a2d9f8d910411556e4ed153337abb18a97b97fabcf7db0,Will Rafał Trzaskowski be the next President of Poland?,discretionary,other,CRISP,0.815,YES,0.815,0,0,-51.0,S7
+0x5fc8cba7cc06011dd02a09513a93b2184c3aef48a8be0c005241e89308bc9cc8,Will Khamenei tweet again by March 14?,discretionary,other,CRISP,0.785,YES,0.785,1,1,12.694267515923563,S7
+0x7d10de6ae70637b277d59ff7158940c0273935b74155c78e00c0c9f7219ca075,"Will Trump say ""Fun"" this week? (March 29)",discretionary,other,CRISP,0.77,YES,0.77,1,1,13.93506493506493,S7
+0x39b754a2dd0e0b8433d5de711fb46abf6f3f893d9b72ffd57864052213322e7d,"Will Trump say ""Farmer"" during Carney visit on May 6?",discretionary,other,CRISP,0.59,YES,0.59,0,0,-51.0,S7
+0xcd1b6b71a1964f15e2c14809594cbfa0d576270e8ef94c8c24913121097e09e5,Will Donald Trump win the popular vote in the 2024 Presidential Election?,discretionary,other,CRISP,0.316,YES,0.316,1,1,107.22784810126583,S7
+0x8f97d034bbf01cd874af524cefc6d83deaa25373c1ab4545a81589a4d3d2b2a8,Will a Democrat win North Carolina Presidential Election?,discretionary,other,CRISP,0.31,YES,0.31,0,0,-51.0,S7
+0x5f7adbfb99ad4c6c05ccef88d6a3cffcdb7c178911865b8c21b8b636b3bc5fe4,Will Trump’s approval rating be between 42.0 and 42.4 on November 14 2025?,discretionary,other,CRISP,0.345,YES,0.345,0,0,-51.0,S7
+0xb01e7889e4bc668ddeade5a079b5a225b66a323244a8ab87ee1080f0d14a8143,"Will Trump say ""Transgender"" this week? (March 1)",discretionary,other,CRISP,0.33,YES,0.33,1,1,100.5151515151515,S7
+0xfe6a04a131a8032f3a037ce82b3200dfd014f76fa2002360b69301fac646807c,"Will Keir Starmer say ""Ukraine"" during the next Prime Minister's Questions?",discretionary,ukraine,CRISP,0.74,YES,0.74,0,0,-51.0,S7
+0xa6397cb04d2e20f63b589b9dd37e8db7db6a33ebda189d1123e4ff191ac430c1,"Will Trump say ""Nazi"" this week? (March 8)",discretionary,other,CRISP,0.535,YES,0.535,1,1,42.457943925233636,S7
+0xfc93f92b41376c8caeb67fc389e8901d2959e5a998a94c102209fe34b7eeaa7f,Trump sentenced to probation?,discretionary,other,CRISP,0.475,YES,0.475,0,0,-51.0,S7
+0x4b02efe53e631ada84681303fd66d79ad615f3d2b6a28b4633d43d935f89af58,"US strikes Iran by March 31, 2026?",discretionary,iran,CRISP,0.685,YES,0.685,1,1,21.992700729926995,S7
+0xd63b3697ae273e53e575d6e4cc833b28bce923167e4b8065235143babfb4b05d,"Will Leavitt say ""Fraud"" during the next White House press briefing?",discretionary,other,CRISP,0.335,YES,0.335,0,0,-51.0,S7
+0x70357debf15a956d82d8b2022aaf5f868763d1d0716d2c6e5ce35712e49a3b0f,Fed decreases interest rates by 25 bps after September 2024 meeting?,discretionary,other,CRISP,0.645,YES,0.645,0,0,-51.0,S7
+0xf5a4671c186af316ee0e4913d996c51a1fae12a5861e9eb25654a764e0593e69,"Will Leavitt say ""Fake"" or ""Hoax"" during the next White House Press Briefing?",discretionary,other,CRISP,0.365,YES,0.365,0,0,-51.0,S7
+0x247d957588c3af33cd023f8caa2b5a316c68e4cf903087261934d41734aa7ea2,Will Bernie Moreno win the Ohio Republican Senate Primary?,discretionary,other,CRISP,0.745,YES,0.745,1,1,16.114093959731548,S7
+0xd65c4072e48a82a9cd49e8e6be332792fb13e8e076134d860d110427fc01d374,Will Jonas Gahr Støre become the next Prime Minister of Norway?,discretionary,other,CRISP,0.835,YES,0.835,1,1,8.880239520958085,S7
+0xc6485bb7ea46d7bb89beb9c91e7572ecfc72a6273789496f78bc5e989e4d1638,Will Kamala Harris win the 2024 US Presidential Election?,discretionary,other,CRISP,0.368,YES,0.368,0,0,-51.0,S7
+0xa4ec08ec8caf4cb5033716dc452e4c0ba7838e675396507b77282ab31d3609a5,"Will Keir Starmer say ""Putin"" during the next Prime Minister's Questions?",discretionary,other,CRISP,0.555,YES,0.555,1,1,39.09009009009009,S7
+0x6a79204ace08d896a72cac89c3c2b4c64b90218838c213e9377860596dc77ac5,Will People’s Party (PPLE) win the most seats in the 2026 Thai legislative election?,discretionary,other,CRISP,0.695,YES,0.695,0,0,-51.0,S7
+0xf33e075eaf25de7f6026e4d2e96a1a98a3a2147ac60aa15bca7fac3b0efce409,Will the Unity Labour Party (ULP) win the most elected seats in the 2025 Saint Vincent and the Grenadines House of Assembly election?,discretionary,other,CRISP,0.43,YES,0.43,0,0,-51.0,S7
+0x773f3ca26bdf685da92d2a8a701dd98e4e8b46e0b5366cf09aed9eb8fb6fc189,Will a Republican win North Carolina Presidential Election?,discretionary,other,CRISP,0.695,YES,0.695,1,1,20.942446043165475,S7
+0xb51f2db5996c86c3fdbac6d67d0fdead997d959ce0d86bad5203d16ee746da17,Will LLA win the most seats in the Chamber of Deputies following the 2025 Argentina election?,discretionary,other,CRISP,0.755,YES,0.755,1,1,15.2251655629139,S7
+0x6a4d97b6b54f49991f3984998fc8423668b09e9ea21de7074f27ab7dd4953ba3,"US strikes Iran by March 3, 2026?",discretionary,iran,CRISP,0.345,YES,0.345,1,1,93.92753623188406,S7
+0x4f8bddad85712e2b46756f71c753380a1417bec8049e4a45742e5182c3a5c015,"Will Israel conduct military action against Iran by April 14, 2026?",discretionary,iran,CRISP,0.59,YES,0.59,0,0,-51.0,S7
+0x7e58abd89b04a34b4a066d94c0bcf53cf0c7ccd9f568c6c1a339d996bce6356a,Will Micheal Martin be the next Prime Minister of Ireland?,discretionary,other,CRISP,0.575,YES,0.575,1,1,35.95652173913044,S7
+0xf480b4ea858af172baf1d8c4d2d0281ee8d2694ed9f40b12b3630c5328dfb3f6,Will the All India Trinamool Congress (AITC) win the most seats in the 2026 West Bengal Legislative Assembly election?,discretionary,other,CRISP,0.419,YES,0.419,0,0,-51.0,S7
+0xae43e53d8516dd644c2b294c6fcdc8b345e905352672c7f6cf1ebfee127d9409,Will Kamala Harris win Vermont by the largest margin?,discretionary,other,CRISP,0.6,YES,0.6,1,1,32.33333333333334,S7
+0x2eaa8bce4ea7a229c9e8a3050914b044537d19953fa364b176f95e1abc27f5bf,Will South Korea presidential election winner get over 50% of votes?,hard_currency,korea,CRISP,0.695,YES,0.695,0,0,-51.0,S7
+0x82962688c00787fce7588ef672b7c3b875db8ac1ce263f2f3cd64211bd2379c3,Will Lee Jae-myung win 50-55% of the vote in the South Korea election?,hard_currency,korea,CRISP,0.605,YES,0.605,0,0,-51.0,S7
+0x680b5b8add0677e5865f4b6d6d1d90e2d9e818d7290947d3fffbf7991cbde08e,Will Starostové get between 7% and 10% of the vote in the Czech election?,hard_currency,other,CRISP,0.305,YES,0.305,0,0,-51.0,S7
+0x546ec332d630a9cd6f2d93d132d2f38b860dd54d682213bb84fd45938e56b292,Will the AfD win 20-25% of the vote in the German election?,hard_currency,other,CRISP,0.675,YES,0.675,1,1,23.074074074074076,S7
+0xd3505ebab4f2d6496a0c1451a21584d95a0fae3d06c948ed42c373c59fd63e5a,Will voter turnout in the 2025 Polish presidential election be more than 72%?,hard_currency,other,CRISP,0.485,YES,0.485,0,0,-51.0,S7
+0xde38c515193b3b7f826f65e85fb50fc77d4fb134e56f3c36e9244ee812d75089,Will Tisza win the national list vote in the 2026 Hungarian Parliamentary election by 9%+?,hard_currency,other,CRISP,0.425,YES,0.425,1,1,66.64705882352942,S7
+0x4d6c87358a0a8522c775c20288ab7df7c8ceb4ffd1abf01881ba343cdf45964f,Will turnout be between 63% and 66% in the Czech election?,hard_currency,other,CRISP,0.405,YES,0.405,0,0,-51.0,S7
+0xd4717f1118a739e898848610e68d74ea6cdf6ded0fedc3940143b9f3d57ff254,Will Fidesz-KDNP win 40-44% of the national list votes in the 2026 Hungarian Parliamentary election?,hard_currency,other,CRISP,0.35,YES,0.35,0,0,-51.0,S7
+0x6a9b909a643c41c74da1f117e70f4dfbf469246e03915b046fd75620c318858d,North Korea missile test in March?,hard_currency,korea,CRISP,0.66,YES,0.66,1,1,24.75757575757575,S7
+0xb45dfe8c5df7e41f4d9b03c5ccb3ab6598a9feb1914be0c83daf16cd98a74ba8,Will Motoristé get between 7% and 9% of the vote in the Czech election?,hard_currency,other,CRISP,0.325,YES,0.325,0,0,-51.0,S7
+0xb0675395c1b27d1298af7470c687e94622eb5bd3293abebd26bf1871cd671da1,"Will Trump say ""Tesla"" during tariff event on April 2?",hard_currency,other,CRISP,0.305,YES,0.305,0,0,-51.0,S7
+0x2a842ad6c44e8c4a0b7f303a0b3eb8422536d38b62de355ef2b0dacf0b88f43e,Will Rafał Trzaskowski win by 0-4%?,hard_currency,other,CRISP,0.395,YES,0.395,0,0,-51.0,S7
+0x8cdba4887831155f8d31de848806f53eaa2525f32eadbc0fa9b3421a7e430bc9,"Will Trump say ""Drone"" this week? (November 17 – 23)",hard_currency,other,CRISP,0.58,YES,0.58,0,0,-51.0,S7
+0x663ab7bbc3ea3156a3e81a67e341be33f0000183ae294c0e2061a7821864322c,"Will Trump say ""Nuclear"" during Iowa speech?",hard_currency,other,CRISP,0.735,YES,0.735,1,1,17.02721088435375,S7
+0xf459f2a4cf56425af7346fbeed3f9c78e35463539fe38afa70ff3d00c127c7ab,"Will Trump say ""Fantastic job"" during tariff event on April 2?",hard_currency,other,CRISP,0.485,YES,0.485,1,1,52.09278350515464,S7
+0xf5088153c033a7a79f7684478a268e644078898952664a86f86c45a35e5e2cc3,Will Trump's approval rating be between 46.0% and 46.4% on June 6?,hard_currency,other,CRISP,0.305,YES,0.305,0,0,-51.0,S7
+0xff48e9b2a1348205a430c941ff6a51aba1ec18ea34d0add5f82ba9f9ffd74590,Will Trump’s approval rating be between 43.5% and 43.9% on October 3?,hard_currency,other,CRISP,0.31,YES,0.31,1,1,110.29032258064515,S7
+0x830fe8eb8ab09693af821fba6d1d2c5369a696715c029b978e06df41cc614390,Trump margin of victory in New Hampshire Primary >15%,hard_currency,other,CRISP,0.41,YES,0.41,0,0,-51.0,S7
+0x7d5dc9aa59955996da410825c00c8b05213540b622ca7a3a1ef756c914f102e1,Will China's annual inflation increase by ≥0.7% in December?,hard_currency,china_taiwan,CRISP,0.76,YES,0.76,1,1,14.78947368421052,S7
+0x31b00298fd4222286461c326fd60bc47caee6ee112e19975442469071ce69d52,Will Trump's approval rating be between 47.0% and 47.4% on March 21?,hard_currency,other,CRISP,0.465,YES,0.465,0,0,-51.0,S7
+0x38bc6b9fbc7f22b58a9b83330709e2fbb15ddbed7f2277831c8c3df0ee20475b,Will ≥2% of votes go to 3rd Party candidates?,hard_currency,other,CRISP,0.645,YES,0.645,1,1,26.519379844961236,S7
+0x43bdd849294c7864a44abde82242ce8bd443323208c056d7289d9a86feeb0a25,Will Mamdani get over 50% of the vote in the general mayoral election?,hard_currency,other,CRISP,0.57,YES,0.57,1,1,36.71929824561404,S7
+0x46dc560a09f07d8b6989bec851262e4df92ea0dd909631cf987afc88c8b8d729,Will MrBeast raise $40M for clean water by August 31?,hard_currency,other,CRISP,0.575,YES,0.575,1,1,35.95652173913044,S7
+0x536edf11e2966f157280f0def83fec67c215be63fe508a7128793dfc415d141b,Will RFK Jr. win <1% of the popular vote?,hard_currency,other,CRISP,0.705,YES,0.705,1,1,19.921985815602838,S7
+0x34e00873d02218d0b1a288fc579426bf8d85f6dd1d34c09d2c135c28d46932ec,Will Zohran Mamdani win by 10-20%?,hard_currency,other,CRISP,0.495,YES,0.495,0,0,-51.0,S7
+0xaf99acf92a4bb951c070b5de3ae11718f31d5478742fc4fb0101afb71e2ee3d8,Will Trump win Florida by 8+ points?,action_count,other,CRISP,0.635,YES,0.635,1,1,27.740157480314963,S7
+0xdf68a861e1c61b9e36221d751e1277b0e941e6da40d6f5301cc10d003f4bc430,"Will the total number of TSA passengers for February 24 be less than 2,100,000?",action_count,other,CRISP,0.62,YES,0.62,1,1,29.645161290322577,S7
+0xd9fdac0c56dd484b80f806fba550407c399186d48a1602548d8be2fd4ea0c454,"Will Leavitt say ""President"" or ""Administration"" 77+ times during the next White House Press Briefing?",action_count,other,CRISP,0.415,YES,0.415,1,1,69.48192771084338,S7
+0x9fb093c5361acd17289f7b9962d6e14bca8a0ce05618498f95ffbacacd64e77b,Will Trump say “Border” 5+ times during his Iowa State Fairgrounds speech?,action_count,other,CRISP,0.65,YES,0.65,1,1,25.92307692307692,S7
+0x63f7f0cae6ad5f914677dbcc2e806b94c0898573258e1f087c5b296136aa8d19,"Will Karoline Leavitt say ""Border"" 3+ times during next White House press briefing?",action_count,other,CRISP,0.57,YES,0.57,0,0,-51.0,S7
+0xbdccb1ae8d9cf2b226f2b012bf51f310048ddcedf33eb14fc5317dd348b95794,"Will Powell say ""Projection"" 5+ times during December press conference?",action_count,other,CRISP,0.635,YES,0.635,1,1,27.740157480314963,S7
+0x9dd958416ab05e989cbc2bddb8fd6e89692b675e126cc0a89d9518634acf7cc2,"Will Elon Musk post 580+ tweets from January 6 to January 13, 2026?",action_count,other,CRISP,0.5305,YES,0.5305,0,0,-51.0,S7
+0x804a460fcab8a4e4b887fb3671eec3b1fd352c673d22c09d3d41ea49f28e6066,"Will Trump say ""Biden"" or ""Obama"" 5+ times during the America Business Forum on November 5?",action_count,other,CRISP,0.35,YES,0.35,1,1,91.85714285714286,S7
+0x21883719d5a0ca76297e4a933b6158c7caa64a7b4f5b538c4a9da51821838f01,"Will the total number of TSA passengers for March 1 be between 2,400,000 and 2,600,000?",action_count,other,CRISP,0.315,YES,0.315,0,0,-51.0,S7
+0xd50ca47f04ce40f641eea0a33451484ef5a3a2eb5e47264ede3a62f5218c6b4d,"Will the total number of TSA passengers for February 22 be between 2,400,000 and 2,600,000?",action_count,other,CRISP,0.37,YES,0.37,1,1,84.13513513513513,S7
+0x6a63460b31d0caa8bf884dd2fb44529c04b2b710bea6551d67830bf3c9bd1982,"Will Trump say ""Biden"" 15+ times during Iowa speech?",action_count,other,CRISP,0.455,YES,0.455,0,0,-51.0,S7
+0xbe74c0cbc7b1cd812b5b68439b3cfdbce3e4148037e9dd4cf2ff078618e9e381,"Will Kamala Harris say ""Joe"" or ""Biden"" 3+ times on the Rachel Maddow Show on September 22?",action_count,other,CRISP,0.665,YES,0.665,0,0,-51.0,S7
+0x187309dbf4aee9150fff005a29ccb02b9a4d221cb00cd85211dcbcb8e867fd9c,Will Karoline Leavitt say ICE 5+ times during next White House press briefing?,action_count,other,CRISP,0.845,YES,0.845,0,0,-51.0,S7
+0x47dd8effe5d8fc842045c1a893b66a5b9c104a97f48ab7e11f17d2b4a2bc1ce5,"Will Leavitt say ""President"" 66+ times during the next White House Press Briefing?",action_count,other,CRISP,0.515,YES,0.515,1,1,46.08737864077669,S7
+0x2eaa8bce4ea7a229c9e8a3050914b044537d19953fa364b176f95e1abc27f5bf,Will South Korea presidential election winner get over 50% of votes?,hard_currency,korea,CRISP,0.695,YES,0.695,0,0,-51.0,S8
+0x82962688c00787fce7588ef672b7c3b875db8ac1ce263f2f3cd64211bd2379c3,Will Lee Jae-myung win 50-55% of the vote in the South Korea election?,hard_currency,korea,CRISP,0.605,YES,0.605,0,0,-51.0,S8
+0x680b5b8add0677e5865f4b6d6d1d90e2d9e818d7290947d3fffbf7991cbde08e,Will Starostové get between 7% and 10% of the vote in the Czech election?,hard_currency,other,CRISP,0.305,YES,0.305,0,0,-51.0,S8
+0x546ec332d630a9cd6f2d93d132d2f38b860dd54d682213bb84fd45938e56b292,Will the AfD win 20-25% of the vote in the German election?,hard_currency,other,CRISP,0.675,YES,0.675,1,1,23.074074074074076,S8
+0xd3505ebab4f2d6496a0c1451a21584d95a0fae3d06c948ed42c373c59fd63e5a,Will voter turnout in the 2025 Polish presidential election be more than 72%?,hard_currency,other,CRISP,0.485,YES,0.485,0,0,-51.0,S8
+0xde38c515193b3b7f826f65e85fb50fc77d4fb134e56f3c36e9244ee812d75089,Will Tisza win the national list vote in the 2026 Hungarian Parliamentary election by 9%+?,hard_currency,other,CRISP,0.425,YES,0.425,1,1,66.64705882352942,S8
+0x4d6c87358a0a8522c775c20288ab7df7c8ceb4ffd1abf01881ba343cdf45964f,Will turnout be between 63% and 66% in the Czech election?,hard_currency,other,CRISP,0.405,YES,0.405,0,0,-51.0,S8
+0xd4717f1118a739e898848610e68d74ea6cdf6ded0fedc3940143b9f3d57ff254,Will Fidesz-KDNP win 40-44% of the national list votes in the 2026 Hungarian Parliamentary election?,hard_currency,other,CRISP,0.35,YES,0.35,0,0,-51.0,S8
+0x6a9b909a643c41c74da1f117e70f4dfbf469246e03915b046fd75620c318858d,North Korea missile test in March?,hard_currency,korea,CRISP,0.66,YES,0.66,1,1,24.75757575757575,S8
+0xb45dfe8c5df7e41f4d9b03c5ccb3ab6598a9feb1914be0c83daf16cd98a74ba8,Will Motoristé get between 7% and 9% of the vote in the Czech election?,hard_currency,other,CRISP,0.325,YES,0.325,0,0,-51.0,S8
+0xb0675395c1b27d1298af7470c687e94622eb5bd3293abebd26bf1871cd671da1,"Will Trump say ""Tesla"" during tariff event on April 2?",hard_currency,other,CRISP,0.305,YES,0.305,0,0,-51.0,S8
+0x2a842ad6c44e8c4a0b7f303a0b3eb8422536d38b62de355ef2b0dacf0b88f43e,Will Rafał Trzaskowski win by 0-4%?,hard_currency,other,CRISP,0.395,YES,0.395,0,0,-51.0,S8
+0x8cdba4887831155f8d31de848806f53eaa2525f32eadbc0fa9b3421a7e430bc9,"Will Trump say ""Drone"" this week? (November 17 – 23)",hard_currency,other,CRISP,0.58,YES,0.58,0,0,-51.0,S8
+0x663ab7bbc3ea3156a3e81a67e341be33f0000183ae294c0e2061a7821864322c,"Will Trump say ""Nuclear"" during Iowa speech?",hard_currency,other,CRISP,0.735,YES,0.735,1,1,17.02721088435375,S8
+0xf459f2a4cf56425af7346fbeed3f9c78e35463539fe38afa70ff3d00c127c7ab,"Will Trump say ""Fantastic job"" during tariff event on April 2?",hard_currency,other,CRISP,0.485,YES,0.485,1,1,52.09278350515464,S8
+0xf5088153c033a7a79f7684478a268e644078898952664a86f86c45a35e5e2cc3,Will Trump's approval rating be between 46.0% and 46.4% on June 6?,hard_currency,other,CRISP,0.305,YES,0.305,0,0,-51.0,S8
+0xff48e9b2a1348205a430c941ff6a51aba1ec18ea34d0add5f82ba9f9ffd74590,Will Trump’s approval rating be between 43.5% and 43.9% on October 3?,hard_currency,other,CRISP,0.31,YES,0.31,1,1,110.29032258064515,S8
+0x830fe8eb8ab09693af821fba6d1d2c5369a696715c029b978e06df41cc614390,Trump margin of victory in New Hampshire Primary >15%,hard_currency,other,CRISP,0.41,YES,0.41,0,0,-51.0,S8
+0x7d5dc9aa59955996da410825c00c8b05213540b622ca7a3a1ef756c914f102e1,Will China's annual inflation increase by ≥0.7% in December?,hard_currency,china_taiwan,CRISP,0.76,YES,0.76,1,1,14.78947368421052,S8
+0x31b00298fd4222286461c326fd60bc47caee6ee112e19975442469071ce69d52,Will Trump's approval rating be between 47.0% and 47.4% on March 21?,hard_currency,other,CRISP,0.465,YES,0.465,0,0,-51.0,S8
+0x38bc6b9fbc7f22b58a9b83330709e2fbb15ddbed7f2277831c8c3df0ee20475b,Will ≥2% of votes go to 3rd Party candidates?,hard_currency,other,CRISP,0.645,YES,0.645,1,1,26.519379844961236,S8
+0x43bdd849294c7864a44abde82242ce8bd443323208c056d7289d9a86feeb0a25,Will Mamdani get over 50% of the vote in the general mayoral election?,hard_currency,other,CRISP,0.57,YES,0.57,1,1,36.71929824561404,S8
+0x46dc560a09f07d8b6989bec851262e4df92ea0dd909631cf987afc88c8b8d729,Will MrBeast raise $40M for clean water by August 31?,hard_currency,other,CRISP,0.575,YES,0.575,1,1,35.95652173913044,S8
+0x536edf11e2966f157280f0def83fec67c215be63fe508a7128793dfc415d141b,Will RFK Jr. win <1% of the popular vote?,hard_currency,other,CRISP,0.705,YES,0.705,1,1,19.921985815602838,S8
+0x34e00873d02218d0b1a288fc579426bf8d85f6dd1d34c09d2c135c28d46932ec,Will Zohran Mamdani win by 10-20%?,hard_currency,other,CRISP,0.495,YES,0.495,0,0,-51.0,S8

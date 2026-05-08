@@ -1,20 +1,22 @@
 /**
- * Reads `docs/research/VERDICT.md` if present and parses out the research
- * verdict (A / B / C / pending) plus a 1-line summary for the /stats banner.
+ * Reads the most recent research verdict and parses it for the /stats banner.
  *
  * Server-side only — uses node:fs. Safe to call from a Server Component.
  *
- * If the file doesn't exist or doesn't contain a parseable verdict marker,
- * we return `{ verdict: "pending", summary: "Research session in progress" }`
- * so the banner can render a neutral state. The orchestrator writes
- * VERDICT.md at the end of the research session; until then everything is
- * pending.
+ * Lookup order (most recent first):
+ *   1. docs/research/v5/MASTER_VERDICT.md
+ *   2. docs/research/v4/MASTER_VERDICT.md
+ *   3. docs/research/v3/VERDICT_v3.md
+ *   4. docs/research/VERDICT.md (v1)
  *
- * Expected file shape (loose — we only need the marker):
+ * The first file that exists AND contains a parseable `Result: <X>` token
+ * wins. If none match, returns `pending`.
+ *
+ * Expected file shape (loose — only need the marker):
  *   # <Title>
  *   ...
  *   **Result: A** (or B / C)
- *   <one-paragraph summary, first line is taken as the banner summary>
+ *   <summary paragraph>
  *
  * Parsing is intentionally lenient: matches the first `Result: <X>` token
  * (case-insensitive, optional bold markers) anywhere in the file.
@@ -27,17 +29,35 @@ export type VerdictKind = "A" | "B" | "C" | "pending";
 export type Verdict = {
   verdict: VerdictKind;
   summary: string;
+  /** Which verdict file was read (for diagnostics). null if pending fallback. */
+  source?: string;
 };
 
-const VERDICT_PATH = join(process.cwd(), "docs", "research", "VERDICT.md");
+const VERDICT_PATHS = [
+  join(process.cwd(), "docs", "research", "v5", "MASTER_VERDICT.md"),
+  join(process.cwd(), "docs", "research", "v4", "MASTER_VERDICT.md"),
+  join(process.cwd(), "docs", "research", "v3", "VERDICT_v3.md"),
+  join(process.cwd(), "docs", "research", "VERDICT.md"),
+] as const;
 
 const RESULT_RE = /\*?\*?\s*Result\s*:\s*([ABC])\b/i;
 
 export async function loadVerdict(): Promise<Verdict> {
-  let raw: string;
-  try {
-    raw = await readFile(VERDICT_PATH, "utf-8");
-  } catch {
+  let raw: string | null = null;
+  let source: string | undefined;
+  for (const path of VERDICT_PATHS) {
+    try {
+      const candidate = await readFile(path, "utf-8");
+      if (RESULT_RE.test(candidate)) {
+        raw = candidate;
+        source = path;
+        break;
+      }
+    } catch {
+      // try next
+    }
+  }
+  if (raw === null) {
     return {
       verdict: "pending",
       summary: "Research session in progress",
@@ -66,7 +86,7 @@ export async function loadVerdict(): Promise<Verdict> {
         : `Verdict ${kind}`;
   }
 
-  return { verdict: kind, summary };
+  return { verdict: kind, summary, source };
 }
 
 function firstParagraphLine(text: string): string {

@@ -45,3 +45,22 @@
 - Cycle 2 PROTOCOL.md locked: 400 fresh markets graded, S5-S8 strategies including 2 placebos, 5 explicit pass criteria.
 
 ## [04:32] orchestrator | dispatching cycle 2 agent
+
+## [00:39] Cycle 2 Agent v5 | done
+- Phase 1: 400/400 graded; 79 AMBIGUOUS (19.8%) total — 40 in mid-band, 39 in tail-band. Zero overlap with cycle 1's 199. Halt-condition (AMBIGUOUS<50) does NOT fire.
+- Phase 2: N(S5) = 40; S5 Sharpe = 0.631, CI [0.297, 1.078]; S5 win rate 82.5% (33/40), mean PnL +$28.24/bet. S5 vs S7 placebo discrimination: diff=+$24.72, SE_combined=$8.01, ratio = **3.09×** (well above 1× threshold). S5 vs S8: diff=+$39.69, SE_combined=$12.11, ratio = 3.28×. S6 (NO mirror) Sharpe = -0.713 as expected.
+- Phase 3: **3 of 5** pass criteria met. Failures: (1) N(S5)=40 < 80 threshold; (2) Sharpe 0.631 < 0.75 threshold AND CI lower 0.297 < 0.30 by 0.003. Passes: (3,4) both placebo discriminations >3× SE; (5) S6 Sharpe negative. Direction is strongly supported (S5 win rate 82.5%, +27.5pp realized-vs-predicted gap on fresh sample, no Iran-cluster contamination — sub_tag='other' carries 25/40 bets at +$30.28/bet) but underpowered per locked thresholds.
+- Verdict on direction: **B** — directionally consistent with H1 (UMA YES-default bias confirmed on a fresh placebo-controlled sample) but pre-registered N≥80 and Sharpe≥0.75 thresholds not met because AMBIGUOUS-mid markets are only ~17% of the 240-mid sample. Expanding grading to ~480 mid-band markets would directly address it.
+
+## [05:00] orchestrator | cycle 2 done; cycle 3 orthogonal test pending
+- Cycle 2 verdict: B. AMBIGUOUS-mid YES (S5) shows 82.5% win rate / +$28.24/bet / Sharpe 0.631 [0.297, 1.078] BUT N=40 < 80 and Sharpe 0.631 < 0.75 (knife-edge: CI lower 0.297 misses 0.30 by 0.003).
+- Both placebos discriminate at >3 SE. Mirror (S6 NO) loses badly. Direction strongly supported but cell underpowered.
+- Cycle 3 = orthogonal test of Direction C (FRED GPR + GDELT external features). Tests "do off-Polymarket signals beat implied baseline?" — orthogonal to cycle 2's ambiguity-grade direction. Locked PROTOCOL_v5_c3 next.
+
+
+## [05:45] orchestrator | cycle 3 done; writing master verdict
+- Cycle 3 verdict: B. V3 (+GPR + sub_cat) is significantly WORSE than implied baseline (Δ +0.0057 log loss, CI [+0.0019, +0.0101]). V2 neutral.
+- Implied baseline AUC = 0.949 on geopolitics — Polymarket prices are extremely well-calibrated; no external feature room for improvement.
+- This corroborates v3 Hypothesis 2 (M1-M5 model variants all failed). Polymarket prices encode all public info regardless of category.
+- Now: master verdict synthesizing 3 cycles + Holm-Bonferroni correction + project-level recommendation.
+

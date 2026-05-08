@@ -1,0 +1,30 @@
+{
+  "pass_criteria": {
+    "1_N_S5_ge_80": {
+      "value": 40,
+      "threshold": 80,
+      "pass": false
+    },
+    "2_S5_sharpe": {
+      "sharpe": 0.6305763001510168,
+      "ci_lo": 0.2972847213275539,
+      "pass": false
+    },
+    "3_S5_vs_S7": {
+      "diff": 24.7163942122827,
+      "se_combined": 8.005194668148578,
+      "pass": true
+    },
+    "4_S5_vs_S8": {
+      "diff": 39.68518307102519,
+      "se_combined": 12.105823773462536,
+      "pass": true
+    },
+    "5_S6_sharpe_neg": {
+      "sharpe": -0.7125080364438765,
+      "pass": true
+    }
+  },
+  "n_passed": 3,
+  "verdict_A": false
+}

@@ -6,7 +6,14 @@
       "note": "in-context grading by Agent D directly reading question text; no external API calls"
     }
   },
-  "remaining_budget_calls": 301,
+  "cycle_2": {
+    "resolution_grading": {
+      "calls": 400,
+      "in_context_dollars_estimated": 0.0,
+      "note": "in-context grading by Cycle-2-Agent reading question text; pattern-augmented in-context inference, no external API calls"
+    }
+  },
+  "remaining_budget_calls": 0,
   "remaining_budget_dollars": 15.0,
-  "note": "in-context calls don't draw from external $15 budget"
+  "note": "in-context calls don't draw from external $15 budget; running tally is informational. Cumulative: 599 in-context grading calls across cycle 1 + cycle 2."
 }
