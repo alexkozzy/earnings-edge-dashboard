@@ -36,6 +36,48 @@ async function fetchSignal(id: string): Promise<{ signal: Signal; snapshot: Sign
   return { signal: sig, snapshot: data.snapshot };
 }
 
+type CompositeResponse = {
+  ticker: string;
+  sources: {
+    model: { probability: number | null; brier: number | null };
+    analyst: {
+      probability: number;
+      meta: {
+        source: "blended" | "prior-only";
+        prior: number;
+        skew: number;
+        n_recs: number;
+        period: string | null;
+        alpha: number;
+      };
+    };
+    options: { probability: number | null; reason?: string };
+  };
+  composite: {
+    composite: number | null;
+    variance: number;
+    high_uncertainty: boolean;
+    sources_used: string[];
+    sources_missing: string[];
+  };
+  composite_edge_pp: number | null;
+};
+
+async function fetchComposite(ticker: string): Promise<CompositeResponse | null> {
+  const h = await headers();
+  const proto = h.get("x-forwarded-proto") ?? "http";
+  const host = h.get("host") ?? "localhost:3000";
+  try {
+    const r = await fetch(`${proto}://${host}/api/composite/${encodeURIComponent(ticker)}`, {
+      next: { revalidate: 300 },
+    });
+    if (!r.ok) return null;
+    return (await r.json()) as CompositeResponse;
+  } catch {
+    return null;
+  }
+}
+
 export async function generateMetadata(
   { params }: { params: Promise<{ id: string }> },
 ): Promise<Metadata> {
@@ -83,6 +125,7 @@ export default async function SignalPage({
   const result = await fetchSignal(id);
   if (!result) notFound();
   const { signal, snapshot } = result;
+  const composite = await fetchComposite(signal.ticker);
   const fairProb = signal.historical_base_rate;
   const mktProb = signal.market_implied_prob;
   const edgeFavorsYes = fairProb > mktProb;
@@ -157,6 +200,8 @@ export default async function SignalPage({
         <Stat label="Earnings date" value={fmtDate(signal.earnings_date)} />
       </section>
 
+      {composite && <ThreeProbabilities data={composite} marketProb={mktProb} />}
+
       <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
         <h2 className="mb-3 text-xs uppercase tracking-wider text-[var(--muted)]">
           Quality flags
@@ -214,5 +259,123 @@ function Stat({ label, value }: { label: string; value: string }) {
       </div>
       <div className="mt-2 font-mono text-2xl font-semibold">{value}</div>
     </div>
+  );
+}
+
+function ProbPill({
+  label,
+  prob,
+  tooltip,
+  unavailable,
+}: {
+  label: string;
+  prob: number | null;
+  tooltip?: string;
+  unavailable?: string;
+}) {
+  return (
+    <div className="rounded-md border border-[var(--border)] bg-black/20 px-3 py-2" title={tooltip}>
+      <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">{label}</div>
+      <div className="mt-1 font-mono text-lg font-semibold">
+        {prob === null ? (
+          <span
+            className="text-[var(--muted)]"
+            title={unavailable ?? "Unavailable"}
+          >
+            —
+          </span>
+        ) : (
+          `${(prob * 100).toFixed(1)}%`
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ThreeProbabilities({
+  data,
+  marketProb,
+}: {
+  data: CompositeResponse;
+  marketProb: number;
+}) {
+  const { sources, composite, composite_edge_pp } = data;
+  const compositePct =
+    composite.composite === null ? "—" : `${(composite.composite * 100).toFixed(1)}%`;
+  const edgePct =
+    composite_edge_pp === null
+      ? "—"
+      : `${composite_edge_pp >= 0 ? "+" : ""}${composite_edge_pp.toFixed(2)}pp`;
+  const edgeColor =
+    composite_edge_pp !== null && composite_edge_pp > 0
+      ? "text-[var(--good)]"
+      : composite_edge_pp !== null && composite_edge_pp < 0
+        ? "text-[var(--bad)]"
+        : "text-[var(--muted)]";
+  const variancePct = `${(composite.variance * 100).toFixed(1)}pp`;
+
+  return (
+    <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
+      <div className="mb-3 flex items-baseline justify-between gap-2">
+        <h2 className="text-xs uppercase tracking-wider text-[var(--muted)]">
+          Three probabilities
+        </h2>
+        {composite.high_uncertainty && (
+          <span
+            className="rounded bg-[var(--warn)]/10 px-1.5 py-0.5 font-mono text-[10px] text-[var(--warn)]"
+            title={`Sources disagree by ${variancePct}, above the 15pp uncertainty threshold.`}
+          >
+            HIGH UNCERTAINTY ({variancePct})
+          </span>
+        )}
+      </div>
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+        <ProbPill
+          label="Model"
+          prob={sources.model.probability}
+          tooltip={`HGBM beat classifier. Brier ${sources.model.brier ?? "—"}.`}
+          unavailable="Scanner did not provide a model probability."
+        />
+        <ProbPill
+          label="Analyst"
+          prob={sources.analyst.probability}
+          tooltip={`Bayesian: sigmoid(logit(${(sources.analyst.meta.prior * 100).toFixed(0)}%) + ${sources.analyst.meta.alpha}·${sources.analyst.meta.skew}) over ${sources.analyst.meta.n_recs} Finnhub recommendations. Period ${sources.analyst.meta.period ?? "n/a"}.`}
+        />
+        <ProbPill
+          label="Options"
+          prob={sources.options.probability}
+          unavailable={sources.options.reason}
+        />
+        <div className="col-span-2 rounded-md border border-[var(--accent)]/40 bg-[var(--accent-soft)] px-3 py-2 sm:col-span-1">
+          <div className="text-[10px] uppercase tracking-wider text-[var(--accent)]">
+            Composite
+          </div>
+          <div className="mt-1 font-mono text-lg font-semibold text-[var(--accent)]">
+            {compositePct}
+          </div>
+        </div>
+        <div className="col-span-2 rounded-md border border-[var(--border)] bg-black/20 px-3 py-2 sm:col-span-1">
+          <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            Composite − Market
+          </div>
+          <div className={`mt-1 font-mono text-lg font-semibold ${edgeColor}`}>
+            {edgePct}
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-3 text-[11px] text-[var(--muted)]">
+        Sources used: <span className="font-mono">{composite.sources_used.join(", ") || "none"}</span>.
+        {composite.sources_missing.length > 0 && (
+          <>
+            {" "}
+            Missing:{" "}
+            <span className="font-mono">{composite.sources_missing.join(", ")}</span>.
+          </>
+        )}{" "}
+        Market is at {(marketProb * 100).toFixed(1)}%.
+      </p>
+    </section>
   );
 }
