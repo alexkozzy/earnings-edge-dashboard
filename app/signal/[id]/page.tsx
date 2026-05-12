@@ -210,6 +210,49 @@ export default async function SignalPage({
         <Stat label="Earnings date" value={fmtDate(signal.earnings_date)} />
       </section>
 
+      {(signal.spread_pp !== null && signal.spread_pp !== undefined) && (
+        <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
+          <h2 className="mb-3 text-xs uppercase tracking-wider text-[var(--muted)]">
+            Execution cost
+          </h2>
+          <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+            <div>
+              <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                Bid/ask spread
+              </div>
+              <div className="mt-1 font-mono">{fmtPp(signal.spread_pp)}</div>
+            </div>
+            <div>
+              <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                Raw edge
+              </div>
+              <div className="mt-1 font-mono">{fmtPp(signal.edge_magnitude_pp)}</div>
+            </div>
+            <div>
+              <div
+                className="text-[10px] uppercase tracking-wider text-[var(--accent)]"
+                title="Edge after paying the spread to enter. If |raw edge| ≤ spread, this collapses to 0 — the trade is structurally unprofitable at displayed prices."
+              >
+                Tradeable edge (net of spread)
+              </div>
+              <div
+                className={`mt-1 font-mono ${
+                  signal.tradeable_edge_pp !== null &&
+                  signal.tradeable_edge_pp !== undefined &&
+                  Math.abs(signal.tradeable_edge_pp) >= 1
+                    ? "text-[var(--accent)] font-semibold"
+                    : "text-[var(--muted)]"
+                }`}
+              >
+                {signal.tradeable_edge_pp !== null && signal.tradeable_edge_pp !== undefined
+                  ? fmtPp(signal.tradeable_edge_pp)
+                  : "—"}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {composite && <ThreeProbabilities data={composite} marketProb={mktProb} />}
 
       <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">

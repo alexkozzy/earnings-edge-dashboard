@@ -75,6 +75,22 @@ export const SignalSchema = z.object({
    */
   edge_magnitude_pp: z.number(),
 
+  /**
+   * Polymarket bid/ask spread at signal time, in percentage points.
+   * Optional — older snapshots don't include it. When present, the UI
+   * should show it next to edge so the user can see how much of the
+   * raw edge gets eaten by execution.
+   */
+  spread_pp: z.number().nullable().optional(),
+
+  /**
+   * Edge net of spread cost: sign(edge) * max(0, |edge_pp| - spread_pp).
+   * If spread is wider than the edge, this collapses to 0 — meaning the
+   * trade pays the bid/ask cost and recovers nothing. The most useful
+   * single number for ranking actually-tradeable signals.
+   */
+  tradeable_edge_pp: z.number().nullable().optional(),
+
   /** True if the scanner believes the macro/vol regime is stable enough to trust the base rate. */
   regime_stable: z.boolean(),
 

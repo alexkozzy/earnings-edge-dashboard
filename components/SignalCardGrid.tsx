@@ -128,7 +128,13 @@ function fmtShortDate(iso: string): string {
 
 /* ----------------------------- UI atoms ----------------------------- */
 
-function EdgeBadge({ pp }: { pp: number }) {
+function EdgeBadge({
+  pp,
+  tradeablePp,
+}: {
+  pp: number;
+  tradeablePp: number | null | undefined;
+}) {
   const abs = Math.abs(pp);
   if (abs < 5) return null;
   const cls =
@@ -137,9 +143,17 @@ function EdgeBadge({ pp }: { pp: number }) {
       : abs >= 10
         ? "text-[var(--warn)] border-[var(--warn)]/40 bg-[var(--warn)]/10"
         : "text-[var(--muted)] border-[var(--border)] bg-white/5";
+  // When net-of-spread is provided and ≤0, the edge isn't tradeable —
+  // dim the badge to flag that.
+  const dim = tradeablePp !== null && tradeablePp !== undefined && Math.abs(tradeablePp) < 1;
+  const tip =
+    tradeablePp === null || tradeablePp === undefined
+      ? `Edge ${fmtPp(pp)} (spread unknown)`
+      : `Edge ${fmtPp(pp)} · net of spread ${fmtPp(tradeablePp)}`;
   return (
     <span
-      className={`rounded-md border px-1.5 py-0.5 text-[10px] font-mono font-semibold tabular-nums ${cls}`}
+      title={tip}
+      className={`rounded-md border px-1.5 py-0.5 text-[10px] font-mono font-semibold tabular-nums ${cls} ${dim ? "opacity-40" : ""}`}
     >
       {fmtPp(pp)}
     </span>
@@ -210,7 +224,10 @@ function CardRow({ signal, showDivider }: { signal: Signal; showDivider: boolean
                 <>Hist {fmtPct(baseRate)}</>
               )}
             </span>
-            <EdgeBadge pp={signal.edge_magnitude_pp} />
+            <EdgeBadge
+              pp={signal.edge_magnitude_pp}
+              tradeablePp={signal.tradeable_edge_pp ?? null}
+            />
           </div>
         </div>
       </div>
