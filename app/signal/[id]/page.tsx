@@ -122,7 +122,16 @@ export default async function SignalPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+  const { id: rawId } = await params;
+  // Next.js 16 in some configurations doesn't auto-decode %3A in dynamic
+  // route segments; decoding defensively here so the id matches what the
+  // scanner wrote into signals_latest.json.
+  let id: string;
+  try {
+    id = decodeURIComponent(rawId);
+  } catch {
+    id = rawId;
+  }
   const result = await fetchSignal(id);
   if (!result) notFound();
   const { signal, snapshot } = result;
