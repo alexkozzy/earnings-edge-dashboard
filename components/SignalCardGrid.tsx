@@ -198,17 +198,16 @@ function CardRow({ signal, showDivider }: { signal: Signal; showDivider: boolean
           </div>
           <div className="mt-0.5 flex items-baseline justify-between gap-2 text-[11px] text-[var(--muted)]">
             <span className="truncate">
-              {fmtShortDate(signal.earnings_date)} · Hist {fmtPct(baseRate)}
-              {modelProb !== null && (
-                <>
-                  {" · "}
-                  <span
-                    className="text-[var(--accent)]"
-                    title="Model-predicted probability"
-                  >
-                    Model {fmtPct(modelProb)}
-                  </span>
-                </>
+              {fmtShortDate(signal.earnings_date)} ·{" "}
+              {modelProb !== null ? (
+                <span
+                  className="text-[var(--accent)]"
+                  title={`Model-predicted probability of beat. Empirical base rate: ${fmtPct(baseRate)}.`}
+                >
+                  Model {fmtPct(modelProb)}
+                </span>
+              ) : (
+                <>Hist {fmtPct(baseRate)}</>
               )}
             </span>
             <EdgeBadge pp={signal.edge_magnitude_pp} />
