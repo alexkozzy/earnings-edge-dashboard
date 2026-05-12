@@ -166,6 +166,7 @@ function TierEdgeIndicator({ tier }: { tier: Signal["tier"] }) {
 function CardRow({ signal, showDivider }: { signal: Signal; showDivider: boolean }) {
   const mktProb = signal.market_implied_prob;
   const baseRate = signal.historical_base_rate;
+  const modelProb = signal.model_predicted_prob ?? null;
   // Dot color: which side our model says is cheap (i.e. the bet side).
   const dotClass =
     signal.direction === "YES"
@@ -198,6 +199,17 @@ function CardRow({ signal, showDivider }: { signal: Signal; showDivider: boolean
           <div className="mt-0.5 flex items-baseline justify-between gap-2 text-[11px] text-[var(--muted)]">
             <span className="truncate">
               {fmtShortDate(signal.earnings_date)} · Hist {fmtPct(baseRate)}
+              {modelProb !== null && (
+                <>
+                  {" · "}
+                  <span
+                    className="text-[var(--accent)]"
+                    title="Model-predicted probability"
+                  >
+                    Model {fmtPct(modelProb)}
+                  </span>
+                </>
+              )}
             </span>
             <EdgeBadge pp={signal.edge_magnitude_pp} />
           </div>
