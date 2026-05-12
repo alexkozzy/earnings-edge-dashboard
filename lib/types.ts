@@ -51,6 +51,25 @@ export const SignalSchema = z.object({
   historical_base_rate: z.number().min(0).max(1),
 
   /**
+   * Model-predicted probability of the YES outcome, 0..1. Optional.
+   * Populated by scanners that run a trained classifier (e.g. the
+   * massive-earnings-edge HGBM beat predictor). When present, the UI
+   * should display it alongside `historical_base_rate` so the reader
+   * can see both the empirical baseline and the model's view.
+   *
+   * Schema rule (CLAUDE.md): additive only. Optional so older snapshots
+   * without this field still validate.
+   */
+  model_predicted_prob: z.number().min(0).max(1).nullable().optional(),
+
+  /**
+   * Calibration of the model that produced `model_predicted_prob`, measured
+   * as out-of-fold Brier score on a walk-forward CV. Lower is better. Used
+   * as the inverse weight in any future composite probability blend. Optional.
+   */
+  model_brier: z.number().min(0).max(1).nullable().optional(),
+
+  /**
    * Edge magnitude in percentage points (NOT bps). E.g. 12.5 means the
    * scanner thinks the fair probability is 12.5pp away from the market.
    */

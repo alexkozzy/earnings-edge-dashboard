@@ -25,8 +25,13 @@ function fmtDate(iso: string): string {
 }
 
 export function SignalCard({ signal }: { signal: Signal }) {
-  const fairProb = signal.historical_base_rate;
+  const histProb = signal.historical_base_rate;
+  const modelProb = signal.model_predicted_prob ?? null;
   const mktProb = signal.market_implied_prob;
+  // If the scanner provided a model probability, that's the canonical "fair"
+  // value to colour the directional badge against; otherwise fall back to
+  // the empirical historical base rate.
+  const fairProb = modelProb ?? histProb;
   const edgeFavorsYes = fairProb > mktProb;
   const directionMatchesEdge =
     (signal.direction === "YES" && edgeFavorsYes) ||
@@ -96,7 +101,11 @@ export function SignalCard({ signal }: { signal: Signal }) {
         <div className="mt-2 text-xs text-[var(--muted)]">{signal.note}</div>
       )}
 
-      <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
+      <div
+        className={`mt-3 grid gap-3 text-xs ${
+          modelProb !== null ? "grid-cols-3" : "grid-cols-2"
+        }`}
+      >
         <div>
           <div className="uppercase tracking-wider text-[var(--muted)]">
             market
@@ -107,8 +116,19 @@ export function SignalCard({ signal }: { signal: Signal }) {
           <div className="uppercase tracking-wider text-[var(--muted)]">
             base rate
           </div>
-          <div className="font-mono">{fmtPct(fairProb)}</div>
+          <div className="font-mono">{fmtPct(histProb)}</div>
         </div>
+        {modelProb !== null && (
+          <div>
+            <div
+              className="uppercase tracking-wider text-[var(--accent)]"
+              title="Model-predicted probability (e.g. HGBM beat classifier)"
+            >
+              model
+            </div>
+            <div className="font-mono">{fmtPct(modelProb)}</div>
+          </div>
+        )}
       </div>
 
       {(!signal.regime_stable || signal.consensus_recently_revised) && (

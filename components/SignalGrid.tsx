@@ -91,6 +91,12 @@ export function SignalGrid({ signals }: { signals: Signal[] }) {
               <th className="px-4 py-2 font-medium">Market question</th>
               <th className="px-4 py-2 text-right font-medium">Mkt prob</th>
               <th className="px-4 py-2 text-right font-medium">Base rate</th>
+              <th
+                className="px-4 py-2 text-right font-medium text-[var(--accent)]"
+                title="Model-predicted probability (when scanner provides one)"
+              >
+                Model
+              </th>
               <th className="px-4 py-2 text-right font-medium">Edge</th>
               <th className="px-4 py-2 text-right font-medium">Side</th>
               <th className="px-4 py-2 text-right font-medium">Earnings</th>

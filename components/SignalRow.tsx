@@ -24,8 +24,12 @@ function fmtDate(iso: string): string {
 }
 
 export function SignalRow({ signal }: { signal: Signal }) {
-  const fairProb = signal.historical_base_rate;
+  const histProb = signal.historical_base_rate;
+  const modelProb = signal.model_predicted_prob ?? null;
   const mktProb = signal.market_implied_prob;
+  // Prefer model probability when scanner provides one; fall back to
+  // historical base rate for the directional-colour calculation.
+  const fairProb = modelProb ?? histProb;
   const edgeFavorsYes = fairProb > mktProb;
   const directionMatchesEdge =
     (signal.direction === "YES" && edgeFavorsYes) ||
@@ -72,7 +76,14 @@ export function SignalRow({ signal }: { signal: Signal }) {
         {fmtPct(mktProb)}
       </td>
       <td className="px-4 py-3 text-right font-mono text-sm">
-        {fmtPct(fairProb)}
+        {fmtPct(histProb)}
+      </td>
+      <td className="px-4 py-3 text-right font-mono text-sm">
+        {modelProb !== null ? (
+          <span className="text-[var(--accent)]">{fmtPct(modelProb)}</span>
+        ) : (
+          <span className="text-[var(--muted)]">—</span>
+        )}
       </td>
       <td
         className={`px-4 py-3 text-right font-mono text-sm font-semibold ${
