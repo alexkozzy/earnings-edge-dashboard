@@ -13,11 +13,11 @@
  * Starter not configured). The composite blends model + analyst with the
  * options leg added in once a paid feed is wired.
  */
-import { headers } from "next/headers";
 import { fetchJsonCached, requireEnv } from "@/lib/proxy";
 import { computeAnalystProb, type RecommendationRow } from "@/lib/probabilities/analystConsensus";
 import { computeComposite } from "@/lib/probabilities/composite";
-import type { Signal, SignalsSnapshot } from "@/lib/types";
+import { loadSignalsSnapshot } from "@/lib/snapshots";
+import type { Signal } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
@@ -25,19 +25,11 @@ const COMPOSITE_TTL_MS = 5 * 60_000;
 const DEFAULT_NON_MODEL_BRIER = 0.20;
 
 async function findSignal(ticker: string): Promise<Signal | null> {
-  const h = await headers();
-  const proto = h.get("x-forwarded-proto") ?? "http";
-  const host = h.get("host") ?? "localhost:3000";
-  let res: Response;
-  try {
-    res = await fetch(`${proto}://${host}/api/signals`, { cache: "no-store" });
-  } catch {
-    return null;
-  }
-  if (!res.ok) return null;
-  const data = (await res.json()) as { snapshot: SignalsSnapshot };
+  // Import the snapshot directly — avoids server-to-server fetch.
+  const result = await loadSignalsSnapshot();
+  if (!result.ok) return null;
   const t = ticker.toUpperCase();
-  return data.snapshot.signals.find((s) => s.ticker === t) ?? null;
+  return result.value.signals.find((s) => s.ticker === t) ?? null;
 }
 
 async function fetchRecommendations(ticker: string): Promise<RecommendationRow[] | null> {
