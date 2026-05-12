@@ -13,19 +13,27 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import type { Metadata } from "next";
 import type { Signal, SignalsSnapshot } from "@/lib/types";
-import { loadSignalsSnapshot } from "@/lib/snapshots";
 
 export const dynamic = "force-dynamic";
 
 async function fetchSignal(id: string): Promise<{ signal: Signal; snapshot: SignalsSnapshot } | null> {
-  // Import the snapshot loader directly — avoids a server-to-server fetch
-  // round-trip and the Next.js fetch-cache pitfalls that were breaking
-  // the dynamic page after the Phase 5 deploy.
-  const result = await loadSignalsSnapshot();
-  if (!result.ok) return null;
-  const sig = result.value.signals.find((s) => s.id === id);
+  // Server-to-server fetch with cache: "no-store" — directly importing
+  // loadSignalsSnapshot doesn't work across serverless functions because
+  // each function has its own in-memory cache state.
+  const h = await headers();
+  const proto = h.get("x-forwarded-proto") ?? "http";
+  const host = h.get("host") ?? "localhost:3000";
+  let res: Response;
+  try {
+    res = await fetch(`${proto}://${host}/api/signals`, { cache: "no-store" });
+  } catch {
+    return null;
+  }
+  if (!res.ok) return null;
+  const data = (await res.json()) as { snapshot: SignalsSnapshot };
+  const sig = data.snapshot.signals.find((s) => s.id === id);
   if (!sig) return null;
-  return { signal: sig, snapshot: result.value };
+  return { signal: sig, snapshot: data.snapshot };
 }
 
 type CompositeResponse = {
