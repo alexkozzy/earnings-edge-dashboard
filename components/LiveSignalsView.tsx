@@ -9,6 +9,7 @@ import { SignalGridSkeleton } from "./SignalGridSkeleton";
 import { EdgeChart } from "./EdgeChart";
 import { DataFreshness } from "./DataFreshness";
 import { SignalControls } from "./SignalControls";
+import { EarningsCalendar } from "./EarningsCalendar";
 import { useState } from "react";
 
 type ApiResponse = {
@@ -21,8 +22,9 @@ export function LiveSignalsView({
 }: {
   initialData: ApiResponse | null;
 }) {
-  // "cards" is the new v1.1 default; "table" is the dense power-user view.
-  const [view, setView] = useState<"cards" | "table">("cards");
+  // "calendar" is the new Mon-Fri view with EPS estimates + pre/post buckets,
+  // "cards" is the v1.1 Polymarket-clone grid, "table" is the dense power-user view.
+  const [view, setView] = useState<"calendar" | "cards" | "table">("calendar");
 
   const { data, error, isLoading } = useSWR<ApiResponse>(
     "/api/signals",
@@ -107,6 +109,18 @@ export function LiveSignalsView({
         <div className="flex items-center gap-1 self-start rounded-md border border-[var(--border)] bg-[var(--panel)] p-0.5 text-xs sm:self-center">
           <button
             type="button"
+            onClick={() => setView("calendar")}
+            className={`rounded px-2 py-1 transition-colors ${
+              view === "calendar"
+                ? "bg-[var(--accent-soft)] text-[var(--accent)]"
+                : "text-[var(--muted)] hover:text-[var(--foreground)]"
+            }`}
+            aria-pressed={view === "calendar"}
+          >
+            Calendar
+          </button>
+          <button
+            type="button"
             onClick={() => setView("cards")}
             className={`rounded px-2 py-1 transition-colors ${
               view === "cards"
@@ -131,7 +145,9 @@ export function LiveSignalsView({
           </button>
         </div>
       </div>
-      {view === "cards" ? (
+      {view === "calendar" ? (
+        <EarningsCalendar signals={snapshot.signals} />
+      ) : view === "cards" ? (
         <SignalCardGrid signals={snapshot.signals} />
       ) : (
         <SignalGrid signals={snapshot.signals} />

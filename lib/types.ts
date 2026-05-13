@@ -91,6 +91,24 @@ export const SignalSchema = z.object({
    */
   tradeable_edge_pp: z.number().nullable().optional(),
 
+  /**
+   * Consensus EPS estimate for this quarter (yfinance's `EPS Estimate`
+   * for the upcoming earnings_dates row). Optional. Displayed on the
+   * Calendar view as "$X.XX EPS" so the reader can see the bar the
+   * company has to clear.
+   */
+  estimate_eps: z.number().nullable().optional(),
+
+  /**
+   * Reporting time relative to the trading session:
+   *   - "pre"     before regular session open (BMO / pre-market)
+   *   - "post"    after regular session close (AMC / post-market)
+   *   - "during"  during the regular session (rare for US listed)
+   * Derived from yfinance's earnings timestamp converted to NY local time.
+   * Optional — older snapshots don't include it.
+   */
+  report_time: z.enum(["pre", "post", "during"]).nullable().optional(),
+
   /** True if the scanner believes the macro/vol regime is stable enough to trust the base rate. */
   regime_stable: z.boolean(),
 
