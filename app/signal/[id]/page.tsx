@@ -278,6 +278,11 @@ export default async function SignalPage({
         </section>
       )}
 
+      <EntryMechanicsBlock
+        side={signal.direction}
+        marketYes={signal.market_implied_prob}
+      />
+
       <SizingBlock
         kelly={kelly}
         bankroll={bankroll}
@@ -333,6 +338,76 @@ export default async function SignalPage({
         recorded {signal.recorded_at} · snapshot {snapshot.generated_at}
       </footer>
     </div>
+  );
+}
+
+function EntryMechanicsBlock({
+  side,
+  marketYes,
+}: {
+  side: "YES" | "NO";
+  marketYes: number;
+}) {
+  // The user buys at `entry` per share, collects $1 on win, loses `entry` on loss.
+  //   YES: entry = market_yes_price, breakeven = market_yes
+  //   NO:  entry = 1 - market_yes,   breakeven = 1 - entry = market_yes
+  const entry = side === "YES" ? marketYes : 1 - marketYes;
+  const breakeven = 1 - entry;
+  const fmtUsd = (n: number) =>
+    `$${n.toLocaleString(undefined, { minimumFractionDigits: 3, maximumFractionDigits: 3 })}`;
+  const sideBadge =
+    side === "YES"
+      ? "bg-[#4ade8020] text-[var(--good)]"
+      : "bg-[#f8717120] text-[var(--bad)]";
+
+  return (
+    <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
+      <h2 className="mb-3 text-xs uppercase tracking-wider text-[var(--muted)]">
+        Entry mechanics
+      </h2>
+      <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-4">
+        <div>
+          <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            Side
+          </div>
+          <div className="mt-1">
+            <span className={`rounded px-2 py-0.5 font-mono text-sm ${sideBadge}`}>
+              {side}
+            </span>
+          </div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            Entry price
+          </div>
+          <div className="mt-1 font-mono">{fmtUsd(entry)}</div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            Max payoff / Max loss
+          </div>
+          <div className="mt-1 font-mono">
+            <span className="text-[var(--good)]">$1.000</span>
+            <span className="text-[var(--muted)]"> / </span>
+            <span className="text-[var(--bad)]">{fmtUsd(entry)}</span>
+          </div>
+        </div>
+        <div>
+          <div
+            className="text-[10px] uppercase tracking-wider text-[var(--muted)]"
+            title="Probability above which this side loses money in expectation."
+          >
+            Break-even prob ({side === "NO" ? "YES outcome" : "YES outcome"})
+          </div>
+          <div className="mt-1 font-mono">{(breakeven * 100).toFixed(1)}%</div>
+        </div>
+      </div>
+      <p className="mt-3 text-[11px] text-[var(--muted)]">
+        Buy {side} at {fmtUsd(entry)} per contract — max payoff $1.000, max
+        loss {fmtUsd(entry)}, break-even at {(breakeven * 100).toFixed(1)}%
+        YES.
+      </p>
+    </section>
   );
 }
 
