@@ -48,11 +48,15 @@ export function parseLiquidity(signal: Signal): number | null {
 }
 
 /**
- * True when the signal has either an explicit THIN tag in the note or
- * a parsed liquidity below the THIN threshold.
+ * True when the signal's parsed top-of-book depth is below THIN_LIQUIDITY_USD.
+ *
+ * NB: the scanner also stamps a literal "THIN" word into the note string,
+ * but it uses a higher internal threshold (e.g. tagging $476 markets as
+ * thin for some question types). We ignore that tag here and apply the
+ * dashboard's own consistent <$100 rule — keeps the badge's meaning
+ * predictable for users.
  */
 export function isThin(signal: Signal): boolean {
-  if (signal.note && /\bTHIN\b/i.test(signal.note)) return true;
   const liq = parseLiquidity(signal);
   if (liq === null) return false;
   return liq < THIN_LIQUIDITY_USD;
