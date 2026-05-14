@@ -153,6 +153,40 @@ f_rec  = clamp(0.25 * f_full, 0, 0.05)`}
         </p>
       </Section>
 
+      <Section title="Backtest — v1.0 walk-forward, N = 566">
+        <p>
+          The first end-to-end backtest is live. Walk-forward by quarter
+          across the historical earnings panel, comparing per-leg and
+          composite Brier scores plus a hypothetical paper-P&L curve.
+          Full report (numbers, reliability diagram, P&L chart):
+        </p>
+        <p>
+          <a
+            href="/backtest-v2.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--accent)] hover:underline"
+          >
+            → backtest-v2.html (preliminary)
+          </a>
+        </p>
+        <p>
+          <strong>Headline result:</strong> composite v1 (model + analyst)
+          Brier <span className="font-mono">0.1373</span>; adding a
+          realized-vol proxy for the options leg makes it{" "}
+          <em>worse</em> at <span className="font-mono">0.1469</span>. The
+          Phase A4 acceptance bar (Δ Brier ≤ −0.01 favoring v2) is{" "}
+          <strong>not cleared.</strong> Production stays on composite v1.
+        </p>
+        <p className="text-sm text-[var(--muted)]">
+          Honest caveat: realized vol is a known-weak proxy for pre-earnings
+          IV. The negative result above is evidence that <em>this proxy</em>{" "}
+          doesn't help — not that real implied vol won't. The proper v2
+          test (with historical option chains from a paid feed) is gated
+          per <code className="font-mono">docs/options-data-audit.md</code>.
+        </p>
+      </Section>
+
       <Section title="Known limitations">
         <ol className="ml-5 list-decimal space-y-2">
           <li>
@@ -164,14 +198,18 @@ f_rec  = clamp(0.25 * f_full, 0, 0.05)`}
             relationship has been historically.
           </li>
           <li>
-            <strong>Options leg unwired.</strong> The options leg is not yet
-            wired (Polygon unconfigured). The composite is running on a
-            2-of-3 blend.
+            <strong>Options leg live but uncalibrated.</strong> The options
+            leg is now populated from yfinance straddle prices (Phase A2);
+            the composite uses it via the existing 1/brier weighting. It is{" "}
+            <em>not</em> validated by backtest — historical option chains
+            are gated behind paid data, so the backtest above uses a
+            realized-vol proxy and reports a negative result for it.
           </li>
           <li>
-            <strong>Calibration N=0.</strong> Calibration is N=0 settled.
-            Reported edges are unverified until <code className="font-mono">/stats</code>{" "}
-            populates.
+            <strong>Calibration N=0.</strong> Calibration on{" "}
+            <code className="font-mono">/stats</code> is N=0 settled.
+            Reported edges are unverified by live paper bets until the
+            paper engine accumulates a settled history.
           </li>
         </ol>
       </Section>
