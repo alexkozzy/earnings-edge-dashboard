@@ -123,6 +123,45 @@ export const SignalSchema = z.object({
 
   /** Optional human-readable note from the scanner (e.g. "thin volume"). */
   note: z.string().nullable().optional(),
+
+  /* ----- Options leg (Phase A2, additive) ----------------------------
+   * Scanner-supplied options-implied probability + diagnostics from
+   * the ATM straddle. Populated when yfinance returns a usable chain
+   * for the ticker; absent on tickers without listed options (e.g.
+   * microcaps). All fields are optional/nullable so older snapshots
+   * still validate.
+   * ------------------------------------------------------------------- */
+
+  /** P(EPS beats Polymarket threshold) derived from straddle implied move. */
+  options_predicted_prob: z.number().min(0).max(1).nullable().optional(),
+  /** Straddle-implied stock move as fraction-of-spot (0.045 = 4.5%). */
+  options_implied_move_pct: z.number().nonnegative().nullable().optional(),
+  /** Average call+put IV at ATM, annualized (0.50 = 50%). */
+  options_atm_iv: z.number().nonnegative().nullable().optional(),
+  /** ATM strike actually used for the straddle. */
+  options_atm_strike: z.number().positive().nullable().optional(),
+  /** ISO date of the option expiry used (earliest ≥ earnings date). */
+  options_expiry_used: z.string().nullable().optional(),
+  /** Polymarket-question EPS threshold, parsed from the slug. */
+  options_threshold_eps: z.number().nullable().optional(),
+  /** Stock-move % required to clear the EPS threshold per sensitivity. */
+  options_required_stock_move_pct: z.number().nullable().optional(),
+  /** Per-ticker historical |return|/|surprise| sensitivity ratio. */
+  options_sensitivity_k: z.number().nullable().optional(),
+  /** "panel" or "universe_median_fallback". */
+  options_sensitivity_source: z.string().nullable().optional(),
+  /** ATM straddle greeks (delta = call+put avg; gamma/theta/vega per leg). */
+  options_atm_greeks: z
+    .object({
+      delta: z.number(),
+      gamma: z.number(),
+      theta: z.number(),
+      vega: z.number(),
+    })
+    .nullable()
+    .optional(),
+  /** "ok" or a short diagnostic when the options leg could not size. */
+  options_reason: z.string().nullable().optional(),
 });
 
 export type Signal = z.infer<typeof SignalSchema>;

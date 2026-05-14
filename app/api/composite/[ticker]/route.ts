@@ -9,9 +9,12 @@
  * so a 36-ticker universe pulled once every 5 min = 7.2 calls/min worst
  * case — well under the cap.
  *
- * Currently the options-implied probability is `null` (Polygon Options
- * Starter not configured). The composite blends model + analyst with the
- * options leg added in once a paid feed is wired.
+ * Phase A2: the options-implied probability now comes from the snapshot
+ * itself (scanner computes it from yfinance + Black-Scholes greeks; see
+ * massive-earnings-edge/docs/options-leg-methodology.md). When the snapshot
+ * carries `options_predicted_prob`, the leg is populated and the composite
+ * uses it. When absent (older snapshot or microcap with no listed options),
+ * the composite falls back to a 2-of-3 blend exactly as before.
  */
 import { fetchJsonCached, requireEnv } from "@/lib/proxy";
 import { computeAnalystProb, type RecommendationRow } from "@/lib/probabilities/analystConsensus";
@@ -65,6 +68,15 @@ export async function GET(
   const prior = signal.historical_base_rate;
   const analyst = computeAnalystProb(prior, recs);
 
+  const optionsProb =
+    signal.options_predicted_prob !== null &&
+    signal.options_predicted_prob !== undefined
+      ? signal.options_predicted_prob
+      : null;
+  const optionsReason =
+    signal.options_reason ??
+    "Options leg not present on this snapshot (scanner produced no chain for this ticker).";
+
   const composite = computeComposite(
     {
       probability: signal.model_predicted_prob ?? null,
@@ -77,7 +89,7 @@ export async function GET(
       label: "analyst",
     },
     {
-      probability: null, // options leg — requires paid Polygon options
+      probability: optionsProb,
       brier_or_prior: DEFAULT_NON_MODEL_BRIER,
       label: "options",
     },
@@ -95,8 +107,17 @@ export async function GET(
       },
       analyst,
       options: {
-        probability: null,
-        reason: "Polygon Options Starter ($75/mo) not configured. The /sources page shows the polygon provider as unconfigured.",
+        probability: optionsProb,
+        reason: optionsProb === null ? optionsReason : undefined,
+        implied_move_pct: signal.options_implied_move_pct ?? null,
+        atm_iv: signal.options_atm_iv ?? null,
+        atm_strike: signal.options_atm_strike ?? null,
+        expiry_used: signal.options_expiry_used ?? null,
+        threshold_eps: signal.options_threshold_eps ?? null,
+        required_stock_move_pct: signal.options_required_stock_move_pct ?? null,
+        sensitivity_k: signal.options_sensitivity_k ?? null,
+        sensitivity_source: signal.options_sensitivity_source ?? null,
+        greeks: signal.options_atm_greeks ?? null,
       },
     },
     composite,
