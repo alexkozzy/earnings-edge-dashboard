@@ -13,6 +13,7 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import type { Metadata } from "next";
 import type { Signal, SignalsSnapshot } from "@/lib/types";
+import { computeKelly, parseBankroll, type KellyResult } from "@/lib/kelly";
 
 export const dynamic = "force-dynamic";
 
@@ -119,8 +120,11 @@ const TIER_COLOR: Record<Signal["tier"], string> = {
 
 export default async function SignalPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  // Next 16: searchParams is a Promise. We read `?bankroll=N` for sizing.
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { id: rawId } = await params;
   // Next.js 16 in some configurations doesn't auto-decode %3A in dynamic
@@ -142,6 +146,27 @@ export default async function SignalPage({
   const directionMatchesEdge =
     (signal.direction === "YES" && edgeFavorsYes) ||
     (signal.direction === "NO" && !edgeFavorsYes);
+
+  // Kelly inputs — prefer composite, fall back to model, fall back to base rate.
+  const sp = await searchParams;
+  const bankrollRaw = Array.isArray(sp.bankroll) ? sp.bankroll[0] : sp.bankroll;
+  const bankroll = parseBankroll(bankrollRaw);
+  const pYesForKelly =
+    composite?.composite.composite ??
+    signal.model_predicted_prob ??
+    signal.historical_base_rate;
+  const pYesSource: "composite" | "model" | "base_rate" =
+    composite?.composite.composite !== null && composite?.composite.composite !== undefined
+      ? "composite"
+      : signal.model_predicted_prob !== null && signal.model_predicted_prob !== undefined
+        ? "model"
+        : "base_rate";
+  const kelly = computeKelly({
+    side: signal.direction,
+    marketYes: signal.market_implied_prob,
+    pYes: pYesForKelly,
+    tradeableEdgePp: signal.tradeable_edge_pp ?? null,
+  });
 
   return (
     <div className="flex flex-col gap-6">
@@ -253,6 +278,13 @@ export default async function SignalPage({
         </section>
       )}
 
+      <SizingBlock
+        kelly={kelly}
+        bankroll={bankroll}
+        pYesSource={pYesSource}
+        pYesValue={pYesForKelly}
+      />
+
       {composite && <ThreeProbabilities data={composite} marketProb={mktProb} />}
 
       <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
@@ -301,6 +333,82 @@ export default async function SignalPage({
         recorded {signal.recorded_at} · snapshot {snapshot.generated_at}
       </footer>
     </div>
+  );
+}
+
+function SizingBlock({
+  kelly,
+  bankroll,
+  pYesSource,
+  pYesValue,
+}: {
+  kelly: KellyResult;
+  bankroll: number;
+  pYesSource: "composite" | "model" | "base_rate";
+  pYesValue: number;
+}) {
+  const sized = kelly.reason === "sized";
+  const stake = bankroll * kelly.fRec;
+  const fmtUsd = (n: number) =>
+    `$${n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const sourceLabel =
+    pYesSource === "composite"
+      ? "composite probability"
+      : pYesSource === "model"
+        ? "model probability (composite unavailable)"
+        : "historical base rate (model + composite unavailable)";
+
+  return (
+    <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
+      <h2 className="mb-3 text-xs uppercase tracking-wider text-[var(--muted)]">
+        Sizing
+      </h2>
+      {!sized ? (
+        <div className="font-mono text-sm text-[var(--muted)]">
+          {kelly.message}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+          <div>
+            <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+              Recommended bankroll fraction
+            </div>
+            <div className="mt-1 font-mono text-[var(--accent)]">
+              {(kelly.fRec * 100).toFixed(2)}%
+            </div>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+              $ stake on ${bankroll.toLocaleString()} bankroll
+            </div>
+            <div className="mt-1 font-mono text-[var(--accent)] font-semibold">
+              {fmtUsd(stake)}
+            </div>
+          </div>
+          <div>
+            <div
+              className="text-[10px] uppercase tracking-wider text-[var(--muted)]"
+              title="Full Kelly = (p − entry) / (1 − entry). Shown unclamped."
+            >
+              Full Kelly (uncapped)
+            </div>
+            <div className="mt-1 font-mono text-[var(--muted)]">
+              {(kelly.fFull * 100).toFixed(2)}%
+            </div>
+          </div>
+        </div>
+      )}
+      <p className="mt-3 text-[11px] text-[var(--muted)]">
+        0.25-Kelly to compensate for model uncertainty; capped at 5% of
+        bankroll. Bankroll defaults to $1,000 — override with{" "}
+        <code className="font-mono">?bankroll=N</code> in the URL ($100–$1M).
+        Sized against {sourceLabel}{" "}
+        <span className="font-mono">
+          (P(YES) = {(pYesValue * 100).toFixed(1)}%)
+        </span>
+        .
+      </p>
+    </section>
   );
 }
 
