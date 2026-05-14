@@ -4,6 +4,7 @@
  */
 import Link from "next/link";
 import type { Signal } from "@/lib/types";
+import { parseLiquidity, isThin, formatLiquidity, THIN_LIQUIDITY_USD } from "@/lib/signalLiquidity";
 
 const TIER_COLOR: Record<Signal["tier"], string> = {
   A: "bg-[var(--accent-soft)] text-[var(--accent)] border-[var(--accent)]",
@@ -64,8 +65,27 @@ export function SignalCard({ signal }: { signal: Signal }) {
               {signal.direction}
             </span>
           </div>
-          <div className="mt-1 text-xs text-[var(--muted)] font-mono">
-            earnings {fmtDate(signal.earnings_date)}
+          <div className="mt-1 flex flex-wrap items-center gap-1.5 text-xs text-[var(--muted)] font-mono">
+            <span>earnings {fmtDate(signal.earnings_date)}</span>
+            <span aria-hidden="true">·</span>
+            <span
+              className={isThin(signal) ? "text-[var(--bad)]" : ""}
+              title={
+                parseLiquidity(signal) === null
+                  ? "Liquidity not present in scanner note"
+                  : `Top-of-book depth ${formatLiquidity(parseLiquidity(signal))}`
+              }
+            >
+              liq {formatLiquidity(parseLiquidity(signal))}
+            </span>
+            {isThin(signal) && (
+              <span
+                className="rounded bg-[#f8717120] px-1 py-0.5 text-[10px] text-[var(--bad)]"
+                title={`Top-of-book depth below $${THIN_LIQUIDITY_USD}`}
+              >
+                THIN
+              </span>
+            )}
           </div>
         </div>
         <div className="text-right">

@@ -5,7 +5,8 @@ import type { Signal } from "@/lib/types";
 import { SignalRow } from "./SignalRow";
 import { SignalCard } from "./SignalCard";
 import { readControlsFromSearch } from "./SignalControls";
-import type { SortKey, FilterKey } from "./SignalControls";
+import type { SortKey, FilterKey, MinLiq } from "./SignalControls";
+import { parseLiquidity } from "@/lib/signalLiquidity";
 
 const TIER_ORDER: Record<Signal["tier"], number> = { A: 0, B: 1, C: 2 };
 
@@ -25,6 +26,19 @@ function applyFilter(signals: Signal[], filter: FilterKey): Signal[] {
   }
 }
 
+/**
+ * Apply minLiq filter. Signals with unparseable liquidity (null) are kept
+ * unless the filter is >0 — when the user explicitly asked for a depth
+ * floor, "unknown" is treated as "doesn't meet floor" (conservative).
+ */
+function applyMinLiq(signals: Signal[], minLiq: MinLiq): Signal[] {
+  if (minLiq <= 0) return signals;
+  return signals.filter((s) => {
+    const liq = parseLiquidity(s);
+    return liq !== null && liq >= minLiq;
+  });
+}
+
 function applySort(signals: Signal[], sort: SortKey): Signal[] {
   const out = [...signals];
   switch (sort) {
@@ -41,6 +55,14 @@ function applySort(signals: Signal[], sort: SortKey): Signal[] {
     case "ticker":
       out.sort((a, b) => a.ticker.localeCompare(b.ticker));
       break;
+    case "liq":
+      out.sort((a, b) => {
+        // Deep first; null treated as -1 so it falls to the bottom
+        const la = parseLiquidity(a) ?? -1;
+        const lb = parseLiquidity(b) ?? -1;
+        return lb - la;
+      });
+      break;
     case "edge":
     default:
       out.sort(
@@ -54,7 +76,7 @@ function applySort(signals: Signal[], sort: SortKey): Signal[] {
 
 export function SignalGrid({ signals }: { signals: Signal[] }) {
   const search = useSearchParams();
-  const { sort, filter } = readControlsFromSearch(
+  const { sort, filter, minLiq } = readControlsFromSearch(
     search ? new URLSearchParams(search.toString()) : new URLSearchParams(),
   );
 
@@ -67,7 +89,8 @@ export function SignalGrid({ signals }: { signals: Signal[] }) {
     );
   }
 
-  const filtered = applyFilter(signals, filter);
+  const afterLiq = applyMinLiq(signals, minLiq);
+  const filtered = applyFilter(afterLiq, filter);
   const sorted = applySort(filtered, sort);
 
   if (sorted.length === 0) {
@@ -99,6 +122,12 @@ export function SignalGrid({ signals }: { signals: Signal[] }) {
               </th>
               <th className="px-4 py-2 text-right font-medium">Edge</th>
               <th className="px-4 py-2 text-right font-medium">Side</th>
+              <th
+                className="hidden px-4 py-2 text-right font-medium md:table-cell"
+                title="Top-of-book depth in USD. Parsed from scanner note. Hidden on narrow screens."
+              >
+                Liquidity
+              </th>
               <th className="px-4 py-2 text-right font-medium">Earnings</th>
               <th className="px-4 py-2 text-right font-medium">Flags</th>
             </tr>

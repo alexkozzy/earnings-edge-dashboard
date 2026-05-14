@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Signal } from "@/lib/types";
+import { parseLiquidity, isThin, formatLiquidity, THIN_LIQUIDITY_USD } from "@/lib/signalLiquidity";
 
 const TIER_COLOR: Record<Signal["tier"], string> = {
   A: "bg-[var(--accent-soft)] text-[var(--accent)] border-[var(--accent)]",
@@ -102,6 +103,30 @@ export function SignalRow({ signal }: { signal: Signal }) {
         >
           {signal.direction}
         </span>
+      </td>
+      <td
+        className="hidden px-4 py-3 text-right font-mono text-xs md:table-cell"
+        title={
+          parseLiquidity(signal) === null
+            ? "Liquidity not present in scanner note"
+            : `Top-of-book depth ${formatLiquidity(parseLiquidity(signal))}`
+        }
+      >
+        <span
+          className={
+            isThin(signal) ? "text-[var(--bad)]" : "text-[var(--foreground)]"
+          }
+        >
+          {formatLiquidity(parseLiquidity(signal))}
+        </span>
+        {isThin(signal) && (
+          <span
+            className="ml-1.5 inline-block rounded bg-[#f8717120] px-1 py-0.5 align-middle text-[10px] font-mono text-[var(--bad)]"
+            title={`Top-of-book depth below $${THIN_LIQUIDITY_USD}`}
+          >
+            THIN
+          </span>
+        )}
       </td>
       <td className="px-4 py-3 text-right text-xs text-[var(--muted)] font-mono">
         {fmtDate(signal.earnings_date)}
