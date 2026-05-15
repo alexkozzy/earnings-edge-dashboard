@@ -7,6 +7,7 @@
  * not invented. Tier thresholds live in the scanner repo and are described
  * as upstream-defined here.
  */
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const dynamic = "force-static";
@@ -153,6 +154,94 @@ f_rec  = clamp(0.25 * f_full, 0, 0.05)`}
         </p>
       </Section>
 
+      <Section title="Vol-arb leg — options σ vs Polymarket σ">
+        <p>
+          For every ticker with a live Polymarket EPS-beat market this week,
+          the scanner compares two independently-derived estimates of the
+          earnings-event stock-return σ:
+        </p>
+        <ol className="ml-5 list-decimal space-y-2">
+          <li>
+            <strong>Options-implied event σ.</strong> ATM straddles at two
+            yfinance expiries — one strictly before the earnings date, one
+            on or after — are extracted. The event-isolated piece is the
+            sqrt of squared-vol subtraction:
+            <pre className="mt-2 overflow-x-auto rounded-md border border-[var(--border)] bg-black/30 p-3 font-mono text-xs">
+{`event_move_pct = sqrt( max(0, post_IM² − pre_IM²) )`}
+            </pre>
+            This strips out the calendar vol that the post-earnings expiry
+            would carry anyway. When no pre-earnings expiry exists in the
+            (now, earnings_date) window, the scanner falls back to the raw
+            post-earnings move and flags{" "}
+            <code className="font-mono">event_vol_decomposition=false</code>.
+          </li>
+          <li>
+            <strong>PM-implied stock σ (Method B).</strong> Inverts the
+            Polymarket beat-market price into an EPS σ, then translates to
+            stock σ via the per-ticker reaction multiplier:
+            <pre className="mt-2 overflow-x-auto rounded-md border border-[var(--border)] bg-black/30 p-3 font-mono text-xs">
+{`σ_eps   = (μ − T) / Φ⁻¹(market_yes)
+σ_stock = σ_eps × reaction_multiplier_k`}
+            </pre>
+            where μ is the Finnhub consensus EPS, T is the Polymarket
+            threshold parsed from the slug, and{" "}
+            <code className="font-mono">k</code> is the rolling-8q median
+            of |stock_move%| / |eps_surprise%| from the training panel.
+            Output is in stock-move % units, expressed as a fraction of
+            spot.
+          </li>
+        </ol>
+        <p>
+          The divergence is the difference + a normalized z-score:
+        </p>
+        <pre className="overflow-x-auto rounded-md border border-[var(--border)] bg-black/30 p-3 font-mono text-xs">
+{`vol_spread_pp         = (options σ − PM σ) × 100
+vol_spread_normalized = vol_spread_pp / sqrt(σ_options_SE² + σ_PM_SE²)`}
+        </pre>
+        <p>
+          Standard errors are placeholder priors (1pp each) until forward
+          accumulation produces measured residuals. z-scores in the table
+          right now are therefore inflated; treat the{" "}
+          <em>direction and ordering</em> as informative, not the absolute
+          values. Tier assignment is{" "}
+          <code className="font-mono">|z| &gt; 2</code> AND decomposition
+          succeeded AND chain not thin = Tier A;{" "}
+          <code className="font-mono">|z| &gt; 1.5</code> = Tier B;{" "}
+          <code className="font-mono">|z| &gt; 1.0</code> = Tier C.
+        </p>
+        <p>
+          <strong>Method A (stock-reaction strike fit) was not built</strong>{" "}
+          because neither Polymarket (26/26 earnings markets are{" "}
+          <code className="font-mono">beat_miss</code> Y/N) nor Kalshi
+          (probed live — zero earnings or stock-price markets in their open
+          inventory) currently lists the per-strike "close above $X on
+          date Y" markets Method A requires. If/when either venue restores
+          that supply, the classifier in{" "}
+          <code className="font-mono">src/market_type.py</code> will
+          recognize them and Method A can be implemented as a follow-up.
+        </p>
+        <p>
+          <strong>Composite weight: zero.</strong> The vol-arb leg ships
+          as a display-only diagnostic on{" "}
+          <Link href="/vol-arb" className="text-[var(--accent)] hover:underline">
+            /vol-arb
+          </Link>
+          {" "}and as quality flags on{" "}
+          <code className="font-mono">/signal/[id]</code>. It is{" "}
+          <em>not</em> fed into the composite probability used for sizing.
+          Promoting an uncalibrated leg into the composite would degrade
+          composite v1 (the only composite that has cleared a Brier bar);
+          we wait for forward accumulation or a paid historical-chain feed
+          to validate the leg before adding it.
+        </p>
+        <p className="text-sm text-[var(--muted)]">
+          References: Patell & Wolfson (1979) for event-window vol
+          decomposition; Brenner & Subrahmanyam (1988) for straddle-mid as
+          implied move; standard sell-side "$0.01 EPS surprise → k%
+          move" sensitivity tables for the reaction multiplier.
+        </p>
+      </Section>
+
       <Section title="Backtest — v1.0 walk-forward, N = 566">
         <p>
           The first end-to-end backtest is live. Walk-forward by quarter
@@ -210,6 +299,13 @@ f_rec  = clamp(0.25 * f_full, 0, 0.05)`}
             <code className="font-mono">/stats</code> is N=0 settled.
             Reported edges are unverified by live paper bets until the
             paper engine accumulates a settled history.
+          </li>
+          <li>
+            <strong>Vol-arb leg uncalibrated.</strong> The vol-arb
+            diagnostic above runs but has no validation: historical option
+            chains are paid-only, and Method A is supply-blocked across
+            both Polymarket and Kalshi. Forward accumulation (live
+            snapshots once per scan) is the slow free path to validate it.
           </li>
         </ol>
       </Section>
