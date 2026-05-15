@@ -221,6 +221,47 @@ vol_spread_normalized = vol_spread_pp / sqrt(σ_options_SE² + σ_PM_SE²)`}
           recognize them and Method A can be implemented as a follow-up.
         </p>
         <p>
+          <strong>Quality audit + tier degradation.</strong> Every
+          live signal runs through three stability/sensitivity checks
+          before its tier is emitted:
+        </p>
+        <ul className="ml-5 list-disc space-y-1">
+          <li>
+            <strong>Multiplier stability.</strong> Coefficient of variation
+            of the rolling-8q reaction multiplier{" "}
+            <code className="font-mono">k</code>. CV &gt; 0.5 means{" "}
+            <code className="font-mono">k</code> whips quarter-to-quarter
+            and Method B's point-estimate translation is unreliable.{" "}
+            <strong>Caps the signal at Tier C.</strong>
+          </li>
+          <li>
+            <strong>PM-price sensitivity.</strong> Recompute{" "}
+            <code className="font-mono">σ_pm</code> at the live market
+            price ±1pp. If the resulting bracket exceeds 20% of central,
+            the Φ⁻¹ inversion is unstable in this regime (typically deep
+            ITM/OTM Polymarket prices).{" "}
+            <strong>Caps the signal at Tier B.</strong>
+          </li>
+          <li>
+            <strong>Distribution shape.</strong> Shapiro-Wilk test on the
+            ticker's standardized EPS surprise distribution. p &lt; 0.05
+            flags Method B's normal-CDF assumption as biased for this
+            ticker (typically skewed names where surprises cluster on one
+            side). <strong>Caps the signal at Tier B.</strong>
+          </li>
+        </ul>
+        <p>
+          All three flags raised → signal is <strong>suppressed</strong>{" "}
+          in the scanner before reaching the snapshot. Each flag also
+          appears on the signal-detail page so readers can see <em>why</em>
+          a tier landed where it did. The audit live-run on the current
+          14-ticker universe degraded 7 signals to{" "}
+          <code className="font-mono">suppressed</code>, 5 to Tier B, and
+          2 (including NVDA) to Tier C — zero signals survived clean.
+          That's the honest measurement of how much methodology noise the
+          pipeline carries today.
+        </p>
+        <p>
           <strong>Composite weight: zero.</strong> The vol-arb leg ships
           as a display-only diagnostic on{" "}
           <Link href="/vol-arb" className="text-[var(--accent)] hover:underline">

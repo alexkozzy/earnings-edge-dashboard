@@ -292,6 +292,8 @@ export default async function SignalPage({
 
       {composite && <ThreeProbabilities data={composite} marketProb={mktProb} />}
 
+      <VolArbBlock signal={signal} />
+
       <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
         <h2 className="mb-3 text-xs uppercase tracking-wider text-[var(--muted)]">
           Quality flags
@@ -338,6 +340,181 @@ export default async function SignalPage({
         recorded {signal.recorded_at} · snapshot {snapshot.generated_at}
       </footer>
     </div>
+  );
+}
+
+function VolArbBlock({ signal }: { signal: Signal }) {
+  // Render only when the scanner emitted a vol_arb spread for this ticker.
+  if (signal.vol_arb_spread_pp === null || signal.vol_arb_spread_pp === undefined) {
+    return null;
+  }
+  const tier = signal.vol_arb_tier;
+  const tierRaw = signal.vol_arb_tier_raw;
+  const degraded = tier && tierRaw && tier !== tierRaw;
+  const optEv = signal.vol_arb_options_event_move_pct;
+  const pmEv = signal.vol_arb_pm_event_move_pct;
+  const spreadPp = signal.vol_arb_spread_pp;
+  const z = signal.vol_arb_spread_normalized;
+  const flags = signal.vol_arb_quality_flags_count ?? 0;
+
+  const pct = (n: number | null | undefined) =>
+    n === null || n === undefined ? "—" : `${(n * 100).toFixed(2)}%`;
+  const pp = (n: number | null | undefined) =>
+    n === null || n === undefined
+      ? "—"
+      : `${n >= 0 ? "+" : ""}${n.toFixed(2)}pp`;
+
+  return (
+    <section className="rounded-lg border border-[var(--border)] bg-[var(--panel)] p-4">
+      <div className="mb-3 flex items-baseline justify-between gap-2">
+        <h2 className="text-xs uppercase tracking-wider text-[var(--muted)]">
+          Vol-arb diagnostic
+        </h2>
+        {degraded && (
+          <span
+            className="rounded bg-[var(--bad)]/15 px-1.5 py-0.5 font-mono text-[10px] text-[var(--bad)]"
+            title={`Audit dropped raw tier ${tierRaw} → ${tier}: ${signal.vol_arb_reason ?? "quality flags raised"}`}
+          >
+            TIER DEGRADED {tierRaw} → {tier}
+          </span>
+        )}
+      </div>
+      <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+        <div>
+          <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            Options σ
+          </div>
+          <div className="mt-1 font-mono">{pct(optEv)}</div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            PM σ (Method B)
+          </div>
+          <div className="mt-1 font-mono">{pct(pmEv)}</div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            Spread
+          </div>
+          <div
+            className={`mt-1 font-mono font-semibold ${
+              (spreadPp ?? 0) > 0
+                ? "text-[var(--good)]"
+                : (spreadPp ?? 0) < 0
+                  ? "text-[var(--bad)]"
+                  : ""
+            }`}
+          >
+            {pp(spreadPp)}
+          </div>
+        </div>
+        <div>
+          <div className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            z-score
+          </div>
+          <div className="mt-1 font-mono">
+            {z === null || z === undefined ? "—" : `${z >= 0 ? "+" : ""}${z.toFixed(2)}`}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 border-t border-[var(--border)] pt-3">
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <h3 className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+            Quality audit ({flags} of 3 flags raised)
+          </h3>
+          {tier === "suppressed" && (
+            <span className="rounded bg-[var(--bad)]/15 px-1.5 py-0.5 font-mono text-[10px] text-[var(--bad)]">
+              SUPPRESSED
+            </span>
+          )}
+        </div>
+        <ul className="grid grid-cols-1 gap-2 text-sm sm:grid-cols-3">
+          <QualityFlag
+            label="Multiplier stability"
+            value={signal.vol_arb_multiplier_unstable}
+            metric={
+              signal.vol_arb_reaction_multiplier_cv !== null &&
+              signal.vol_arb_reaction_multiplier_cv !== undefined
+                ? `k_cv ${signal.vol_arb_reaction_multiplier_cv.toFixed(2)} (gate 0.50)`
+                : "k_cv —"
+            }
+            failLabel="UNSTABLE"
+            passLabel="stable"
+          />
+          <QualityFlag
+            label="PM-price sensitivity"
+            value={signal.vol_arb_pm_price_sensitive}
+            metric={
+              signal.vol_arb_pm_bracket_fraction !== null &&
+              signal.vol_arb_pm_bracket_fraction !== undefined
+                ? `bracket ${(signal.vol_arb_pm_bracket_fraction * 100).toFixed(0)}% (gate 20%)`
+                : "bracket —"
+            }
+            failLabel="SENSITIVE"
+            passLabel="bracket ok"
+          />
+          <QualityFlag
+            label="Distribution shape"
+            value={signal.vol_arb_normal_questionable}
+            metric={
+              signal.vol_arb_shapiro_p !== null &&
+              signal.vol_arb_shapiro_p !== undefined
+                ? `Shapiro p ${signal.vol_arb_shapiro_p.toFixed(3)} (gate 0.05)`
+                : "Shapiro —"
+            }
+            failLabel="NON-NORMAL"
+            passLabel="normal-ish"
+          />
+        </ul>
+        <p className="mt-3 text-[11px] text-[var(--muted)]">
+          Display-only diagnostic. Vol-arb leg carries{" "}
+          <strong>zero composite weight</strong> until calibration evidence
+          accumulates. See{" "}
+          <Link href="/methodology" className="text-[var(--accent)] hover:underline">
+            /methodology
+          </Link>
+          {" "}for the math + degradation rules.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function QualityFlag({
+  label,
+  value,
+  metric,
+  failLabel,
+  passLabel,
+}: {
+  label: string;
+  value: boolean | null | undefined;
+  metric: string;
+  failLabel: string;
+  passLabel: string;
+}) {
+  const triggered = value === true;
+  return (
+    <li className="rounded-md border border-[var(--border)] bg-black/20 p-2">
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+          {label}
+        </span>
+        <span
+          className={`rounded px-1.5 py-0.5 font-mono text-[10px] ${
+            triggered
+              ? "bg-[var(--bad)]/15 text-[var(--bad)]"
+              : value === null || value === undefined
+                ? "bg-[var(--muted)]/10 text-[var(--muted)]"
+                : "bg-[var(--good)]/15 text-[var(--good)]"
+          }`}
+        >
+          {triggered ? failLabel : value === null || value === undefined ? "—" : passLabel}
+        </span>
+      </div>
+      <div className="mt-1 font-mono text-xs text-[var(--muted)]">{metric}</div>
+    </li>
   );
 }
 

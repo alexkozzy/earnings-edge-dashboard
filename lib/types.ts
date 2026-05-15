@@ -187,10 +187,38 @@ export const SignalSchema = z.object({
   vol_arb_spread_pp: z.number().nullable().optional(),
   /** Spread normalized by SE prior. Use as z-score. */
   vol_arb_spread_normalized: z.number().nullable().optional(),
-  /** "A" | "B" | "C" | "below_threshold". */
-  vol_arb_tier: z.enum(["A", "B", "C", "below_threshold"]).nullable().optional(),
+  /** "A" | "B" | "C" | "below_threshold" | "suppressed" — POST-degradation. */
+  vol_arb_tier: z
+    .enum(["A", "B", "C", "below_threshold", "suppressed"])
+    .nullable()
+    .optional(),
+  /** Raw (pre-audit-degradation) tier — diagnostic only. */
+  vol_arb_tier_raw: z
+    .enum(["A", "B", "C", "below_threshold"])
+    .nullable()
+    .optional(),
   /** True when sqrt(post² − pre²) decomposition succeeded. */
   vol_arb_event_decomposition: z.boolean().nullable().optional(),
+
+  /* Quality-audit flags (vol-arb audit pass, additive). Three checks
+     and their derived booleans; all three triggered → signal suppressed
+     in the scanner before it reaches the snapshot. */
+
+  /** CV of rolling-8q reaction multiplier; > 0.5 → multiplier_unstable. */
+  vol_arb_reaction_multiplier_cv: z.number().nullable().optional(),
+  /** k_cv > 0.5; caps tier at C. */
+  vol_arb_multiplier_unstable: z.boolean().nullable().optional(),
+  /** σ_pm bracket > 20% under ±1pp PM-price perturbation; caps at B. */
+  vol_arb_pm_price_sensitive: z.boolean().nullable().optional(),
+  /** Bracket fraction itself, for display. */
+  vol_arb_pm_bracket_fraction: z.number().nullable().optional(),
+  /** Shapiro-Wilk p < 0.05 on standardized surprise distribution; caps at B. */
+  vol_arb_normal_questionable: z.boolean().nullable().optional(),
+  /** Shapiro p-value, for display. */
+  vol_arb_shapiro_p: z.number().nullable().optional(),
+  /** Count of quality flags raised (0..3). */
+  vol_arb_quality_flags_count: z.number().int().nullable().optional(),
+
   /** "ok" or short diagnostic. */
   vol_arb_reason: z.string().nullable().optional(),
 });

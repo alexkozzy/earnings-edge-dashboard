@@ -44,7 +44,12 @@ type Row = Pick<
   | "vol_arb_spread_pp"
   | "vol_arb_spread_normalized"
   | "vol_arb_tier"
+  | "vol_arb_tier_raw"
   | "vol_arb_event_decomposition"
+  | "vol_arb_quality_flags_count"
+  | "vol_arb_multiplier_unstable"
+  | "vol_arb_pm_price_sensitive"
+  | "vol_arb_normal_questionable"
   | "vol_arb_reason"
 >;
 
@@ -66,6 +71,8 @@ function tierBadge(tier: Row["vol_arb_tier"]): string {
       return "bg-[#fbbf2420] text-[var(--warn)] border-[var(--warn)]";
     case "C":
       return "bg-[#94949b20] text-[var(--muted)] border-[var(--muted)]";
+    case "suppressed":
+      return "bg-[var(--bad)]/15 text-[var(--bad)] border-[var(--bad)]";
     default:
       return "text-[var(--muted)]";
   }
@@ -273,6 +280,7 @@ function Table({ rows }: { rows: Row[] }) {
               <th className="px-3 py-2 text-right font-medium">Spread (pp)</th>
               <th className="px-3 py-2 text-right font-medium">z</th>
               <th className="px-3 py-2 font-medium">Method</th>
+              <th className="px-3 py-2 text-center font-medium" title="Quality-audit flags raised; 3 → signal suppressed">Flags</th>
               <th className="px-3 py-2 font-medium">Decomp</th>
               <th className="px-3 py-2 font-medium">Earnings</th>
             </tr>
@@ -293,6 +301,14 @@ function Table({ rows }: { rows: Row[] }) {
                     <span className={`inline-block rounded-md border px-1.5 py-0.5 text-xs font-mono ${tierBadge(r.vol_arb_tier)}`}>
                       {r.vol_arb_tier ?? "—"}
                     </span>
+                    {r.vol_arb_tier_raw && r.vol_arb_tier && r.vol_arb_tier !== r.vol_arb_tier_raw && (
+                      <span
+                        className="ml-1 inline-block rounded bg-[var(--bad)]/10 px-1 py-0.5 text-[10px] font-mono text-[var(--bad)]"
+                        title={`Audit degraded raw ${r.vol_arb_tier_raw} → ${r.vol_arb_tier}: ${r.vol_arb_reason ?? "flags"}`}
+                      >
+                        ↓ {r.vol_arb_tier_raw}
+                      </span>
+                    )}
                   </td>
                   <td className="px-3 py-2 font-mono font-semibold">
                     <Link
@@ -316,6 +332,26 @@ function Table({ rows }: { rows: Row[] }) {
                   </td>
                   <td className="px-3 py-2 font-mono text-xs text-[var(--muted)]">
                     {r.vol_arb_pm_method ?? "—"}
+                  </td>
+                  <td className="px-3 py-2 text-center text-xs">
+                    <span
+                      className={`font-mono font-semibold ${
+                        (r.vol_arb_quality_flags_count ?? 0) >= 2
+                          ? "text-[var(--bad)]"
+                          : (r.vol_arb_quality_flags_count ?? 0) === 1
+                            ? "text-[var(--warn)]"
+                            : "text-[var(--good)]"
+                      }`}
+                      title={[
+                        r.vol_arb_multiplier_unstable ? "multiplier unstable" : null,
+                        r.vol_arb_pm_price_sensitive ? "PM-price sensitive" : null,
+                        r.vol_arb_normal_questionable ? "non-normal surprise dist" : null,
+                      ]
+                        .filter(Boolean)
+                        .join("; ") || "clean"}
+                    >
+                      {r.vol_arb_quality_flags_count ?? 0}
+                    </span>
                   </td>
                   <td className="px-3 py-2 text-center text-xs">
                     {r.vol_arb_event_decomposition ? (
