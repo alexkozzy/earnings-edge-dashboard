@@ -162,6 +162,37 @@ export const SignalSchema = z.object({
     .optional(),
   /** "ok" or a short diagnostic when the options leg could not size. */
   options_reason: z.string().nullable().optional(),
+
+  /* ----- Vol-arb diagnostic fields (vol-arb pass, additive) ----------
+   * Scanner-supplied comparison between options-implied event move (post² −
+   * pre² decomposed) and PM-implied stock move (Method B: EPS price →
+   * σ_eps via Φ⁻¹ × per-ticker reaction multiplier).
+   *
+   * NOT in the composite math — these are display-only quality flags
+   * until calibration evidence accumulates. See
+   * massive-earnings-edge/docs/vol-arb-audit.md and Phase C gating doc.
+   * ------------------------------------------------------------------- */
+
+  /** Event-isolated options implied move (sqrt(post² − pre²)). */
+  vol_arb_options_event_move_pct: z.number().nullable().optional(),
+  /** Raw post-earnings ATM straddle move. */
+  vol_arb_options_post_move_pct: z.number().nullable().optional(),
+  /** Pre-earnings ATM straddle move (calendar baseline). */
+  vol_arb_options_pre_move_pct: z.number().nullable().optional(),
+  /** Method B: stock σ implied by inverting EPS-beat market price. */
+  vol_arb_pm_event_move_pct: z.number().nullable().optional(),
+  /** "B_eps_translation" or "none" when not computable. */
+  vol_arb_pm_method: z.string().nullable().optional(),
+  /** (options − pm) × 100. Positive = options expensive vs PM. */
+  vol_arb_spread_pp: z.number().nullable().optional(),
+  /** Spread normalized by SE prior. Use as z-score. */
+  vol_arb_spread_normalized: z.number().nullable().optional(),
+  /** "A" | "B" | "C" | "below_threshold". */
+  vol_arb_tier: z.enum(["A", "B", "C", "below_threshold"]).nullable().optional(),
+  /** True when sqrt(post² − pre²) decomposition succeeded. */
+  vol_arb_event_decomposition: z.boolean().nullable().optional(),
+  /** "ok" or short diagnostic. */
+  vol_arb_reason: z.string().nullable().optional(),
 });
 
 export type Signal = z.infer<typeof SignalSchema>;
